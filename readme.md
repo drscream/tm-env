@@ -14,3 +14,13 @@ connected to.
 
 For editing files nothing is better than vim, so there are many
 plugins, config parameters in this repository.
+
+## directory structure
+
+There are two folders, one for the public environment i share with
+everyone and one for my private personal scripts - that could contain
+any secret information. Well this will not be shared on github.
+
+#### `bin`-folder
+
+Contains binary files or scripts that should be executable.
