@@ -1,0 +1,9 @@
+#!/bin/bash
+# Thomas Merkel <tm@core.io>
+
+cd ${1-'.'}
+
+for f in *.crt; do
+	hash=$(openssl x509 -noout -hash -in $f)
+	ln -svf $f $hash.0
+done

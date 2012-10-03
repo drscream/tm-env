@@ -1,0 +1,13 @@
+#!/bin/bash
+
+file=$1
+
+if [ -f ${file}.crt ]; then
+	echo -n 'crt: '; openssl x509 -noout -modulus -in ${file}.crt | openssl md5
+fi
+if [ -f ${file}.key ]; then
+	echo -n 'key: '; openssl rsa -noout -modulus -in ${file}.key | openssl md5
+fi
+if [ -f ${file}.csr ]; then
+	echo -n 'csr: '; openssl req -noout -modulus -in ${file}.csr | openssl md5
+fi

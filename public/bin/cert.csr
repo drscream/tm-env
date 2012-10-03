@@ -1,0 +1,111 @@
+#!/bin/bash
+# Certificate Signing Request Generator
+
+# be safe about permissions
+LASTUMASK=$(umask)
+umask 077
+
+# OpenSSL for HPUX needs a random file
+RANDOMFILE=${HOME}/.rnd
+
+BASEDIR=$(pwd)
+
+# create a config file for openssl
+CONFIG=`mktemp -q /tmp/openssl-conf.XXXXXXXX`
+if [ ! $? -eq 0 ]; then
+	echo "Could not create temporary config file. exiting"
+	exit 1
+fi
+
+echo "Private Key and Certificate Signing Request Generator"
+echo "This script was designed to suit the request format needed by"
+echo "the CAcert Certificate Authority. www.CAcert.org"
+echo
+
+printf "Short Hostname (ie. imap big_srv www2): "
+read HOST
+printf "FQDN/CommonName (ie. www.example.com) : "
+read COMMONNAME
+
+echo "Type SubjectAltNames for the certificate, one per line. Enter a blank line to finish"
+SAN=1        # bogus value to begin the loop
+SANAMES=""   # sanitize
+while [ ! "${SAN}" = "" ]; do
+	printf "SubjectAltName: DNS:"
+	read SAN
+	if [ "${SAN}" = "" ]; then break; fi # end of input
+	if [ "${SANAMES}" = "" ]; then
+		SANAMES="DNS:${SAN}"
+	else
+		SANAMES="${SANAMES},DNS:${SAN}"
+	fi
+done
+
+# Config File Generation
+
+cat <<EOF > ${CONFIG}
+# -------------- BEGIN custom openssl.cnf -----
+ HOME = ${HOME}
+EOF
+
+cat <<EOF >> ${CONFIG}
+ oid_section = new_oids
+ [ new_oids ]
+ [ req ]
+ default_days = 730 # how long to certify for
+ default_keyfile = ${BASEDIR}/${HOST}.key
+ distinguished_name	= req_distinguished_name
+ encrypt_key = no
+ string_mask = nombstr
+EOF
+
+if [ ! "${SANAMES}" = "" ]; then
+	echo "req_extensions = v3_req # Extensions to add to certificate request" >> ${CONFIG}
+fi
+
+cat <<EOF >> $CONFIG
+ [ req_distinguished_name ]
+ commonName			  = $COMMONNAME
+ commonName_default	  = $COMMONNAME
+ commonName_max		  = 64
+ countryName          = Country Name (2 letter code)
+ countryName_default  = DE
+ countryName_min      = 2
+ countryName_max      = 2
+ stateOrProvinceName         = State or Province Name (full name)
+ stateOrProvinceName_default = Baden-Wuerttemberg
+ localityName                = Locality Name (eg, city)
+ localityName_default        = Tettnang
+ 0.organizationName          = Organization Name (eg, company)
+ 0.organizationName_default  = Internet Widgits Pty Ltd
+ organizationalUnitName      = Organizational Unit Name (eg, section)
+ emailAddress                = Email Address
+ emailAddress_max            = 64
+
+ [ v3_req ]
+EOF
+
+if [ ! "$SANAMES" = "" ]; then
+	echo "subjectAltName=$SANAMES" >> $CONFIG
+fi
+
+echo "# -------------- END custom openssl.cnf -----" >> $CONFIG
+
+cat $CONFIG
+
+echo "Running OpenSSL..."
+#openssl req -batch -config $CONFIG -newkey rsa:4096 -out ${HOME}/${HOST}.csr
+openssl req -config $CONFIG -newkey rsa:4096 -out ${BASEDIR}/${HOST}.csr
+echo "Copy the following Certificate Request and paste into CAcert website to obtain a Certificate."
+echo "When you receive your certificate, you 'should' name it something like ${HOST}.crt"
+echo
+cat ${BASEDIR}/${HOST}.csr
+echo
+echo The Certificate request is also available in ${BASEDIR}/${HOST}.csr
+echo The Private Key is stored in ${BASEDIR}/${HOST}.key
+echo
+
+rm ${CONFIG}
+
+# restore umask
+umask ${LASTUMASK}
