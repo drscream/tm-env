@@ -1,0 +1,32 @@
+[user]
+	name = Thomas Merkel
+	email = tm@core.io
+
+[alias]
+	ci = commit -a
+	co = checkout
+	st = status -a
+	lg = log --name-status
+	praise = blame
+	graph = log --graph --date-order -C -M --pretty=format:'%C(yellow)%h%Creset %ad %Cgreen%d%Creset %s' --all --date=short
+	rstat = fetch && git diff --name-only ..origin
+	dlog = log --stat --abbrev-commit
+
+
+[apply]
+	whitespace = strip
+
+[diff]
+	color = auto
+	rename = copy
+
+[pager]
+	color = true
+
+[color]
+	ui = true
+
+[status]
+	color = auto
+
+# vim:ft=dosini
