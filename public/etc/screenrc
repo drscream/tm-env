@@ -1,0 +1,78 @@
+# Thomas Merkel <tm@core.io>
+
+# DEFAULT
+shell			bash
+autodetach		on
+defutf8     	on
+deflogin    	off
+startup_message	off
+nethack			on
+
+activity	"activity in %n (%t)"
+bell_msg	"bell in %n (%t)"
+defhstatus	"screen: ^En (^Et)"
+shelltitle	"$ |sh:"
+
+vbell		off
+vbell_msg	"WHAT ??!!"
+vbellwait	1
+
+msgminwait	1
+msgwait		3
+
+#hardcopy_append on
+#hardcopydir ~/.screen
+
+windowlist title	" Num%+3=| Fl%+3=| Name"
+windowlist string	" %3n%+3=| %f%+3=| %t"
+
+zombie		^D^C
+escape		^Aa
+termcapinfo	xterm|xterm-256color|xterms|xs|rxvt ti@:te@
+
+#idle 600 blanker
+#blankerprg nice -n 19 cmatrix -abu9
+
+# BINDINGS
+bind ^r	source "${HOME}/.screenrc"
+bind ^e	escape ^Xx
+bind ^y	escape ^Aa
+bind ^x	lockscreen
+bind o	copy
+bind p	paste .
+bind .	number
+bind l	lastmsg
+bind w	windowlist -b
+bind r	resize
+bind s	select
+bind >	split
+bind <	remove
+bind ^f	focus down
+bind =	resize =
+bind +	resize +5
+bind -	resize -5
+bind ~	resize max
+
+# EXTERNAL FUNCTIONS
+# key prefixes/commands
+bind , command -c fav
+bind ; command -c sys
+bind _ command -c ext
+
+# favorites
+bind -c fav i screen -t "irc"     1 irssi -h 2a01:138:a015:cafe::42:900
+bind -c fav j screen -t "xmpp:av" 2 mcabber -f ${DOC_HOME}/.mcabber/avira/mcabberrc
+bind -c fav c screen -t "xmpp:fw" 3 mcabber -f ${DOC_HOME}/.mcabber/freamware/mcabberrc
+bind -c fav m screen -t "mail"    4 ${DOC_HOME}/.mutt/bin/mutt-profiles.sh
+bind -c fav a screen -t "abook"   5 abook
+
+# system tools
+bind -c sys S screen -t "syslog" 38 sudo less -SMIR +F /var/log/messages
+bind -c sys H screen -t "top" 39 sudo htop
+
+# external programs
+bind -c ext l screen -t "links" links
+bind -c ext v screen -t "vim" vim
+
+# STATUSPANEL
+hardstatus alwayslastline "%{= kY}[ %{R}%H %{Y}][ %{g}load[%l] %{Y}][ %{B}%d/%m/%Y %c %{Y}][ %{r}%=%?%-Lw%?(%n%f* %t)%?%+Lw%? %{Y}]"
