@@ -1,0 +1,34 @@
+# Thomas Merkel <tm@core.io>
+
+# cd to variable whose value is the directory to change to
+shopt -s cdable_vars
+
+# ignore minor spelling errors on 'cd'
+shopt -s cdspell
+
+# command is hashed or path search
+shopt -s checkhash
+
+# check window and resize if necessary
+shopt -s checkwinsize
+
+# save multiliner as single line in history
+shopt -s cmdhist
+
+# extended pattern matching under pathname expansion
+shopt -s extglob
+
+# append to history
+shopt -s histappend
+
+# re-edit a failed history substitution (depends on readline)
+shopt -s histreedit
+
+# allowing further modification before parsing (depends on readline)
+shopt -s histverify
+
+# hostname completion on "@" (depends on readline)
+shopt -s hostcomplete
+
+# no command completion on empty line (depends on readline)
+shopt -s no_empty_cmd_completion
