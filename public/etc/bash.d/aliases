@@ -1,0 +1,41 @@
+# Thomas Merkel <tm@core.io>
+
+# ls and grep colors aliases
+if [ -x $(type -P dircolors) ]; then
+	eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+
+# more ls aliases
+alias l='ls -CF'
+alias ll='ls -la'
+alias la='ls -A'
+alias lh='ls -l -h'
+alias lt='ls -l -t'
+
+# ..
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# sudo
+alias Sl='sudo less +F /var/log/messages'
+alias St='sudo top'
+alias Sh='sudo htop'
+
+# vim
+alias vim='vim -u ${TM_HOME}/.vimrc'
+alias vimdiff='vimdiff -u ${TM_HOME}/.vimrc'
+
+# screen
+alias screen='screen -c ${TM_HOME}/.screenrc'
+
+# public inet address infos
+alias pubip=;dig +short myip.opendns.com @resolver1.opendns.com;
+
+# ssh socket
+alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
+
+# vim:ft=sh
