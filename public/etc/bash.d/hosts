@@ -1,0 +1,6 @@
+# Thomas Merkel <tm@core.io>
+
+[ -r ${TM_HOME}/.tm-env/hosts.d/${HOST} ] && \
+	source ${TM_HOME}/.tm-env/hosts.d/${HOST}
+
+# vim:ft=sh
