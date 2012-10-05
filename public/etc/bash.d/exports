@@ -55,4 +55,12 @@ export PAGER="less"
 export LESS="-R -M --shift 5 -x 4"
 export LESSSECURE=1
 
+##
+## git
+##
+export GIT_AUTHOR_NAME='Thomas Merkel'
+export GIT_AUTHOR_EMAIL='tm@core.io'
+export GIT_COMMITTER_NAME=${GIT_AUTHOR_NAME}
+export GIT_COMMITTER_EMAIL=${GIT_AUTHOR_EMAIL}
+
 # vim:ft=sh

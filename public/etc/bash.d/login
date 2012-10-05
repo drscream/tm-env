@@ -1,0 +1,40 @@
+# Thomas Merkel <tm@core.io>
+
+##################################################################
+if [[ ${EUID} == 0 ]] ; then
+	return
+fi
+##################################################################
+
+test -x "$(type -p setterm)" && {
+	setterm -blank 0 -blength 0;
+}
+
+YELLOW=$'\033[1;33m'
+LBLUE=$'\033[1;36m'
+BLUE=$'\033[1;34m'
+LRED=$'\033[1;31m'
+RED=$'\033[1;38m'
+
+if [[ "$TERM" != "screen" ]]; then
+	## ...
+	echo 
+	
+	## system information
+	echo -e "$BLUE*\033[m \033[1;1muname\033[m"; uname -snrmpo; echo
+	
+	## uptime (records)
+	if [ -x "$(type -p uprecords)" ]; then
+		echo -e "$BLUE*\033[m \033[1;1muptime records\033[m"; uprecords -m 3 -s; echo
+	else
+		echo -e "$BLUE*\033[m \033[1;1muptime\033[m"; uptime | sed "s/^ //"; echo
+	fi
+	
+	## show who is logged on
+	echo -e "$BLUE*\033[m \033[1;1mwho\033[m"; who -Hu; echo
+fi
+
+## fortune on every login
+test -x "$(type -p fortune)" && {
+	echo -e "$BLUE*\033[m \033[1;1mfortune\033[m"; fortune -s; echo
+}
