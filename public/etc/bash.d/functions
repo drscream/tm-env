@@ -1,0 +1,38 @@
+# Thomas Merkel <tm@core.io>
+
+# use root to set own env
+function root {
+	case ${TM_OS} in
+		Darwin)
+			sudo -i '/bin/bash --rcfile ${TM_HOME}/.bashrc'
+		;;
+		*)
+			sudo su -c '/bin/bash --rcfile ${TM_HOME}/.bashrc'
+		;;
+	esac
+}
+
+# ssh with screen
+function sshs {
+	ssh $@ -t screen
+}
+
+# chmown 750 www:sdad target
+function chmown {
+	chmod $1 $3
+	chown $2 $3
+}
+
+# chmod_fd 644 755
+function chmod_fd {
+	find . -type f -exec chmod $1 {} \;
+	find . -type d -exec chmod $2 {} \;
+}
+
+# chown_fd tmerkel:audio root:audio
+function chown_fd {
+	find . -type f -exec chown $1 {} \;
+	find . -type d -exec chown $2 {} \;
+}
+
+# vim:ft=sh
