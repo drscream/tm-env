@@ -32,3 +32,6 @@ shopt -s hostcomplete
 
 # no command completion on empty line (depends on readline)
 shopt -s no_empty_cmd_completion
+
+# workaround for ssh terminal hangs because of forked processes
+shopt -s huponexit
