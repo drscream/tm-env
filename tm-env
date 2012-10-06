@@ -52,7 +52,7 @@ _init() {
 	git clone ${SRC_PUBLIC} ${TM_ENV}
 
 	# symlink all folders with .d at the end 
-	find ${TM_ENV}/${1}/etc/*.d -type d | while read dir; do
+	find ${TM_ENV}/${1}/etc/*.d -depth 0 -type d | while read dir; do
 		dst=$(basename ${dir})
 		_link ${dir} ${dst}
 	done
