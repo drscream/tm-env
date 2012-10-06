@@ -14,7 +14,7 @@ set nonumber
 set norelativenumber
 set laststatus=2
 set history=1000
-set undofile
+"set undofile
 set undoreload=10000
 set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
@@ -129,7 +129,7 @@ set formatoptions=qrn1
 " }}}
 
 " Backups {{{
-set nobackup                      " disable backups
+"set nobackup                      " disable backups
 set noswapfile                    " It's 2012, Vim.
 
 "set undodir=~/.vim/tmp/undo//     " undo files

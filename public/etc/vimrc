@@ -16,5 +16,7 @@ filetype plugin indent on
 " Sources other config files {{{
 
 runtime! configs/basic.vim
+runtime! configs/abbreviations.vim
+runtime! configs/mappings.vim
 
 " }}}
