@@ -16,3 +16,6 @@
 [submodule "public/etc/vim.d/bundle/linediff"]
 	path = public/etc/vim.d/bundle/linediff
 	url = https://github.com/AndrewRadev/linediff.vim.git
+[submodule "public/etc/vim.d/bundle/nerdtree"]
+	path = public/etc/vim.d/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
