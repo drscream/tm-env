@@ -28,3 +28,6 @@
 [submodule "public/etc/vim.d/bundle/yankring"]
 	path = public/etc/vim.d/bundle/yankring
 	url = https://github.com/vim-scripts/YankRing.vim.git
+[submodule "public/etc/vim.d/bundle/repeat"]
+	path = public/etc/vim.d/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
