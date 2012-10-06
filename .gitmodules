@@ -13,3 +13,6 @@
 [submodule "public/etc/vim.d/bundle/fugitive"]
 	path = public/etc/vim.d/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "public/etc/vim.d/bundle/linediff"]
+	path = public/etc/vim.d/bundle/linediff
+	url = https://github.com/AndrewRadev/linediff.vim.git
