@@ -71,14 +71,14 @@ _init_private() {
 }
 
 _update() {
-#	git pull ${TM_ENV}/${1}
-	echo $SRC_PRIVATE
+	cd ${TM_ENV}/${1}
+	git pull
+	cd -
 }
 
 _update_private() {
 	echo
 }
-
 
 ##
 ## main

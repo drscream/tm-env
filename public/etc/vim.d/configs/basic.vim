@@ -123,10 +123,10 @@ augroup END
 " }}}
 
 " Tabs, spaces, wrapping {{{
-set tabstop=8
+set tabstop=4
 set shiftwidth=4
-set softtabstop=4
-set expandtab
+"set softtabstop=4
+"set expandtab
 set wrap
 set textwidth=80
 set formatoptions=qrn1
