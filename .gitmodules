@@ -25,3 +25,6 @@
 [submodule "public/etc/vim.d/bundle/surround"]
 	path = public/etc/vim.d/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "public/etc/vim.d/bundle/yankring"]
+	path = public/etc/vim.d/bundle/yankring
+	url = https://github.com/vim-scripts/YankRing.vim.git
