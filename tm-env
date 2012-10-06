@@ -29,16 +29,26 @@ _help() {
 
 # link stuff
 _link() {
-	echo ''
+	src=${1}
+	dst=${TM_HOME}'/.'$(basename ${1})
+	echo ${src} ${dst}
+#	test -L ~${
 }
 
 # init the repos and symlink
 _init() {
-	git clone ${GIT_SOURCE} ${TM_ENV}
-	
-#	for file in ${TM_ENV}/${param}/etc; do
-			
-#	done
+	if [ -d ${TM_ENV} ]; then
+		echo -e 'The folder to the '${TM_ENV}' already exists.\nDelete it if you like to init it again.'
+		#exit 1
+	fi
+
+	# get the source
+	git clone ${SRC_PUBLIC} ${TM_ENV}
+
+	# symlink all files we need
+	for file in ${TM_ENV}/${1}/etc/*; do
+		_link ${file}
+	done
 }
 
 _init_private() {
@@ -78,7 +88,7 @@ case ${3} in
 esac
 
 # parse opts
-while getopts 'u:i' option; do
+while getopts 'u:i:' option; do
 	case ${option} in
 		u)
 			_update ${OPTARG}
