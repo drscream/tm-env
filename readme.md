@@ -23,4 +23,10 @@ any secret information. Well this will not be shared on github.
 
 #### `bin`-folder
 
-Contains binary files or scripts that should be executable.
+Contains binary files or scripts that should be executable. It will
+be symlinked to `~/.bin`.
+
+### `etc`-folder
+
+Should contain all my cool environment files from vim, bash, and
+something else.
