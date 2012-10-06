@@ -18,5 +18,7 @@ filetype plugin indent on
 runtime! configs/basic.vim
 runtime! configs/abbreviations.vim
 runtime! configs/mappings.vim
+runtime! configs/plugins.vim
+runtime! configs/gui.vim
 
 " }}}
