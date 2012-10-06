@@ -36,7 +36,7 @@ esac
 if [ ${EUID} -eq 0 ]; then
 	TM_HOME=$(grep "^${TM_USER}:" /etc/passwd | cut -d: -f 6)
 	if [ -z "${TM_HOME}" ]; then
-		TM_HOME=$(echo ~${TM_USER})
+		TM_HOME=$(eval echo ~${TM_USER})
 	fi
 else
 	TM_HOME=${HOME}
