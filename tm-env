@@ -35,10 +35,10 @@ _log() {
 # link stuff
 _link() {
 	src=${1}
-	dst='~/.'${2}
+	dst=${TM_HOME}'/.'${2}
 
 	_log 'link' "${src} ${dst}"
-#	test -L ${dst} || ln -s ${src} ${dst}
+	test -L ${dst} || ln -s ${src} ${dst}
 }
 
 # init the repos and symlink
