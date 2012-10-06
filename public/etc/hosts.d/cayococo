@@ -1,5 +1,17 @@
 # Thomas Merkel <tm@core.io>#
 
-export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix coreutils)/libexec/gnubin:$PATH:/opt/prince/bin
+##
+## homebrew
+##
+# source the bash completion plugin
+source /usr/local/etc/bash_completion
+
+# set env PATH variable
+PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix coreutils)/libexec/gnubin:$PATH:/opt/prince/bin
+
+##
+## some osx aliases
+##
+alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
 # vim:ft=sh
