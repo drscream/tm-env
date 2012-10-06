@@ -29,8 +29,10 @@ _help() {
 
 # link stuff
 _link() {
+
 	src=${1}
 	dst=${TM_HOME}'/.'$(basename ${1})
+
 	echo ${src} ${dst}
 #	test -L ~${
 }
@@ -46,9 +48,20 @@ _init() {
 	git clone ${SRC_PUBLIC} ${TM_ENV}
 
 	# symlink all files we need
-	for file in ${TM_ENV}/${1}/etc/*; do
-		_link ${file}
+	find ${TM_ENV}/${1}/etc -type d | while read file; do
+		echo $file
 	done
+	
+
+#	for file in ${TM_ENV}/${1}/etc/*; do
+#		if [ -f "${file}" ]; then
+#			_link ${file}
+#		fi
+#	done
+#	# symlink all folders we need (.d folders)
+#	if [ -d "${file}" ]; then
+#		echo dir
+#	fi
 }
 
 _init_private() {
