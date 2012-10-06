@@ -1,0 +1,3 @@
+[submodule "public/etc/vim.d/bundle/AnsiEsc.vim"]
+	path = public/etc/vim.d/bundle/AnsiEsc.vim
+	url = https://github.com/vim-scripts/AnsiEsc.vim.git
