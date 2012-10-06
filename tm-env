@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Thomas Merkel <tm@core.io>
+# The "do it first"-script, working on something else
+
+##
+## functions
+##
+_help() {
+	echo ${0}' [-u|-i] [public|private]'
+	echo -e '\nOPTIONS:'
+	echo -e '\t -u: update (git pull)'
+	echo -e '\t -i: initial (symlink)'
+	exit 1
+}
+
+_link() {
+	echo ''
+}
+
+##
+## main
+##
+if [ ${#} -ne 2 ]; then
+	_help
+fi
+
+while getopts 'u:update:i:init' option; do
+	case ${option} in
+		u)
+			param=${OPTARG}
+			_update ${param}
+		;;
+		i)
+			param=${OPTARG}
+			_init ${param}
+		;;
+		*)
+			_help
+		;;
+	esac
+done
