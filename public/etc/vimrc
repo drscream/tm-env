@@ -2,12 +2,12 @@
 
 " Preamble {{{
 
-set runtimepath=${TM_ENV}/.vim.d,${VIMRUNTIME}
+set runtimepath=${TM_HOME}/.vim.d,${VIMRUNTIME}
 
 filetype off
+set nocompatible
 call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
-set nocompatible
 
 " }}}
 
