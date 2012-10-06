@@ -1,0 +1,4 @@
+#!/bin/bash
+echo 'tell application "iTunes"
+  "Playing: " & artist of current track & " - " & name of current track
+end tell' | osascript 2>/dev/null

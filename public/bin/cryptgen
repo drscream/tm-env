@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import crypt, string, random, sys, getpass
+
+def gen_salt():
+  letters=string.ascii_letters+string.digits # alphanumeric, upper and lowercase
+  return ''.join([random.choice(letters) for _ in range(8)])
+
+if len(sys.argv) < 1:
+        print "Usage: %s [salt]" % (sys.argv[0])
+        sys.exit()
+
+if len(sys.argv) > 1:
+        salt = sys.argv[1]
+else:
+        salt = gen_salt()
+
+pprompt = lambda: (getpass.getpass(), getpass.getpass('Retype password: '))
+p1, p2 = pprompt()
+while p1 != p2:
+	print('Passwords do not match. Try again')
+	p1, p2 = pprompt()
+
+print crypt.crypt(p1, '$1$' + salt)
