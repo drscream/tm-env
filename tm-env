@@ -27,14 +27,18 @@ _help() {
 	exit 1
 }
 
+# logging
+_log() {
+	echo "$(date +'%Y-%m-%d %T') | ${1} | ${2}" >> ${TM_ENV}/tm-env.log
+}
+
 # link stuff
 _link() {
-
 	src=${1}
-	dst=${TM_HOME}'/.'$(basename ${1})
+	dst='~/.'${2}
 
-	echo ${src} ${dst}
-#	test -L ~${
+	_log 'link' "${src} ${dst}"
+#	test -L ${dst} || ln -s ${src} ${dst}
 }
 
 # init the repos and symlink
@@ -47,21 +51,19 @@ _init() {
 	# get the source
 	git clone ${SRC_PUBLIC} ${TM_ENV}
 
-	# symlink all files we need
-	find ${TM_ENV}/${1}/etc -type d | while read file; do
-		echo $file
+	# symlink all folders with .d at the end 
+	find ${TM_ENV}/${1}/etc/*.d -type d | while read dir; do
+		dst=$(basename ${dir})
+		_link ${dir} ${dst}
 	done
-	
 
-#	for file in ${TM_ENV}/${1}/etc/*; do
-#		if [ -f "${file}" ]; then
-#			_link ${file}
-#		fi
-#	done
-#	# symlink all folders we need (.d folders)
-#	if [ -d "${file}" ]; then
-#		echo dir
-#	fi
+	# symlink all files
+	find ${TM_ENV}/${1}/etc -type f | while read file; do
+		if [ "$(echo ${file} | grep -c '\.d/')" -eq 0 ]; then
+			dst=${file##${TM_ENV}/${1}/etc/}
+			_link ${file} ${dst}
+		fi
+	done
 }
 
 _init_private() {
