@@ -64,6 +64,9 @@ _init() {
 			_link ${file} ${dst}
 		fi
 	done
+
+	# symlink the binary folder
+	_link ${TM_ENV}/${1}/bin bin
 }
 
 _init_private() {
