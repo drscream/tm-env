@@ -2,7 +2,6 @@
 
 # ls and grep colors aliases
 if [ -x $(type -P dircolors) ]; then
-	eval "$(dircolors -b)"
 	alias ls='ls --color=auto'
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
