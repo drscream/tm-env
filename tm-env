@@ -42,7 +42,7 @@ _link() {
 }
 
 # init the repos and symlink
-_init() {
+_init_public() {
 	if [ -d ${TM_ENV} ]; then
 		echo -e 'The folder to the '${TM_ENV}' already exists.\nDelete it if you like to init it again.'
 		#exit 1
@@ -69,20 +69,27 @@ _init() {
 	_link ${TM_ENV}/${1}/bin bin
 }
 
-_init_private() {
-	cd ${TM_ENV}/${1}
-	rm .keep
-	git clone -n ${SRC_PRIVATE} .
-	gitcrypt
-	git reset --hard HEAD
-}
-
-_update() {
+_update_public() {
 	cd ${TM_ENV}/${1}
 	git pull
 	git submodule init
 	git submodule update
 	cd -
+}
+
+_init_private() {
+	cd ${TM_ENV}/${1}
+	rm -f .keep
+	git clone -n ${SRC_PRIVATE} .
+	if [ $? -eq 0 ]; then
+		gitcrypt init
+		git reset --hard HEAD
+	fi
+
+	# symlink
+	find ${TM_ENV}/${1}/bin -type f | while read file; do
+		_link ${file} bin/$(basename ${file})
+	done
 }
 
 _update_private() {
@@ -115,10 +122,16 @@ esac
 while getopts 'u:i:' option; do
 	case ${option} in
 		u)
-			_update ${OPTARG}
+			case ${OPTARG} in
+				public)  _update_public  ${OPTARG} ;;
+				private) _update_private ${OPTARG} ;;
+			esac
 		;;
 		i)
-			_init ${OPTARG}
+			case ${OPTARG} in
+				public)  _init_public  ${OPTARG} ;;
+				private) _init_private ${OPTARG} ;;
+			esac
 		;;
 		*)
 			_help
