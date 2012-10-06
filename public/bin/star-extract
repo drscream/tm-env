@@ -1,0 +1,2 @@
+#!/bin/bash
+star -x -v -acl -xattr -xfflags artype=exustar errctl='SPECIALFILE *' f="${1}"

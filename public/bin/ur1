@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# command line url-shorten
+
+if [ -z ${1} ];then
+	echo -n "long url: "
+	read url
+else
+	url=${1}
+fi
+
+url=$(echo "${url}" | sed 's/^\([^http:]\)/http:\/\/\1/g')
+
+curl -s http://ur1.ca/ -d "longurl=${url}" | sed -e '/Your ur1/!d;s: *::g;s:<[^>]*>::g;s:^.*Yourur1is\:h:h:;'
