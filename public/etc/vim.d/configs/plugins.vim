@@ -311,6 +311,8 @@ let vimclojure#WantNailgun = 0
 " }}}
 " YankRing {{{
 
+let g:yankring_history_dir = expand('$TM_HOME/.vim.d/tmp')
+
 function! YRRunAfterMaps()
     " Make Y yank to end of line.
     nnoremap Y :<C-U>YRYankCount 'y$'<CR>
