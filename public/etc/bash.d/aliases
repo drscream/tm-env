@@ -33,7 +33,7 @@ alias vimdiff='vimdiff -u ${TM_HOME}/.vimrc'
 alias screen='screen -c ${TM_HOME}/.screenrc'
 
 # public inet address infos
-alias pubip=;dig +short myip.opendns.com @resolver1.opendns.com;
+alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # ssh socket
 alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
