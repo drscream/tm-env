@@ -4,3 +4,6 @@
 [submodule "public/etc/vim.d/bundle/ack"]
 	path = public/etc/vim.d/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "public/etc/vim.d/bundle/commentary"]
+	path = public/etc/vim.d/bundle/commentary
+	url = https://github.com/tpope/vim-commentary.git
