@@ -1,3 +1,48 @@
 " Thomas Merkel <tm@core.io>
 
+" Preamble {{{
+
+filetype off
+call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
 set nocompatible
+
+" }}}
+
+" Basic options {{{
+
+set encoding=utf-8
+set modelines=0
+set autoindent
+set showmode
+set showcmd
+set hidden
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set nonumber
+set norelativenumber
+set laststatus=2
+set history=1000
+set undofile
+set undoreload=10000
+set list
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set shell=/bin/bash\ --login
+set lazyredraw
+set matchtime=3
+set showbreak=↪
+set splitbelow
+set splitright
+set fillchars=diff:⣿,vert:│
+set autowrite
+set autoread
+set shiftround
+set title
+set linebreak
+set dictionary=/usr/share/dict/words
+set spellfile=~/.vim/custom-dictionary.utf-8.add
+set colorcolumn=+1
+
+}}}
