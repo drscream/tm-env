@@ -17,7 +17,12 @@ set history=1000
 "set undofile
 set undoreload=10000
 set list
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set lcs=tab:»·
+set lcs+=trail:·
+"set lcs+=eol:¶
+set lcs+=precedes:«
+set lcs+=extends:»
+set lcs+=nbsp:·
 set shell=/bin/bash\ --login
 set lazyredraw
 set matchtime=3
