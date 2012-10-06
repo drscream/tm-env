@@ -1,0 +1,5 @@
+# Thomas Merkel <tm@core.io>#
+
+export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix coreutils)/libexec/gnubin:$PATH:/opt/prince/bin
+
+# vim:ft=sh
