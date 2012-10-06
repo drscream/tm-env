@@ -13,6 +13,7 @@ set backspace=indent,eol,start
 set nonumber
 set norelativenumber
 set laststatus=2
+set t_Co=256
 set history=1000
 "set undofile
 set undoreload=10000
@@ -36,7 +37,9 @@ set shiftround
 set title
 set linebreak
 set dictionary=/usr/share/dict/words
-set spellfile=~/.vim/custom-dictionary.utf-8.add
+"set spellfile=~/.vim/custom-dictionary.utf-8.add
+
+
 
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
