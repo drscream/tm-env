@@ -19,3 +19,6 @@
 [submodule "public/etc/vim.d/bundle/nerdtree"]
 	path = public/etc/vim.d/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "public/etc/vim.d/bundle/powerline"]
+	path = public/etc/vim.d/bundle/powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
