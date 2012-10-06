@@ -38,7 +38,7 @@ _link() {
 	dst=${TM_HOME}'/.'${2}
 
 	_log 'link' "${src} ${dst}"
-	test -L ${dst} || ln -s ${src} ${dst}
+	test -L ${dst} || ln -sv ${src} ${dst}
 }
 
 # init the repos and symlink
