@@ -3,36 +3,88 @@
 # The "do it first"-script, working on something else
 
 ##
+## static variables
+##
+TM_HOME=${HOME:-'/home/tm'}
+TM_ENV=${TM_HOME}'/.tm-env'
+
+GIT_SRC_PUBLIC='git@github.com:drscream/tm-env.git'
+GIT_SRC_PRIVATE='git@github.com:drscream/tm-env-private.git'
+
+HTTP_SRC_PUBLIC='https://github.com/drscream/tm-env.git'
+HTTP_SRC_PRIVATE='https://github.com/drscream/tm-env-private.git'
+
+
+##
 ## functions
 ##
+# simple help output
 _help() {
-	echo ${0}' [-u|-i] [public|private]'
+	echo ${0}' [-u|-i] [public|private] [git|http]'
 	echo -e '\nOPTIONS:'
 	echo -e '\t -u: update (git pull)'
 	echo -e '\t -i: initial (symlink)'
 	exit 1
 }
 
+# link stuff
 _link() {
 	echo ''
 }
 
+# init the repos and symlink
+_init() {
+	git clone ${GIT_SOURCE} ${TM_ENV}
+	
+#	for file in ${TM_ENV}/${param}/etc; do
+			
+#	done
+}
+
+_init_private() {
+	echo
+}
+
+_update() {
+#	git pull ${TM_ENV}/${1}
+	echo $SRC_PRIVATE
+}
+
+_update_private() {
+	echo
+}
+
+
 ##
 ## main
 ##
-if [ ${#} -ne 2 ]; then
+if [ ${#} -ne 3 ]; then
 	_help
 fi
 
-while getopts 'u:update:i:init' option; do
+# set some basics from the parameters
+case ${3} in
+	git)
+		SRC_PUBLIC=${GIT_SRC_PUBLIC}
+		SRC_PRIVATE=${GIT_SRC_PRIVATE}
+	;;
+	http)
+		SRC_PUBLIC=${HTTP_SRC_PUBLIC}
+		SRC_PRIVATE=${HTTP_SRC_PRIVATE}
+	;;
+	*)
+		_help
+	;;
+esac
+
+# parse opts
+while getopts 'u:i' option; do
 	case ${option} in
 		u)
-			param=${OPTARG}
-			_update ${param}
+			_update ${OPTARG}
 		;;
 		i)
-			param=${OPTARG}
-			_init ${param}
+			_init ${OPTARG}
 		;;
 		*)
 			_help
