@@ -30,3 +30,23 @@ be symlinked to `~/.bin`.
 
 Should contain all my cool environment files from vim, bash, and
 something else.
+
+## usage
+
+Clone the repository to `~/.tm-env`. If you like to use another directory some
+file changes are required.
+
+    git clone https://github.com/drscream/tm-env.git ~/.tm-env
+
+To initialize all files, you should symlink it to the home. For that there is
+a good old bash script. Be careful, it's not finished!
+
+    cd ~/.tm-env
+	./tm-env -i public git
+
+For the private use, i've also a git repository. But it uses
+shadowhand/git-encrypt to have a secure repository. You could also use the
+`tm-env` script.
+
+    cd ~/.tm-env
+	./tm-env -i private git

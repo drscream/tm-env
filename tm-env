@@ -85,15 +85,20 @@ _init_private() {
 		gitcrypt init
 		git reset --hard HEAD
 	fi
+	touch .keep
 
 	# symlink
 	find ${TM_ENV}/${1}/bin -type f | while read file; do
 		_link ${file} bin/$(basename ${file})
 	done
+
+	# symlink the sec. folder
+	_link ${TM_ENV}/${1}/sec sec
 }
 
 _update_private() {
-	echo
+	cd ${TM_ENV}/${1}
+	git pull
 }
 
 ##
