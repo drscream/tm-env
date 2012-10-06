@@ -1,0 +1,72 @@
+#!/bin/bash
+#--------------------------------------------------------------------
+# $Id: frucln,v 1.9 2009/12/27 18:01:09 drscream Exp $
+# Copyright 2007 Frubar Network (drscream@frubar.net)
+#--------------------------------------------------------------------
+
+# FUNCTIONS
+function pause() {
+	i=0;
+	echo -n "- pause: "
+
+	while [ $i -le $count ]; do
+		echo -n "."
+		sleep 1
+		i=$[$i+1]
+	done
+	echo 
+}
+
+# MAIN
+echo "[ frucln - creative coding ]"
+
+# $1: sau
+#     frupic
+case $1 in
+	"sau")
+		if [[ $2 > 0 ]]; then
+			count=$2
+			pause $count
+		fi
+
+		osys=$(uname)
+		if [[ ${osys} == "Linux" ]]; then
+			$(import -window root -pause 0 -quality 100 /tmp/sau.tmp.png)
+		elif [[ ${osys} == "Darwin"  ]]; then
+			$(screencapture -m /tmp/sau.tmp.png)
+		else
+			echo "- Error: Operating System not found"
+			exit
+		fi
+
+		if [[ -f /tmp/sau.tmp.png ]]; then
+			id=$(curl -s -F file=@/tmp/sau.tmp.png -F "username=$(whoami)" -F "private=true" "http://api.freamware.net/2.0/upload.screenshot")
+			echo "- SaU"
+			echo "  ${id}"
+			$(rm /tmp/sau.tmp.png)
+		else
+			echo "- Error: SaU file doesn't exists"
+		fi
+	;;
+	"frupic")
+		if [[ -d $2 ]]; then
+			for f in $2/*; do
+				id=$(curl -s -F file="@$f" -F "username=$(whoami)" "http://api.freamware.net/2.0/upload.picture")
+				echo "- frupic"
+				echo "  ${id}"
+			done
+			exit
+		elif [[ -f $2 ]]; then
+			id=$(curl -s -F file="@$2" -F "username=$(whoami)" "http://api.freamware.net/2.0/upload.picture")
+			echo "- frupic"
+			echo "  ${id}"
+			exit
+		else
+			echo "- Error: No Parameter given"
+		fi
+	;;
+	*) 
+		echo "frucln:"
+		echo " - use: frucln <sau|frupic [*|*.jpg|file.jpg]>"
+	;;
+esac

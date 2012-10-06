@@ -1,0 +1,21 @@
+#!/bin/sh
+# excel2text - convert MS Excel files to ASCII text
+
+prog=${0##*/}
+htmlfile=$1.html
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $prog file" >&2
+    exit 2
+fi
+
+if [ -f $htmlfile ]
+then
+    echo "$prog: $htmlfile already exists." >&2
+    exit 2
+fi
+
+xlhtml -te $1 > $htmlfile
+links -dump $htmlfile
+rm -f $htmlfile
