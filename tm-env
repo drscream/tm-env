@@ -70,7 +70,11 @@ _init() {
 }
 
 _init_private() {
-	echo
+	cd ${TM_ENV}/${1}
+	rm .keep
+	git clone -n ${SRC_PRIVATE} .
+	gitcrypt
+	git reset --hard HEAD
 }
 
 _update() {
