@@ -34,12 +34,6 @@ vnoremap <leader>y "*ygv
 vnoremap u <nop>
 vnoremap gu u
 
-" For some reason ctags refuses to ignore Python variables, so I'll just hack
-" the tags file with sed and strip them out myself.
-"
-" Sigh.
-nnoremap <leader><cr> :silent !/usr/local/bin/ctags -R . && sed -i .bak -E -e '/^[^	]+	[^	]+.py	.+v$/d' tags<cr>:redraw!<cr>
-
 " Highlight Group(s)
 nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -52,9 +46,6 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Requires the gist command line too (brew install gist)
 " vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
 " vnoremap <leader>UG :w !gist -p \| pbcopy<cr>
-
-" Send visual selection to paste.stevelosh.com
-vnoremap <c-p> :w !curl -sF 'sprunge=<-' 'http://paste.stevelosh.com' \| tr -d '\n ' \| pbcopy && open `pbpaste`<cr>
 
 " Insert the directory of the current buffer in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -93,9 +84,6 @@ nnoremap J mzJ`z
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" HTML tag closing
-inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
 
 " Source
 vnoremap <leader>S y:execute @@<cr>:echo 'Sourced selection.'<cr>
@@ -169,21 +157,6 @@ inoremap <c-f> <c-x><c-f>
 inoremap <c-]> <c-x><c-]>
 
 " }}}
-
-" }}}
-" Quick editing ----------------------------------------------------------- {{{
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>eV :vsplit scp://vagrant//<cr>
-nnoremap <leader>ef :vsplit ~/.config/fish/config.fish<cr>
-nnoremap <leader>ed :vsplit ~/.vim/custom-dictionary.utf-8.add<cr>
-nnoremap <leader>eo :vsplit ~/Dropbox/Org<cr>4j
-nnoremap <leader>eh :vsplit ~/.hgrc<cr>
-nnoremap <leader>ep :vsplit ~/.pentadactylrc<cr>
-nnoremap <leader>em :vsplit ~/.mutt/muttrc<cr>
-nnoremap <leader>ez :vsplit ~/lib/dotfiles/zsh<cr>4j
-nnoremap <leader>ek :vsplit ~/lib/dotfiles/keymando/keymandorc.rb<cr>
-nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " }}}
 " Searching and movement -------------------------------------------------- {{{
@@ -290,10 +263,10 @@ vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " }}}
 " List navigation {{{
 
-nnoremap <left>  :cprev<cr>zvzz
-nnoremap <right> :cnext<cr>zvzz
-nnoremap <up>    :lprev<cr>zvzz
-nnoremap <down>  :lnext<cr>zvzz
+"nnoremap <left>  :cprev<cr>zvzz
+"nnoremap <right> :cnext<cr>zvzz
+"nnoremap <up>    :lprev<cr>zvzz
+"nnoremap <down>  :lnext<cr>zvzz
 
 " }}}
 
