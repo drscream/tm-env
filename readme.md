@@ -45,8 +45,8 @@ a good old bash script. Be careful, it's not finished!
 	./tm-env -i public git
 
 For the private use, i've also a git repository. But it uses
-shadowhand/git-encrypt to have a secure repository. You could also use the
-`tm-env` script.
+[git-encrypt](/shadowhand/git-encrypt) to have a secure repository. You could
+also use the `tm-env` script.
 
     cd ~/.tm-env
 	./tm-env -i private git
