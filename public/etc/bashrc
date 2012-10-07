@@ -55,8 +55,10 @@ export TM_OS TM_USER TM_HOME TM_BASHDIR
 ##
 ## dir colors
 ##
-[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
-[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
+if [[ -x $(which dircolors 2>/dev/null) ]]; then
+	[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
+	[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
+fi
 
 ##
 ## load special files if exists
