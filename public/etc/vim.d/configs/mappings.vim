@@ -143,10 +143,6 @@ vnoremap ˚ :m-2<CR>gv
 " Easy filetype switching {{{
 
 nnoremap _md :set ft=markdown<CR>
-nnoremap _hd :set ft=htmldjango<CR>
-nnoremap _jt :set ft=htmljinja<CR>
-nnoremap _js :set ft=javascript<CR>
-nnoremap _cw :set ft=confluencewiki<CR>
 nnoremap _pd :set ft=python.django<CR>
 nnoremap _d  :set ft=diff<CR>
 
