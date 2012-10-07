@@ -11,12 +11,16 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set nonumber
-set norelativenumber
+if exists('+relativenumber')
+	set norelativenumber
+endif
 set laststatus=2
 set t_Co=256
 set history=1000
-"set undofile
-set undoreload=10000
+if v:version >= 730
+	"set undofile
+	set undoreload=10000
+endif
 set list
 set lcs=tab:»·
 set lcs+=trail:·
