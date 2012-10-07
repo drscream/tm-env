@@ -29,6 +29,7 @@ windowlist string	" %3n%+3=| %f%+3=| %t"
 zombie		^D^C
 escape		^Aa
 termcapinfo	xterm|xterm-256color|xterms|xs|rxvt ti@:te@
+term		screen-256color
 
 #idle 600 blanker
 #blankerprg nice -n 19 cmatrix -abu9
