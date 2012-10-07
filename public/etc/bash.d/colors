@@ -1,0 +1,34 @@
+# Thomas Merkel <tm@core.io>
+
+[[ ! -x $(which tput 2>/dev/null) ]] && continue
+
+case ${TERM} in
+	*256*|rxvt*|gnome*)
+		if [ $(tput colors) -ge 256 ]; then
+			_color_yellow=$(tput setaf 136)
+			_color_orange=$(tput setaf 166)
+			_color_red=$(tput setaf 160)
+			_color_magenta=$(tput setaf 125)
+			_color_violet=$(tput setaf 61)
+			_color_blue=$(tput setaf 33)
+			_color_cyan=$(tput setaf 37)
+			_color_green=$(tput setaf 64)
+		fi
+		_color_bold=$(tput bold)
+		_color_reset=$(tput sgr0)
+	;;
+	*)
+		_color_yellow='\033[1;33m'
+		_color_orange='\033[0;33m'
+		_color_red='\033[1;31m'
+		_color_magenta='\033[1;35m'
+		_color_violet='\033[0;35m'
+		_color_blue='\033[1;34m'
+		_color_cyan='\033[1;36m'
+		_color_green='\033[0;32m'
+		_color_bold=''
+		_color_reset='\033[0m'
+	;;
+esac
+
+# vim:ft=sh
