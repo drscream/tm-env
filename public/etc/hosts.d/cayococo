@@ -14,4 +14,12 @@ PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix coreutils)/libexec/gnubin:$P
 ##
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
+##
+## special commands
+##
+# dircolors exists only in brew repo, so run this command later
+if [ -x $(type -P dircolors) ]; then
+	[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
+fi
+
 # vim:ft=sh
