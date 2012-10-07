@@ -31,6 +31,16 @@ be symlinked to `~/.bin`.
 Should contain all my cool environment files from vim, bash, and
 something else.
 
+## screenshots
+
+I using MacOS X with Terminal.app and a modified theme called
+[Box Black](https://gist.github.com/3849042). Here are also two screenshots of
+the terminal with `ls` and `vim`.
+
+![tm-env Screenshot of ls](/downloads/drscream/tm-env/tm-env_ls.png)
+
+![tm-env Screenshot of vim](/downloads/drscream/tm-env/tm-env_vim.png)
+
 ## usage
 
 Clone the repository to `~/.tm-env`. If you like to use another directory some
