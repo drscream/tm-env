@@ -50,3 +50,15 @@ also use the `tm-env` script.
 
     cd ~/.tm-env
 	./tm-env -i private git
+
+## troubleshooting
+
+#### screen on macosx
+
+By default the screen version on MacOS X doesn't support 256 colors, because it
+isn't compiled with the option `--enable-colors256`. It's also nice that
+homebrew doesn't have `screen` in the repository because it's shipped with the
+system. So thanks to [mjwall](/mjwall) who has build a homebrew file for it.
+
+    brew install
+	https://raw.github.com/gist/1287202/6bd8a37c4a4e9419418d62c5f62c0673b6ffe444/screen.rb
