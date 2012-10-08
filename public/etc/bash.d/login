@@ -26,7 +26,10 @@ if [[ "$TERM" != "screen" ]]; then
 
 	# show gentoo news if available
 	if [ -x "$(type -p eselect)" ]; then
-		echo -e "${_color_blue}* ${_color_reset}${_color_bold}gentoo news${_color_reset}"; eselect news read new; echo
+		# slow eselect news workaround
+		if [ -s '/var/lib/gentoo/news/news-gentoo.unread ']; then
+			echo -e "${_color_blue}* ${_color_reset}${_color_bold}gentoo news${_color_reset}"; eselect news read new; echo
+		fi
 	fi
 
 	## show who is logged on
