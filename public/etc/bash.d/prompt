@@ -12,10 +12,10 @@ esac
 
 # set default PS1 PS2
 if [[ ${EUID} == 0 ]] ; then
-	PS1="${_color_red}[\u@\h]${_color_reset}:${_color_blue}\w #${_color_reset} "
+	PS1="${_color_red}[\u@\h]${_color_reset}:${_color_blue}\w${_color_reset} #${_color_reset} "
 	PS2='root %> '
 else
-	PS1="${_color_orange}[\u@\h] ${_color_green}\w${_color_reset}\n » "
+	PS1="${_color_orange}[\u@\h]${_color_reset} ${_color_green}\w${_color_reset}\n » "
 	PS2='%> '
 fi
 
