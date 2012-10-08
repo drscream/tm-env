@@ -28,7 +28,7 @@ if [[ "$TERM" != "screen" ]]; then
 	if [ -x "$(type -p eselect)" ]; then
 		# slow eselect news workaround
 		if [ -s "/var/lib/gentoo/news/news-gentoo.unread" ]; then
-			echo -e "${_color_blue}* ${_color_reset}${_color_bold}gentoo news${_color_reset}"; eselect news read new; echo
+			echo -e "${_color_blue}* ${_color_reset}${_color_bold}gentoo news${_color_reset}"; eselect news read new 2>/dev/null; echo
 		fi
 	fi
 
