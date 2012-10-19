@@ -35,4 +35,66 @@ function chown_fd {
 	find . -type d -exec chown $2 {} \;
 }
 
+## pssh: http://code.google.com/p/parallel-ssh/
+## i=interactive
+function psshi() {
+	local -a psshopts=( -p 10 -t 0 -X "-q" -X "-T" -O LogLevel=INFO )
+	local psshdir="${HOME}/.pssh"
+	local hostfile="${psshdir}/hostgroups/${1}"; shift
+	[[ ! -d "${psshdir}" ]] && return 2
+	[[ ! -f "${hostfile}" || ! -s "${hostfile}" ]] && return 2
+	[[ -z "${@}" ]] && return 2
+	pssh "${psshopts[@]}" -h "${hostfile}" -i "${@}"
+}
+
+## c=capture
+function psshc() {
+	local -a psshopts=( -p 10 -t 0 -X "-q" -X "-T" -O LogLevel=INFO )
+	local psshdir="${HOME}/.pssh"
+	local workdir="${psshdir}/work/${$}.${RANDOM}"
+	local outdir="${workdir}/out"
+	local errdir="${workdir}/err"
+	local hostfile="${psshdir}/hostgroups/${1}"; shift
+	[[ ! -d "${psshdir}" ]] && return 2
+	[[ ! -d "${workdir}" ]] && mkdir -pv "${workdir}" || return 2
+	[[ ! -d "${outdir}" ]] && mkdir -pv "${outdir}" || return 2
+	[[ ! -d "${errdir}" ]] && mkdir -pv "${errdir}" || return 2
+	[[ ! -f "${hostfile}" || ! -s "${hostfile}" ]] && return 2
+	[[ -z "${@}" ]] && return 2
+	pssh "${psshopts[@]}" -h "${hostfile}" -o "${outdir}" -e "${errdir}" "${@}"
+	pushd "${workdir}" &>/dev/null && (bash; true) && popd &>/dev/null 
+	rm -rfv "${workdir}"
+}
+
+## shmux: http://web.taranis.org/shmux/
+## i=interactive
+function shmuxi() {
+	local -a shmuxopts=( -M 10 -S all -C 600s -m )
+	local shmuxdir="${HOME}/.shmux"
+	#local hostfile="${shmuxdir}/hostgroups/${1}"; shift
+	local hostfile="${HOME}/.pssh/hostgroups/${1}"; shift
+	[[ ! -d "${shmuxdir}" ]] && return 2
+	[[ ! -f "${hostfile}" || ! -s "${hostfile}" ]] && return 2
+	[[ -z "${@}" ]] && return 2
+	SHMUX_SSH_OPTS="-q -T -o LogLevel=INFO" \
+		shmux "${shmuxopts[@]}" -c "${*}" - < <( egrep -v '^#' "${hostfile}" )
+}
+
+## c=capture
+function shmuxc() {
+	local -a shmuxopts=( -M 10 -S all -C 600s -m )
+	local shmuxdir="${HOME}/.shmux"
+	local workdir="${shmuxdir}/work/${$}.${RANDOM}"
+	#local hostfile="${shmuxdir}/hostgroups/${1}"; shift
+	local hostfile="${HOME}/.pssh/hostgroups/${1}"; shift
+	[[ ! -d "${shmuxdir}" ]] && return 2
+	[[ ! -d "${workdir}" ]] && mkdir -pv "${workdir}" || return 2
+	[[ ! -f "${hostfile}" || ! -s "${hostfile}" ]] && return 2
+	[[ -z "${@}" ]] && return 2
+	SHMUX_SSH_OPTS="-q -T -o LogLevel=INFO" \
+		shmux "${shmuxopts[@]}" -o "${workdir}" -c "${*}" - < <( egrep -v '^#' "${hostfile}" )
+	pushd "${workdir}" &>/dev/null && (bash; true) && popd &>/dev/null 
+	rm -rfv "${workdir}"
+}
+
 # vim:ft=sh
