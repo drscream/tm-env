@@ -19,6 +19,12 @@ alias egrep='egrep --color=auto'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
 ##
+## python virtual environment
+##
+WORKON_HOME="${TM_HOME}/.virtualenvs"
+source /usr/local/bin/virtualenvwrapper.sh
+
+##
 ## special commands
 ##
 # dircolors exists only in brew repo, so run this command later

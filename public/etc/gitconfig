@@ -2,6 +2,9 @@
 	name = Thomas Merkel
 	email = tm@core.io
 
+[github]
+	user = drscream
+
 [core]
 	pager = cat
 	editor = vim
