@@ -25,6 +25,12 @@ WORKON_HOME="${TM_HOME}/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh
 
 ##
+## github settings
+##
+export GITHUB_USER='drscream'
+export GITHUB_PASSWORD="$(security 2>&1 >/dev/null find-generic-password -gs 'github.com' | ruby -e 'print $1 if STDIN.gets =~ /^password: \"(.*)\"$/')"
+
+##
 ## special commands
 ##
 # dircolors exists only in brew repo, so run this command later
