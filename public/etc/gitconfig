@@ -31,7 +31,7 @@
 	discard-merge = reset --hard HEAD
 
 	ci = commit
-	cm = commit -m
+	cm = commit -a -m
 
 	d = !git diff | vim -R -
 	di = !git diff --cached | vim -R -
