@@ -40,7 +40,8 @@ case $1 in
 		fi
 
 		if [[ -f /tmp/sau.tmp.png ]]; then
-			id=$(curl -s -F file=@/tmp/sau.tmp.png -F "username=$(whoami)" -F "private=true" "http://api.freamware.net/2.0/upload.screenshot")
+			#id=$(curl -s -F file=@/tmp/sau.tmp.png -F "username=$(whoami)" -F "private=true" "http://api.freamware.net/2.0/upload.screenshot")
+			id=$(curl -s -F file=@/tmp/sau.tmp.png -F "username=$(whoami)"  "http://api.freamware.net/2.0/upload.screenshot")
 			echo "- SaU"
 			echo "  ${id}"
 			$(rm /tmp/sau.tmp.png)

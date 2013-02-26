@@ -61,7 +61,7 @@ bind ; command -c sys
 bind _ command -c ext
 
 # favorites
-bind -c fav i screen -t "irc"     1 irssi -h 2a01:138:a015:cafe::42:900
+bind -c fav i screen -t "irc"     1 irssi
 bind -c fav j screen -t "xmpp:av" 2 mcabber -f ${TM_HOME}/.mcabber/avira/mcabberrc
 bind -c fav c screen -t "xmpp:fw" 3 mcabber -f ${TM_HOME}/.mcabber/freamware/mcabberrc
 bind -c fav m screen -t "mail"    4 ${TM_HOME}/.mutt/bin/mutt-profiles.sh
