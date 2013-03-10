@@ -37,9 +37,9 @@ I using MacOS X with Terminal.app and a modified theme called
 [Box Black](https://gist.github.com/3849042). Here are also two screenshots of
 the terminal with `ls` and `vim`.
 
-![tm-env Screenshot of ls](/downloads/drscream/tm-env/tm-env_ls.png)
+![tm-env Screenshot of ls](http://up.frubar.net/2307/tm-env_ls.png)
 
-![tm-env Screenshot of vim](/downloads/drscream/tm-env/tm-env_vim.png)
+![tm-env Screenshot of vim](http://up.frubar.net/2308/tm-env_vim.png)
 
 ## usage
 
