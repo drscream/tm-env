@@ -17,7 +17,7 @@ host red.srv.skylime.net
 host *.frubar.net
 	port 10110
 
-host grapefruit.frubar.net
+host coconut.frubar.net
 	RemoteForward 7106 localhost:7106
 	LogLevel FATAL
 
