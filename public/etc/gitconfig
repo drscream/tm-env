@@ -89,3 +89,5 @@
 	color = auto
 
 # vim:ft=dosini
+[push]
+	default = simple

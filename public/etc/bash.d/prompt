@@ -1,26 +1,98 @@
 # Thomas Merkel <tm@core.io>
+# Based on work of: https://gist.github.com/31967
 
-# change the window title of X terminals
-case ${TERM} in
-	xterm*|rxvt*|Eterm|aterm|kterm|gnome)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-		;;
-	screen)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-		;;
-esac
+# Detect whether the current directory is a git repository.
+function is_git_repository {
+	git branch > /dev/null 2>&1
+}
 
-# set default PS1 PS2
-if [[ ${EUID} == 0 ]] ; then
-	PS1="\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w #\[${_color_reset}\] "
-	PS2='root %> '
-else
-	PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] \[${_color_green}\]\w\[${_color_reset}\]\n » "
-	PS2='%> '
-fi
+# Determine the branch/state information for this git repository.
+function set_git_branch {
+	# Capture the output of the "git status" command.
+	git_status="$(git status 2> /dev/null)"
 
+	# Set color based on clean/staged/dirty.
+	if [[ ${git_status} =~ "working directory clean" ]]; then
+		state="${_color_lime}"
+	elif [[ ${git_status} =~ "Changes to be committed" ]]; then
+		state="${_color_yellow}"
+	else
+		state="${_color_red}"
+	fi
 
-# nice env variables
-export PROMPT_COMMAND PS1 PS2
+	# Set arrow icon based on status against remote.
+	remote_pattern="# Your branch is (.*) of"
+	if [[ ${git_status} =~ ${remote_pattern} ]]; then
+		if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+			remote="↑"
+		else
+			remote="↓"
+		fi
+	else
+		remote=""
+	fi
+	diverge_pattern="# Your branch and (.*) have diverged"
+	if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+		remote="↕"
+	fi
+
+	# Get the name of the branch.
+	branch_pattern="^# On branch ([^${IFS}]*)"
+	if [[ ${git_status} =~ ${branch_pattern} ]]; then
+		branch=${BASH_REMATCH[1]}
+	fi
+
+	# Set the final branch string.
+	BRANCH="${state}(${branch})${remote}${_color_reset} "
+}
+
+# Return the prompt symbol to use, colorized based on the return value of the
+# previous command.
+function set_prompt_symbol () {
+	if test $1 -eq 0 ; then
+		PROMPT_SYMBOL="»"
+	else
+		PROMPT_SYMBOL="${_color_red}»${_color_reset}"
+	fi
+}
+
+# Determine active Python virtualenv details.
+function set_virtualenv () {
+	if test -z "$VIRTUAL_ENV" ; then
+		PYTHON_VIRTUALENV=""
+	else
+		PYTHON_VIRTUALENV="${_color_magenta}‹`basename \"$VIRTUAL_ENV\"`›${_color_reset} "
+	fi
+}
+
+# Set the full bash prompt.
+function set_bash_prompt () {
+	# Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
+	# return value of the last command.
+	set_prompt_symbol $?
+
+	# Set the PYTHON_VIRTUALENV variable.
+	set_virtualenv
+
+	# Set the BRANCH variable.
+	if is_git_repository ; then
+		set_git_branch
+	else
+		BRANCH=''
+	fi
+
+	# Set the bash prompt variable.
+	if [[ ${EUID} == 0 ]] ; then
+		PS1="\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w #\[${_color_reset}\] "
+		PS2='root %> '
+	else
+		PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
+ ${PROMPT_SYMBOL} "
+		PS2='%> '
+	fi
+}
+
+# Tell bash to execute this function just before displaying its prompt.
+PROMPT_COMMAND=set_bash_prompt
 
 # vim:ft=sh
