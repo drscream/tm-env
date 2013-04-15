@@ -81,6 +81,9 @@ function set_bash_prompt () {
 		BRANCH=''
 	fi
 
+	# Change the window title of X terminals
+	echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"
+
 	# Set the bash prompt variable.
 	if [[ ${EUID} == 0 ]] ; then
 		PS1="\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w #\[${_color_reset}\] "
