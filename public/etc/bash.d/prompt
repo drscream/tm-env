@@ -52,7 +52,7 @@ function set_prompt_symbol () {
 	if test $1 -eq 0 ; then
 		PROMPT_SYMBOL="»"
 	else
-		PROMPT_SYMBOL="${_color_red}»${_color_reset}"
+		PROMPT_SYMBOL="\[${_color_red}\]»\[${_color_reset}\]"
 	fi
 }
 
