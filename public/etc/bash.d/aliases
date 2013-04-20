@@ -49,4 +49,8 @@ alias v.cdsitepackages='cdsitepackages'
 alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
 
+# git
+# workaround for ~/.gitconfig file after sudo
+alias git='HOME=${TM_HOME} git'
+
 # vim:ft=sh
