@@ -88,4 +88,7 @@
 [status]
 	color = auto
 
+[push]
+	default = matching
+
 # vim:ft=dosini
