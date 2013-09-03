@@ -10,7 +10,7 @@ host *.srv.skylime.net
 host silo.u.fruky.net
 	user root
 
-host red.srv.skylime.net
+host red.srv.skylime.net bubbles.srv.skylime.net
 	user root
 
 # frubar
@@ -39,7 +39,14 @@ host 10.90.101.*
 
 # proxy setup
 Host *+*
-	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc.traditional -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+
+
+Host hadoop-mgmt-01.tt.avira.com
+  ProxyCommand none
+
+Host *.bdo.tt.avira.com
+  ProxyCommand ssh bdo@hadoop-mgmt-01.tt.avira.com nc %h %p
 
 ##
 ## global settings
