@@ -21,7 +21,7 @@
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "public/etc/vim.d/bundle/powerline"]
 	path = public/etc/vim.d/bundle/powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
+	url = https://github.com/Lokaltog/powerline.git
 [submodule "public/etc/vim.d/bundle/surround"]
 	path = public/etc/vim.d/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
