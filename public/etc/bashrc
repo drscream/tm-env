@@ -88,3 +88,5 @@ if [[ -x $(which keychain 2>/dev/null) ]]; then
 	[[ -f ${ssh_src} ]] && . ${ssh_src}
 	[[ -f ${gpg_src} ]] && . ${gpg_src}
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -10,7 +10,7 @@ host *.srv.skylime.net
 host silo.u.fruky.net
 	user root
 
-host red.srv.skylime.net bubbles.srv.skylime.net
+host red.srv.skylime.net bubbles.srv.skylime.net hypercube.f.fruky.net
 	user root
 
 # frubar
@@ -60,5 +60,8 @@ host *
 	CheckHostIP  yes
 	ForwardAgent yes
 	ServerAliveInterval 540
+#	ControlMaster auto
+#	ControlPath /tmp/%r@%h:%p
+#	ControlPersist yes
 
 # vim:syntax=sshconfig
