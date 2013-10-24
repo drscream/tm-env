@@ -4,7 +4,7 @@
 ## path and ssl variables
 ##
 export PATH=${TM_HOME}/.bin:${PATH}
-export SSL_CERT_DIR=${DOC_HOME}/.certs.d/
+export SSL_CERT_DIR=${TM_HOME}/.certs.d/
 
 ##
 ## extra env variables
@@ -36,7 +36,7 @@ export LANGUAGE="en_US.UTF-8"
 ##
 # use vim alternatively nano as editor
 if [ $(type -P vim 2>/dev/null) ]; then
-	#export EDITOR="vim -u ${DOC_HOME}/.vimrc"
+	#export EDITOR="vim -u ${TM_HOME}/.vimrc"
 	export EDITOR=vim
 elif [ $(type -P nano 2>/dev/null) ]; then
 	export EDITOR=nano
