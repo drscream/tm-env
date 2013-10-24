@@ -1,3 +1,4 @@
 private/.keep
 private/*/*
 tm-env.log
+public/etc/vim.d/tmp/
