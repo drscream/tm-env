@@ -38,3 +38,9 @@
 [submodule "public/etc/vim.d/bundle/supertab"]
 	path = public/etc/vim.d/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "public/etc/vim.d/bundle/gitgutter"]
+	path = public/etc/vim.d/bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "public/etc/vim.d/bundle/tabular"]
+	path = public/etc/vim.d/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
