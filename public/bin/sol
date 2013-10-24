@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ipmitool -I lanplus -H ${1} -U root sol activate
