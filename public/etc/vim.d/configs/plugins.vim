@@ -146,10 +146,10 @@ let NERDTreeMapJumpFirstChild = 'gK'
 " }}}
 " Powerline {{{
 
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_symbols = 'compatible'
-let g:Powerline_colorscheme = 'skwp'
-"let g:Powerline_theme = 'skwp'
+let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'compatible'
+let g:Powerline_colorscheme = 'solarized256'
+"let g:Powerline_theme = 'solarized256'
 let g:Powerline_cache_enabled = 1
 
 " }}}
