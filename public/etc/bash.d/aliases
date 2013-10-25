@@ -37,6 +37,9 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 # ssh socket
 alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 
+# history grep
+alias h?='history | grep'
+
 # virtualenv aliases
 alias v='workon'
 alias v.deactivate='deactivate'
