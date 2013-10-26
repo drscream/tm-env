@@ -75,8 +75,12 @@ function set_bash_prompt () {
 	set_virtualenv
 
 	# Set the BRANCH variable.
-	if is_git_repository ; then
-		set_git_branch
+	if [ -z "${DISABLE_GIT_PROMT}" ]; then
+		if is_git_repository ; then
+			set_git_branch
+		else
+			BRANCH=''
+		fi
 	else
 		BRANCH=''
 	fi
