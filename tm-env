@@ -87,11 +87,6 @@ _init_private() {
 	fi
 	touch .keep
 
-	# symlink
-	find ${TM_ENV}/${1}/bin -type f | while read file; do
-		_link ${file} bin/$(basename ${file})
-	done
-
 	# symlink the sec. folder
 	_link ${TM_ENV}/${1}/sec sec
 }
