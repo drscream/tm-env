@@ -48,6 +48,11 @@ export GITHUB_USER='drscream'
 export GITHUB_PASSWORD="$(security 2>&1 >/dev/null find-generic-password -gs 'github.com' | ruby -e 'print $1 if STDIN.gets =~ /^password: \"(.*)\"$/')"
 
 ##
+## use autojump for faster way to navigate your filesystem
+##
+[[ -s /usr/local/etc/autojump.sh ]] && source /usr/local/etc/autojump.sh
+
+##
 ## special commands
 ##
 # dircolors exists only in brew repo, so run this command later
