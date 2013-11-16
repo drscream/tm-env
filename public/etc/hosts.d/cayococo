@@ -39,7 +39,7 @@ alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versi
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## github settings
