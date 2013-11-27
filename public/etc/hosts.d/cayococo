@@ -4,7 +4,7 @@
 ## homebrew
 ##
 # source the bash completion plugin
-source /usr/local/etc/bash_completion
+source /usr/local/share/bash-completion/bash_completion
 
 # set env PATH variable
 PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix coreutils)/libexec/gnubin:$PATH:/opt/prince/bin
