@@ -6,11 +6,9 @@
 # skylime
 host *.srv.skylime.net
 	port 10110
-
-host silo.u.fruky.net
 	user root
 
-host red.srv.skylime.net meow.srv.skylime.net bubbles.srv.skylime.net hypercube.f.fruky.net jake.srv.skylime.net willy.srv.skylime.net
+host silo.u.fruky.net
 	user root
 
 # frubar
