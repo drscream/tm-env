@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for i in $(seq 1 $(tput cols)); do
+	echo -n "${_color_violet}-${_color_reset}";
+done
+
+echo
