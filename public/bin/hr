@@ -1,7 +1,10 @@
 #!/bin/bash
+# inspired by https://github.com/LuRsT/hr
+
+hr="\033[0;32m-"
 
 for i in $(seq 1 $(tput cols)); do
-	echo -n "${_color_violet}-${_color_reset}";
+	echo -en "${hr}";
 done
 
-echo
+echo -e "\033[0m"
