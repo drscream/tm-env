@@ -173,8 +173,8 @@ sub read_config {
       } # length($image)
 
       $header =~ s/\\/\\\\/g;
-	  $header =~ s/"/\\"/g;
-      system('/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier', md5_base64("$msg"), "$header", "$msg");
+      $header =~ s/"/\\"/g;
+      system('/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier', '-message', "$msg", '-group', md5_base64("$msg"), '-title', "$header");
 
     } # <accept>
   } # sock->accept
