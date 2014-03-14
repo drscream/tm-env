@@ -23,10 +23,7 @@ host embassy.doc.fruky.net
 	user tmerkel
 
 # avira
-host *.avira.com
-	user tmerkel
-
-host *.avira.net
+host *.avira.com *.avira.net *.avira.org
 	user tmerkel
 
 # avira test network
@@ -38,13 +35,6 @@ host 10.90.101.*
 # proxy setup
 Host *+*
 	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc.traditional -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
-
-
-Host hadoop-mgmt-01.tt.avira.com
-  ProxyCommand none
-
-Host *.bdo.tt.avira.com
-  ProxyCommand ssh bdo@hadoop-mgmt-01.tt.avira.com nc %h %p
 
 ##
 ## global settings
@@ -58,8 +48,8 @@ host *
 	CheckHostIP  yes
 	ForwardAgent yes
 	ServerAliveInterval 540
-#	ControlMaster auto
-#	ControlPath /tmp/%r@%h:%p
-#	ControlPersist yes
+	ControlMaster auto
+	ControlPath /tmp/%r@%h:%p
+	ControlPersist yes
 
 # vim:syntax=sshconfig
