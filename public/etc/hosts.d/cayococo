@@ -7,7 +7,7 @@
 source /usr/local/share/bash-completion/bash_completion
 
 # set env PATH variable
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/share/npm/bin:$PATH
 
 # grc
 GRC=$(which grc)
