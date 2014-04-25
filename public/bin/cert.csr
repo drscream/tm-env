@@ -72,15 +72,16 @@ cat <<EOF >> $CONFIG
  countryName_default  = DE
  countryName_min      = 2
  countryName_max      = 2
- stateOrProvinceName         = State or Province Name (full name)
- stateOrProvinceName_default = Baden-Wuerttemberg
- localityName                = Locality Name (eg, city)
- localityName_default        = Tettnang
- 0.organizationName          = Organization Name (eg, company)
- 0.organizationName_default  = Internet Widgits Pty Ltd
- organizationalUnitName      = Organizational Unit Name (eg, section)
- emailAddress                = Email Address
- emailAddress_max            = 64
+ stateOrProvinceName            = State or Province Name (full name)
+ stateOrProvinceName_default    = Baden-Wuerttemberg
+ localityName                   = Locality Name (eg, city)
+ localityName_default           = Tettnang
+ 0.organizationName             = Organization Name (eg, company)
+ 0.organizationName_default     = Internet Widgits Pty Ltd
+ organizationalUnitName         = Organizational Unit Name (eg, section)
+ organizationalUnitName_default = Operational IT
+ emailAddress                   = Email Address
+ emailAddress_max               = 64
 
  [ v3_req ]
 EOF
