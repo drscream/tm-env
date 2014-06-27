@@ -1,6 +1,7 @@
 [user]
 	name = Thomas Merkel
 	email = tm@core.io
+	signingkey = D7A63833
 
 [github]
 	user = drscream
