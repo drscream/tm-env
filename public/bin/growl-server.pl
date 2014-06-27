@@ -6,7 +6,7 @@ use IO::Socket;
 use Digest::MD5 qw(md5_base64);
 use Getopt::Long;
 use File::Basename;
-use Crypt::CBCeasy;
+#use Crypt::CBCeasy;
 use MIME::Base64;
 
 my $options_file = ".growl-server";
