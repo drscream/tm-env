@@ -97,4 +97,10 @@ function shmuxc() {
 	rm -rfv "${workdir}"
 }
 
+# simple python http server
+# http [port]
+function http() {
+	python -m SimpleHTTPServer ${1}
+}
+
 # vim:ft=sh
