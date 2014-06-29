@@ -15,7 +15,7 @@ if [[ "$TERM" != "screen" ]]; then
 	echo 
 	
 	## system information
-	echo -e "${_color_blue}* ${_color_reset}${_color_bold}uname${_color_reset}"; uname -snrmpo; echo
+	echo -e "${_color_blue}* ${_color_reset}${_color_bold}uname${_color_reset}"; uname -snrmp; echo
 	
 	## uptime (records)
 	if [ -x "$(type -p uprecords)" ]; then
