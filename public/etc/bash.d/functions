@@ -98,8 +98,8 @@ function shmuxc() {
 }
 
 # simple python http server
-# http [port]
-function http() {
+# httpserv [port]
+function httpserv() {
 	python -m SimpleHTTPServer ${1}
 }
 
