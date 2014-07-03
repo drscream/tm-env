@@ -103,4 +103,9 @@ function httpserv() {
 	python -m SimpleHTTPServer ${1}
 }
 
+# mkdir && cd to created folder
+function mcd() {
+	mkdir ${1} && cd ${1}
+}
+
 # vim:ft=sh

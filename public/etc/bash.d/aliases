@@ -40,6 +40,10 @@ alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 # history grep
 alias h?='history | grep'
 
+# easy sum via bc
+# echo 1 2 3 | sum
+alias sum='xargs | tr " " "+" | bc -l'
+
 # virtualenv aliases
 alias v='workon'
 alias v.deactivate='deactivate'
