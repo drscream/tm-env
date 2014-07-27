@@ -1,0 +1,14 @@
+# debian, ubuntu do not support user generated bash_completion.d
+# refs:
+# - http://www.debian-administration.org/articles/316
+# -	http://www.debian-administration.org/article/An_introduction_to_bash_completion_part_2
+
+DIR="${HOME}/.bash_completion.d"
+# source completion directory definitions
+if [ -d $DIR -a -r $DIR -a -x $DIR ]; then
+	for i in $DIR/*; do
+		[ \( -f $i -o -h $i \) -a -r $i ] && . $i
+	done
+fi
+unset i
+unset DIR

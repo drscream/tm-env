@@ -1,0 +1,24 @@
+# vim:ft=sh:
+# ClusterSSH for MacOS X
+#     http://code.google.com/p/csshx/
+#
+
+_csshx() {
+
+    local cur prev opts base
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    #
+    #  Complete from ~/.csshrc, if exists
+    #
+    [ -e ~/.csshrc ] || return 0
+
+    local clusters=$( grep clusters ~/.csshrc | awk -F= '{print $2}' | tr ' ' "\n"  | sort -r | uniq )
+    COMPREPLY=( $(compgen -W "${clusters}" -- ${cur}) )
+
+}
+complete -F _csshx csshx
+complete -F _csshx csshX
+
