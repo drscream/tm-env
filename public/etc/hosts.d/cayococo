@@ -7,7 +7,7 @@
 source /usr/local/share/bash-completion/bash_completion
 
 # set env PATH variable
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/share/npm/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/share/npm/bin:/Users/tm/.rvm/bin:$PATH
 
 # grc
 GRC=$(which grc)
@@ -42,15 +42,14 @@ WORKON_HOME="${TM_HOME}/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 ##
+## ruby virtual environment
+##
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+
+##
 ## use autojump for faster way to navigate your filesystem
 ##
 [[ -s /usr/local/etc/autojump.sh ]] && source /usr/local/etc/autojump.sh
-
-##
-## java and ec2
-##
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.5.1/libexec"
 
 ##
 ## special commands
@@ -58,5 +57,26 @@ export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.5.1/libexec"
 # dircolors exists only in brew repo, so run this command later
 [[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
 
+##
+## EC2
+##
+JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+EC2_PRIVATE_KEY=${HOME}/.ec2/cert-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
+EC2_CERT=${HOME}/.ec2/pk-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
+EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.7.1.0/libexec"
+export JAVA_HOME EC2_PRIVATE_KEY EC2_CERT EC2_HOME
+
+##
+## Homebrew API
+##
+[[ -f ${HOME}/.sec/github-api-token ]] && \
+	export HOMEBREW_GITHUB_API_TOKEN="$(cat ${HOME}/.sec/github-api-token)"
+
+##
+## special admin scripts
+##
+[[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
+[[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
+alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
 
 # vim:ft=sh
