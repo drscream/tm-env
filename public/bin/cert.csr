@@ -97,7 +97,7 @@ cat $CONFIG
 echo "Running OpenSSL..."
 #openssl req -batch -config $CONFIG -newkey rsa:4096 -out ${HOME}/${HOST}.csr
 #openssl req -config $CONFIG -newkey rsa:4096 -out ${BASEDIR}/${HOST}.csr
-openssl req -config $CONFIG -newkey rsa:2048 -out ${BASEDIR}/${HOST}.csr
+openssl req -config $CONFIG -newkey rsa:2048 -sha256 -out ${BASEDIR}/${HOST}.csr
 echo "Copy the following Certificate Request and paste into CAcert website to obtain a Certificate."
 echo "When you receive your certificate, you 'should' name it something like ${HOST}.crt"
 echo
