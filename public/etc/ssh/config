@@ -11,6 +11,9 @@ host *.srv.skylime.net
 host silo.u.fruky.net
 	user root
 
+host *.f.fruky.net
+	user root
+
 # frubar
 host *.frubar.net
 	port 10110
@@ -34,7 +37,7 @@ host 10.90.101.*
 
 # proxy setup
 Host *+*
-	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc.traditional -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
 
 ##
 ## global settings
