@@ -8,11 +8,12 @@ host *.srv.skylime.net
 	port 10110
 	user root
 
-host silo.u.fruky.net
+# fruky network
+host *.f.fruky.net silo.u.fruky.net
 	user root
 
-host *.f.fruky.net
-	user root
+host internet.f.fruky.net
+	user tm
 
 # frubar
 host *.frubar.net
@@ -35,7 +36,9 @@ host 10.90.101.*
 	StrictHostKeyChecking no
 	UserKnownHostsFile    /dev/null
 
-# proxy setup
+##
+## proxy setup
+##
 Host *+*
 	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
 
