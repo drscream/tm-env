@@ -4,8 +4,11 @@
 ## servers
 ##
 # skylime
-host *.srv.skylime.net
+host *.srv.skylime.net *.srv.customer.skylime.net
 	port 10110
+	user root
+
+host *.core.io *.reco.io
 	user root
 
 # fruky network
