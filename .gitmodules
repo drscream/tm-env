@@ -41,3 +41,6 @@
 [submodule "public/etc/vim.d/bundle/tabular"]
 	path = public/etc/vim.d/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "public/etc/vim.d/bundle/python-mode"]
+	path = public/etc/vim.d/bundle/python-mode
+	url = https://github.com/klen/python-mode.git
