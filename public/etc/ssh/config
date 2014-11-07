@@ -4,7 +4,11 @@
 ## servers
 ##
 # skylime
-host *.srv.skylime.net *.srv.customer.skylime.net
+host *.srv.customer.skylime.net
+	port 22
+	user root
+
+host *.srv.skylime.net
 	port 10110
 	user root
 
@@ -12,11 +16,11 @@ host *.core.io *.reco.io
 	user root
 
 # fruky network
-host *.f.fruky.net silo.u.fruky.net
-	user root
-
 host internet.f.fruky.net
 	user tm
+
+host *.f.fruky.net silo.u.fruky.net
+	user root
 
 # frubar
 host *.frubar.net
