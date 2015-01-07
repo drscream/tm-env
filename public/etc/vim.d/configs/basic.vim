@@ -158,7 +158,10 @@ let maplocalleader = "\\"
 syntax on
 set background=dark
 let g:badwolf_html_link_underline = 0
-colorscheme badwolf
+let g:solarized_termtrans = 0
+let g:solarized_termcolors = 256
+"colorscheme badwolf
+colorscheme solarized
 
 " Reload the colorscheme whenever we write the file.
 augroup color_badwolf_dev
