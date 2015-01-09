@@ -1,0 +1,4 @@
+# Add path for pkgsrc
+export PATH=/usr/pkg/bin:/usr/pkg/sbin:${PATH}
+# Disable git bash prompt because the system is so slow
+export DISABLE_GIT_PROMT=1
