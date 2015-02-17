@@ -7,7 +7,7 @@ fi
 ##################################################################
 
 test -x "$(type -p setterm)" && {
-	setterm -blank 0 -blength 0;
+	setterm -blank 0 -blength 0 2> /dev/null;
 }
 
 if [[ "$TERM" != "screen" ]]; then
