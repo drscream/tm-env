@@ -1,0 +1,28 @@
+# deploy-zone - bash completion
+# https://github.com/wiedi/deploy-zone
+# Thomas Merkel <tm@core.io>
+
+_dz() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${prev} in
+		shell|start|stop)
+			local uuid=$( cat ~/.dz/vms.json | jq -r '.[][].uuid' )
+			COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
+			;;
+		list)
+			local options=$( dz list --help | grep "^    " | awk '{ print $1 }' )
+			COMPREPLY=( $(compgen -W "${options}" -- ${cur}) )
+			;;
+		*)
+			local commands=$( dz --help | grep "^    " | awk '{ print $1 }' )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
+complete -F _dz dz
+
+# vim:ft=sh:
