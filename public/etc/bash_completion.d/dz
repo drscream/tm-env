@@ -13,7 +13,7 @@ _dz() {
 			COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
 			;;
 		list)
-			local options=$( dz list --help | grep "^    " | awk '{ print $1 }' )
+			local options=$( dz list --help | grep "^    " | awk -F'[,]' '{ print $1 }' )
 			COMPREPLY=( $(compgen -W "${options}" -- ${cur}) )
 			;;
 		*)
