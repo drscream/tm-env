@@ -158,7 +158,7 @@ let maplocalleader = "\\"
 syntax on
 set background=dark
 let g:badwolf_html_link_underline = 0
-let g:solarized_termtrans = 0
+let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 "colorscheme badwolf
 colorscheme solarized
