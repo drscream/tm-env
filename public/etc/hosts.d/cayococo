@@ -85,4 +85,12 @@ export GITCHANGELOG_CONFIG_FILENAME=${HOME}/.gitchangelog.rc
 [[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
 alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
 
+##
+## pro/git cd command
+##
+function pd() {
+	local projDir=$(pro search ${1})
+	cd ${projDir}
+}
+
 # vim:ft=sh
