@@ -12,6 +12,25 @@ if [ -r /usr/pkg/share/bash-completion/bash_completion ]; then
 fi
 
 ##
+## grc
+##
+GRC=$(which grc)
+if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
+	alias colourify="$GRC -es --colour=auto"
+	alias configure='colourify ./configure'
+	alias diff='colourify diff'
+	alias make='colourify make'
+	alias gcc='colourify gcc'
+	alias g++='colourify g++'
+	alias as='colourify as'
+	alias gas='colourify gas'
+	alias ld='colourify ld'
+	alias netstat='colourify netstat'
+	alias ping='colourify ping'
+	alias traceroute='colourify /usr/sbin/traceroute'
+fi
+
+##
 ## some osx aliases
 ##
 alias ls='gls --color=auto'
@@ -20,3 +39,31 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias dz-search='dz list -c | grep -i'
+
+##
+## special commands
+##
+# dircolors exists only in brew repo, so run this command later
+[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
+
+##
+## EC2
+##
+JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+EC2_PRIVATE_KEY=${HOME}/.ec2/cert-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
+EC2_CERT=${HOME}/.ec2/pk-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
+EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.7.1.0/libexec"
+export JAVA_HOME EC2_PRIVATE_KEY EC2_CERT EC2_HOME
+
+##
+## Homebrew API
+##
+[[ -f ${HOME}/.sec/github-api-token ]] && \
+	export HOMEBREW_GITHUB_API_TOKEN="$(cat ${HOME}/.sec/github-api-token)"
+
+##
+## special admin scripts
+##
+[[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
+[[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
+alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
