@@ -174,7 +174,7 @@ sub read_config {
 
       $header =~ s/\\/\\\\/g;
       $header =~ s/"/\\"/g;
-      system('/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier', '-message', "$msg", '-group', md5_base64("$msg"), '-title', "$header");
+      system('/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier', '-message', "$msg", '-group', md5_base64("$msg"), '-title', "$header", "-appIcon", "$imagefile");
 
     } # <accept>
   } # sock->accept
