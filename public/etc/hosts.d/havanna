@@ -31,6 +31,11 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 fi
 
 ##
+## ruby virtual environment
+##
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+
+##
 ## some osx aliases
 ##
 alias ls='gls --color=auto'
@@ -39,6 +44,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias dz-search='dz list -c | grep -i'
+
+##
+## python virtual environment
+##
+WORKON_HOME="${TM_HOME}/.virtualenvs"
+source /usr/pkg/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
