@@ -53,6 +53,7 @@ export BZIP2="-9 -v"
 ##
 export PAGER="less"
 export LESS="-R -M --shift 5 -x 4"
+export LESSCOLOR="always"
 # make less awesome
 if [ $(type -P lesspipe.sh 2>/dev/null) ]; then
 	export LESSOPEN="|lesspipe.sh %s"
