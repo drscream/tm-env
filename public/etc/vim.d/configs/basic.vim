@@ -141,8 +141,9 @@ set formatoptions=qrn1
 " }}}
 
 " Backups {{{
+let g:netrw_home="~/.vim.d/tmp/"   " store .netrwhist
 "set nobackup                      " disable backups
-set noswapfile                    " It's 2012, Vim.
+set noswapfile                     " It's 2012, Vim.
 
 "set undodir=~/.vim/tmp/undo//     " undo files
 "set backupdir=~/.vim/tmp/backup// " backups
