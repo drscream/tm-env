@@ -47,7 +47,12 @@ host 10.90.101.*
 ## proxy setup
 ##
 Host *+*
-	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+	ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') exec nc -w 10 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+	ControlMaster no
+
+Host *^*
+	ProxyCommand ssh-chain %h %p
+	ControlMaster no
 
 ##
 ## global settings
@@ -63,6 +68,6 @@ host *
 	ServerAliveInterval 540
 	ControlMaster auto
 	ControlPath /tmp/%r@%h:%p
-	ControlPersist yes
+	ControlPersist 15m
 
 # vim:syntax=sshconfig
