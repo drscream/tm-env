@@ -1,4 +1,5 @@
-# Thomas Merkel <tm@core.io>#
+# Thomas Merkel <tm@core.io>
+# vim:ft=sh
 
 ##
 ## homebrew
@@ -93,4 +94,3 @@ function pd() {
 	cd ${projDir}
 }
 
-# vim:ft=sh
