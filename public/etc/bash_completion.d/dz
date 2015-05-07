@@ -23,6 +23,13 @@ _dz() {
 	esac
 }
 
+_zlogin() {
+	local cur
+	local uuid=$( cat ~/.dz/vms.json | jq -r '.[][].uuid' )
+	COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
+}
+
 complete -F _dz dz
+complete -F _zlogin zlogin
 
 # vim:ft=sh:

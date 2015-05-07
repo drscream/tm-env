@@ -43,7 +43,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
 alias dz-search='dz list -c | grep -i'
+alias zlogin='dz shell '
 
 ##
 ## python virtual environment
