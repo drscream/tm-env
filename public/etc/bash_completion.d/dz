@@ -26,6 +26,8 @@ _dz() {
 _zlogin() {
 	local cur
 	local uuid=$( cat ~/.dz/vms.json | jq -r '.[][].uuid' )
+	
+	cur="${COMP_WORDS[COMP_CWORD]}"
 	COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
 }
 
