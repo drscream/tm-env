@@ -1,0 +1,19 @@
+# pkgin - simple bash completion
+# Thomas Merkel <tm@core.io>
+
+_pkgin() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${prev} in
+		*)
+			local commands=$( pkgin -h 2>/dev/null | tail -n+3 | awk '{ print $1 }' )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
+complete -F _pkgin pkgin
+
+# vim:ft=sh:
