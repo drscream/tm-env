@@ -2,15 +2,18 @@
 # vim:ft=sh
 
 ##
-## homebrew
+## pkgsrc
 ##
-# source the bash completion plugin
-source /usr/local/share/bash-completion/bash_completion
+export PATH=/usr/pkg/gnu/bin:/usr/pkg/sbin:/usr/pkg/bin:$PATH
+export MANPATH=/usr/pkg/man:$MANPATH
 
-# set env PATH variable
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/share/npm/bin:/Users/tm/.rvm/bin:$PATH
+if [ -r /usr/pkg/share/bash-completion/bash_completion ]; then
+	source /usr/pkg/share/bash-completion/bash_completion
+fi
 
-# grc
+##
+## grc
+##
 GRC=$(which grc)
 if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 	alias colourify="$GRC -es --colour=auto"
@@ -28,30 +31,27 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 fi
 
 ##
-## some osx aliases
-##
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-alias dz-search='dz list -c | grep -i'
-
-##
-## python virtual environment
-##
-WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/local/bin/virtualenvwrapper_lazy.sh
-
-##
 ## ruby virtual environment
 ##
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 
 ##
-## use autojump for faster way to navigate your filesystem
+## some osx aliases
 ##
-[[ -s /usr/local/etc/autojump.sh ]] && source /usr/local/etc/autojump.sh
+alias ls='gls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+alias dz-search='dz list -c | grep -i'
+alias zlogin='dz shell '
+
+##
+## python virtual environment
+##
+WORKON_HOME="${TM_HOME}/.virtualenvs"
+source /usr/pkg/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
@@ -75,22 +75,8 @@ export JAVA_HOME EC2_PRIVATE_KEY EC2_CERT EC2_HOME
 	export HOMEBREW_GITHUB_API_TOKEN="$(cat ${HOME}/.sec/github-api-token)"
 
 ##
-## git gitchangelog
-##
-export GITCHANGELOG_CONFIG_FILENAME=${HOME}/.gitchangelog.rc
-
-##
 ## special admin scripts
 ##
 [[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
 [[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
 alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
-
-##
-## pro/git cd command
-##
-function pd() {
-	local projDir=$(pro search ${1})
-	cd ${projDir}
-}
-
