@@ -4,7 +4,7 @@
 function root {
 	case ${TM_OS} in
 		Darwin)
-			sudo -i "/usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc"
+			sudo -i "/usr/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc"
 		;;
 		*)
 			sudo /bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
