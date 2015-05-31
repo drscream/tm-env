@@ -31,7 +31,16 @@ _zlogin() {
 	COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
 }
 
+_alogin() {
+	local cur
+	local aliases=$( cat ~/.dz/vms.json | jq -r '.[][].alias' )
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	COMPREPLY=( $(compgen -W "${aliases}" -- ${cur}) )
+}
+
 complete -F _dz dz
 complete -F _zlogin zlogin
+complete -F _alogin alogin
 
 # vim:ft=sh:
