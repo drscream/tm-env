@@ -4,7 +4,7 @@
 function root {
 	case ${TM_OS} in
 		Darwin)
-			sudo -i "/usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc"
+			sudo -i "/usr/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc"
 		;;
 		*)
 			sudo /bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
@@ -119,6 +119,54 @@ EOF
 
 function cdf() {
 	cd "$(pfd)"
+}
+
+# Switch to different dz environments, requires bash, jq, shuf and dz
+vdz() {
+	DZ_ENV=${1}
+	DZ_ENV_FILE=~/.dz/env.json
+	if [[ ! -f ${DZ_ENV_FILE} ]]; then
+		echo "Missing ${DZ_ENV_FILE}"
+		return 1
+	fi
+
+	# Print environments
+	if [[ ! -n ${DZ_ENV} ]]; then
+		echo "Usage: vdz [--deactivate|environment]"
+		echo
+		echo "Available environments:"
+		jq -r ".environments | keys[]" ${DZ_ENV_FILE} | while read env; do
+			echo "  ${env}"
+		done
+		echo
+		echo "Options:"
+		echo "  --deactivate"
+		return 2
+	fi
+
+	# Unset all env variables we use
+	if [[ ${DZ_ENV} =~ "deactivate" ]]; then
+		echo "Unset your current deploy-zone environment"
+		unset DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL VIRTUAL_ENV
+		return 0
+	fi
+
+	# Create DZ_BUILD_HOST
+	DZ_BUILD_HOST=$(jq -r ".build_hosts[]" ${DZ_ENV_FILE} | shuf -n1)
+
+	# Get ENV information
+	if [[ $(jq ".environments.${DZ_ENV}" ${DZ_ENV_FILE}) == "null" ]]; then
+		echo "Missing environment \"${DZ_ENV}\", check your ${DZ_ENV_FILE}"
+		return 3
+	fi
+	DZ_BUILD_TEMPLATE=$(jq -r ".environments.${DZ_ENV}.template_file" ${DZ_ENV_FILE})
+	DZ_BUILD_PUBLISH_URL=$(jq -r ".environments.${DZ_ENV}.publish_url" ${DZ_ENV_FILE})
+
+	# Use existing virtual environment variable
+	VIRTUAL_ENV=${DZ_ENV}
+	# Export the Information
+	export DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL VIRTUAL_ENV
+	echo "Switching to deploy-zone environment: ${DZ_ENV}"
 }
 
 # vim:ft=sh

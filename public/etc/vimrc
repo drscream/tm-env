@@ -3,11 +3,15 @@
 " tell any names who provided me with all the different config settings.
 
 " Preamble {{{
-
+set nocompatible
 set runtimepath=${TM_HOME}/.vim.d,${VIMRUNTIME}
 
+if !empty($SUDO_USER) && empty($TM_HOME)
+	set runtimepath=${HOME}/.vim.d,${VIMRUNTIME}
+	" source $HOME/.vim.d/autoload/pathogen.vim
+endif
+
 filetype off
-set nocompatible
 execute pathogen#infect()
 execute pathogen#helptags()
 filetype plugin indent on

@@ -14,6 +14,20 @@ _pkgin() {
 	esac
 }
 
+_pkg_admin() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	
+	case ${prev} in
+		*)
+			local commands=$( pkg_admin 2>&1 | tail -n+3 | awk '{ print $1 }' )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
 complete -F _pkgin pkgin
+complete -F _pkg_admin pkg_admin
 
 # vim:ft=sh:

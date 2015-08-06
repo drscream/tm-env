@@ -28,6 +28,7 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 	alias netstat='colourify netstat'
 	alias ping='colourify ping'
 	alias traceroute='colourify /usr/sbin/traceroute'
+	alias dz='colourify dz'
 fi
 
 ##
@@ -44,8 +45,17 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
+
+##
+## dz tool
+##
 alias dz-search='dz list -c | grep -i'
 alias zlogin='dz shell '
+
+function alogin() {
+	UUID=$(cat ~/.dz/vms.json | jq -r '.[][] | select(.alias=="'${1}'") | .uuid')
+	dz shell ${UUID}
+}
 
 ##
 ## python virtual environment

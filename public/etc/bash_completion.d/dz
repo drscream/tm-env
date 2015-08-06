@@ -31,7 +31,25 @@ _zlogin() {
 	COMPREPLY=( $(compgen -W "${uuid}" -- ${cur}) )
 }
 
+_alogin() {
+	local cur
+	local aliases=$( cat ~/.dz/vms.json | jq -r '.[][].alias' )
+
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	COMPREPLY=( $(compgen -W "${aliases}" -- ${cur}) )
+}
+
+_vdz() {
+	local cur
+	local envs=$( cat ~/.dz/env.json | jq -r '.environments | keys[]' )
+	
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	COMPREPLY=( $(compgen -W "${envs} --deactivate" -- ${cur}) )
+}
+
 complete -F _dz dz
 complete -F _zlogin zlogin
+complete -F _alogin alogin
+complete -F _vdz vdz
 
 # vim:ft=sh:
