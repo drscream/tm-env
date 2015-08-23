@@ -1,11 +1,45 @@
 #!/bin/bash
 # Thomas Merkel <tm@core.io>
+# Allow you to show ssl certificate details or show only the PEM
+# format.
 
-REMHOST=$1
-REMPORT=${2:-443}
+REMHOST=${2}
+REMPORT=${3:-443}
+STARTTLS=${4}
 
-echo |\
-openssl s_client -connect ${REMHOST}:${REMPORT} 2>&1 |\
-sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' |\
-openssl x509 -text
+show_help() {
+	echo "${0} [-d|-s] host port starttls"
+	echo
+	echo " -d: show details"
+	echo " -s: show only pem format"
+	exit 1
+}
 
+save_cert() {
+	echo |\
+	openssl s_client -connect ${REMHOST}:${REMPORT} ${STARTTLS} 2>&1 |\
+	sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+}
+
+detail_cert() {
+	echo |\
+	openssl s_client -connect ${REMHOST}:${REMPORT} ${STARTTLS} 2>&1 |\
+	sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' |\
+	openssl x509 -text
+}
+
+if (( ${#} < 2 )); then
+	show_help
+fi
+
+case ${1} in
+	-d|-detail)
+		detail_cert
+	;;
+	-s|-save)
+		save_cert
+	;;
+	*)
+		show_help
+	;;
+esac
