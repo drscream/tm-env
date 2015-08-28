@@ -41,6 +41,10 @@ case ${OPTION} in
 		save_cert
 	;;
 	*)
-		show_help
+		echo -e "/!\\ WARNING: legacy support\n"
+		REMHOST=${1}; shift
+		REMPORT=${2}; shift
+		STARTTLS=${@}
+		detail_cert
 	;;
 esac
