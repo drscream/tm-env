@@ -3,10 +3,6 @@
 # Allow you to show ssl certificate details or show only the PEM
 # format.
 
-REMHOST=${2}
-REMPORT=${3:-443}
-STARTTLS=${4}
-
 show_help() {
 	echo "${0} [-d|-s] host port starttls"
 	echo
@@ -14,6 +10,15 @@ show_help() {
 	echo " -s: show only pem format"
 	exit 1
 }
+
+if (( ${#} < 2 )); then
+	show_help
+fi
+
+OPTION=${1}; shift
+REMHOST=${2}; shift
+REMPORT=${3:-443}; shift
+STARTTLS=${@}
 
 save_cert() {
 	echo |\
@@ -28,11 +33,7 @@ detail_cert() {
 	openssl x509 -text
 }
 
-if (( ${#} < 2 )); then
-	show_help
-fi
-
-case ${1} in
+case ${OPTION} in
 	-d|-detail)
 		detail_cert
 	;;
