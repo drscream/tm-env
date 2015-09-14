@@ -11,13 +11,13 @@ show_help() {
 	exit 1
 }
 
-if (( ${#} < 2 )); then
+if (( ${#} < 1 )); then
 	show_help
 fi
 
 OPTION=${1}; shift
-REMHOST=${2}; shift
-REMPORT=${3:-443}; shift
+REMHOST=${1}; shift
+REMPORT=${1:-443}; shift
 STARTTLS=${@}
 
 save_cert() {
@@ -42,9 +42,9 @@ case ${OPTION} in
 	;;
 	*)
 		echo -e "/!\\ WARNING: legacy support\n"
-		REMHOST=${1}; shift
-		REMPORT=${2}; shift
 		STARTTLS=${@}
+		REMPORT=${REMHOST:-443}
+		REMHOST=${OPTION}
 		detail_cert
 	;;
 esac
