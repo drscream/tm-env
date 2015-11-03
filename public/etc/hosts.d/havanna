@@ -4,11 +4,11 @@
 ##
 ## pkgsrc
 ##
-export PATH=/usr/pkg/gnu/bin:/usr/pkg/sbin:/usr/pkg/bin:$PATH
-export MANPATH=/usr/pkg/man:$MANPATH
+export PATH=/opt/pkg/gnu/bin:/opt/pkg/sbin:/opt/pkg/bin:$PATH
+export MANPATH=/opt/pkg/man:$MANPATH
 
-if [ -r /usr/pkg/share/bash-completion/bash_completion ]; then
-	source /usr/pkg/share/bash-completion/bash_completion
+if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
+	source /opt/pkg/share/bash-completion/bash_completion
 fi
 
 ##
@@ -61,7 +61,7 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/pkg/bin/virtualenvwrapper_lazy.sh
+source /opt/pkg/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
