@@ -93,9 +93,15 @@ function set_bash_prompt () {
 		PS1="${PYTHON_VIRTUALENV}\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w ${BRANCH}#\[${_color_reset}\] "
 		PS2='root %> '
 	else
-		PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
+		if [ -n "${SSH_CLIENT}" ] || [ -n "${SSH_TTY}" ]; then
+			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
  ${PROMPT_SYMBOL} "
-		PS2='%> '
+			PS2='%> '
+		else
+			PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
+ ${PROMPT_SYMBOL} "
+			PS2='%> '
+		fi
 	fi
 }
 
