@@ -4,11 +4,11 @@
 ##
 ## pkgsrc
 ##
-export PATH=/usr/pkg/gnu/bin:/usr/pkg/sbin:/usr/pkg/bin:$PATH
-export MANPATH=/usr/pkg/man:$MANPATH
+export PATH=/opt/pkg/gnu/bin:/opt/pkg/sbin:/opt/pkg/bin:$PATH
+export MANPATH=/opt/pkg/man:$MANPATH
 
-if [ -r /usr/pkg/share/bash-completion/bash_completion ]; then
-	source /usr/pkg/share/bash-completion/bash_completion
+if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
+	source /opt/pkg/share/bash-completion/bash_completion
 fi
 
 ##
@@ -61,7 +61,7 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/pkg/bin/virtualenvwrapper_lazy.sh
+source /opt/pkg/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
@@ -70,13 +70,10 @@ source /usr/pkg/bin/virtualenvwrapper_lazy.sh
 [[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
 
 ##
-## EC2
+## Java
 ##
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
-EC2_PRIVATE_KEY=${HOME}/.ec2/cert-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
-EC2_CERT=${HOME}/.ec2/pk-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
-EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.7.1.0/libexec"
-export JAVA_HOME EC2_PRIVATE_KEY EC2_CERT EC2_HOME
+export JAVA_HOME
 
 ##
 ## Homebrew API

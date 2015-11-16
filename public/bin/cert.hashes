@@ -7,7 +7,7 @@ cd ${WORKDIR}
 
 # Warning it will remove all symlinks that could be an hash to the same
 # folder. Try the best to match the correct files.
-find ${WORKDIR} -type l -regex '.*\.[0-9]\{1,\}' -delete
+/usr/bin/find ${WORKDIR} -type l -regex '.*\.[0-9]\{1,\}' -delete
 
 # Look for certificate files in different formats, don't check the content
 # trust the file extension.
