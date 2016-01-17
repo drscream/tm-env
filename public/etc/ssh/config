@@ -66,8 +66,9 @@ host *
 	CheckHostIP  yes
 	ForwardAgent yes
 	ServerAliveInterval 540
+	UseRoaming no
 	ControlMaster auto
-	ControlPath /tmp/%r@%h:%p
+	ControlPath ~/.ssh/cache/%r@%h:%p
 	ControlPersist 15m
 
 # vim:syntax=sshconfig
