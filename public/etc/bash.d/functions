@@ -100,7 +100,11 @@ function shmuxc() {
 # simple python http server
 # httpserv [port]
 function httpserv() {
-	python -m SimpleHTTPServer ${1}
+	python2.7 -m SimpleHTTPServer ${1}
+}
+
+function httpserv3() {
+	python -m http.server ${1}
 }
 
 # mkdir && cd to created folder
