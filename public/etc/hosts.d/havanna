@@ -7,6 +7,13 @@
 export PATH=/opt/pkg/gnu/bin:/opt/pkg/sbin:/opt/pkg/bin:$PATH
 export MANPATH=/opt/pkg/man:$MANPATH
 
+##
+## plan9
+##
+export PLAN9=/opt/plan9
+export PATH=$PATH:$PLAN9/bin
+
+
 if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
 	source /opt/pkg/share/bash-completion/bash_completion
 fi
@@ -87,3 +94,8 @@ export JAVA_HOME
 [[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
 [[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
 alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
+
+##
+## Go
+##
+export GOPATH=${HOME}/Development/go
