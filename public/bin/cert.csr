@@ -1,5 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Certificate Signing Request Generator
+# This script was designed to suit the request format needed by
+# the CAcert Certificate Authority. www.CAcert.org, modified by
+# Thomas Merkel <tm@core.io>
 
 # be safe about permissions
 LASTUMASK=$(umask)
@@ -18,21 +21,21 @@ if [ ! $? -eq 0 ]; then
 fi
 
 echo "Private Key and Certificate Signing Request Generator"
-echo "This script was designed to suit the request format needed by"
-echo "the CAcert Certificate Authority. www.CAcert.org"
 echo
 
-printf "Short Hostname (ie. imap big_srv www2): "
-read HOST
-printf "FQDN/CommonName (ie. www.example.com) : "
-read COMMONNAME
+if [[ ${#} -eq 1 ]]; then
+	HOST=${1}
+else
+	read -p "Short Hostname (ie. imap big_srv www2): " -e HOST
+fi
+
+read -p "FQDN/CommonName (ie. www.example.com) : " -e COMMONNAME
 
 echo "Type SubjectAltNames for the certificate, one per line. Enter a blank line to finish"
 SAN=1        # bogus value to begin the loop
 SANAMES=""   # sanitize
 while [ ! "${SAN}" = "" ]; do
-	printf "SubjectAltName: DNS:"
-	read SAN
+	read -p "SubjectAltName: DNS: " -e SAN
 	if [ "${SAN}" = "" ]; then break; fi # end of input
 	if [ "${SANAMES}" = "" ]; then
 		SANAMES="DNS:${SAN}"
@@ -92,12 +95,13 @@ fi
 
 echo "# -------------- END custom openssl.cnf -----" >> $CONFIG
 
-cat $CONFIG
+[[ ${DEBUG} ]] && cat $CONFIG
+
+
+read -p "OpenSSL Key size: " -i "2048" -e KEY
 
 echo "Running OpenSSL..."
-#openssl req -batch -config $CONFIG -newkey rsa:4096 -out ${HOME}/${HOST}.csr
-#openssl req -config $CONFIG -newkey rsa:4096 -out ${BASEDIR}/${HOST}.csr
-openssl req -config $CONFIG -newkey rsa:2048 -sha256 -out ${BASEDIR}/${HOST}.csr
+openssl req -config $CONFIG -newkey rsa:${KEY} -sha256 -out ${BASEDIR}/${HOST}.csr
 echo "Copy the following Certificate Request and paste into CAcert website to obtain a Certificate."
 echo "When you receive your certificate, you 'should' name it something like ${HOST}.crt"
 echo
