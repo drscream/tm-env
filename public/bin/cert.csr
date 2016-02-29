@@ -29,7 +29,7 @@ else
 	read -p "Short Hostname (ie. imap big_srv www2): " -e HOST
 fi
 
-read -p "FQDN/CommonName (ie. www.example.com) : " -e COMMONNAME
+read -p "FQDN/CommonName (ie. www.example.com) : " -i "${HOST}" -e COMMONNAME
 
 echo "Type SubjectAltNames for the certificate, one per line. Enter a blank line to finish"
 SAN=1        # bogus value to begin the loop
