@@ -13,6 +13,11 @@ export MANPATH=/opt/pkg/man:$MANPATH
 export PLAN9=/opt/plan9
 export PATH=$PATH:$PLAN9/bin
 
+##
+## terraform
+##
+export PATH=${PATH}:${HOME}/.terraform
+
 
 if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
 	source /opt/pkg/share/bash-completion/bash_completion
