@@ -1,7 +1,7 @@
 [user]
 	name = Thomas Merkel
 	email = tm@core.io
-	signingkey = D7A63833
+	signingkey = 0xD7A63833
 
 [github]
 	user = drscream
@@ -10,6 +10,9 @@
 	pager = cat
 	editor = vim
 	excludesfile = ~/.gitignore
+
+[commit]
+	gpgsign = true
 
 [alias]
 	tags = tag -l
