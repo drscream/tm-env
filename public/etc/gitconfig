@@ -23,10 +23,10 @@
 
 	graft = cherry-pick -x
 
-	l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
-	ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
-	gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
-	gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
+	l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
+	ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
+	gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
+	gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
 	ld  = log -1  -p
 
 	pull = pull --ff-only
