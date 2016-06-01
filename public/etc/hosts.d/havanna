@@ -51,7 +51,7 @@ fi
 ##
 ## some osx aliases
 ##
-alias ls='gls --color=auto'
+alias ls='gls --color=auto --quoting-style=escape'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
