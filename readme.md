@@ -1,4 +1,4 @@
-# tm-env, or my personal new dot environment
+# · my dotfiles alias tm-env alias doc-env
 
 I desided to create a new dot environment from my old dot environment
 and from many new cool environments i found on the internet. I'm not
@@ -48,27 +48,7 @@ file changes are required.
 
     git clone https://github.com/drscream/tm-env.git ~/.tm-env
 
-To initialize all files, you should symlink it to the home. For that there is
-a good old bash script. Be careful, it's not finished!
+Make is your friend, switch to the new directory and run `make`.
 
-    cd ~/.tm-env
-	./tm-env -i public git
-
-For the private use, i've also a git repository. But it uses
-[git-encrypt](/shadowhand/git-encrypt) to have a secure repository. You could
-also use the `tm-env` script.
-
-    cd ~/.tm-env
-	./tm-env -i private git
-
-## troubleshooting
-
-#### screen on macosx
-
-By default the screen version on MacOS X doesn't support 256 colors, because it
-isn't compiled with the option `--enable-colors256`. It's also nice that
-homebrew doesn't have `screen` in the repository because it's shipped with the
-system. So thanks to [mjwall](/mjwall) who has build a homebrew file for it.
-
-    brew install
-	https://raw.github.com/gist/1287202/6bd8a37c4a4e9419418d62c5f62c0673b6ffe444/screen.rb
+	cd ~/.tm-env
+	make
