@@ -1,0 +1,155 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 5 (0x5)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=DE, ST=Baden-Wuerttemberg, L=Tettnang/postalCode=88069/street=Lindauerstrasse 21, O=Avira GmbH, OU=Global-IT, CN=Avira Root Certificate Authority/emailAddress=ca@avira.com
+        Validity
+            Not Before: Dec 17 19:55:39 2014 GMT
+            Not After : Jan 30 19:55:39 2020 GMT
+        Subject: C=DE, ST=Baden-Wuerttemberg, L=Tettnang, O=Avira GmbH, OU=Global-IT, CN=Avira Intermediate Certificate Authority 2010-2020/emailAddress=ca@avira.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (4096 bit)
+                Modulus (4096 bit):
+                    00:c0:0d:54:db:68:00:6d:21:21:40:bc:b4:b7:c0:
+                    d3:87:ff:4a:2f:41:28:08:4f:42:3a:a6:93:b2:53:
+                    b6:42:0d:ca:eb:69:33:54:fe:e6:66:26:53:50:55:
+                    4b:f9:16:56:76:64:0a:50:29:da:84:4d:d7:58:d8:
+                    07:0c:18:8d:fd:53:94:1c:ec:fb:ad:3b:1c:3a:8d:
+                    95:20:74:a3:89:a9:d1:fb:02:6a:6a:9e:de:1d:19:
+                    68:52:3f:1f:8e:77:a1:92:fd:9f:32:c1:40:a5:c8:
+                    9a:f1:da:b4:b5:64:e7:c3:1a:4a:3d:5b:bb:bc:0f:
+                    ce:c3:ef:6e:40:e7:79:1f:bf:20:43:43:9c:4d:3d:
+                    ed:44:fe:09:3c:c9:bd:2e:30:1f:5a:38:26:9e:a6:
+                    26:da:1e:fa:c5:ac:ce:a9:fe:f3:c4:9a:15:37:b9:
+                    78:34:6f:cc:4f:7a:a5:d3:3d:7c:36:f1:71:18:15:
+                    b1:d6:d5:3c:be:8e:f8:91:77:6e:ad:79:eb:3f:0c:
+                    2c:af:d8:4e:59:83:c2:7a:b2:a0:6e:56:ef:e9:b0:
+                    05:d3:18:d8:d6:ea:2c:07:41:d1:41:db:84:31:c0:
+                    86:2d:96:ac:63:b5:bf:4a:2f:05:e1:fc:d9:ac:0a:
+                    41:9e:15:67:ec:cf:38:da:b5:10:32:13:13:0f:b1:
+                    e7:ac:eb:dc:74:38:0f:e6:5f:32:e9:19:57:d2:50:
+                    1c:d1:59:17:b6:a8:af:d7:32:11:50:81:85:73:bc:
+                    d2:f7:d1:10:5b:71:19:b0:dd:20:7c:55:f6:14:14:
+                    a9:ec:cf:ab:5a:9a:80:d9:89:9d:85:46:d5:7c:1b:
+                    c6:87:95:87:04:b2:f9:7c:37:6f:9d:d1:9e:6c:f8:
+                    17:75:7a:c8:0b:b4:0c:42:81:3c:6b:99:10:22:ba:
+                    91:0a:ae:74:b4:e1:5e:ea:6b:d8:e4:c6:04:bf:2e:
+                    b0:d2:99:8c:25:6f:11:44:00:59:ea:9b:8f:fa:87:
+                    87:c8:c4:8f:e1:28:51:81:c6:f9:5b:74:e5:a8:d1:
+                    f1:bb:e2:bf:55:9b:d1:9b:32:5b:fa:7a:0e:9e:7e:
+                    cb:b7:03:ba:a4:92:07:28:89:70:a6:b4:e3:6f:32:
+                    37:38:5f:5e:1d:ff:fa:5b:9c:2c:a4:fe:55:23:8a:
+                    04:1b:60:b7:a0:27:45:87:db:b1:b5:f8:7a:ea:3d:
+                    d7:e1:20:d3:be:de:f5:6c:e9:a8:30:12:b3:17:48:
+                    c9:41:4e:7d:e9:ed:99:21:12:13:28:20:4b:96:6e:
+                    36:ff:db:87:0e:92:2b:35:1d:ee:dc:e1:1d:47:dd:
+                    d3:4e:73:c5:cc:5a:99:f0:bf:6d:ff:a1:a5:d4:0a:
+                    49:89:5f
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:TRUE
+            X509v3 Subject Key Identifier: 
+                D2:2F:C3:07:9B:68:F1:AF:B9:86:68:61:61:87:EB:75:0C:29:96:D0
+            X509v3 Authority Key Identifier: 
+                keyid:CE:D9:32:83:C5:27:25:49:DD:F5:97:4F:73:6A:E7:7E:80:54:C0:74
+                DirName:/C=DE/ST=Baden-Wuerttemberg/L=Tettnang/postalCode=88069/street=Lindauerstrasse 21/O=Avira GmbH/OU=Global-IT/CN=Avira Root Certificate Authority/emailAddress=ca@avira.com
+                serial:88:35:09:E1:89:5C:DC:45
+
+            X509v3 Key Usage: 
+                Certificate Sign, CRL Sign
+            Netscape Cert Type: 
+                SSL CA, S/MIME CA, Object Signing CA
+            X509v3 Subject Alternative Name: 
+                email:ca@avira.com
+            X509v3 Issuer Alternative Name: 
+                email:ca@avira.com
+            X509v3 CRL Distribution Points: 
+                URI:http://ca.avira.com/crl/certs.crl
+
+            Netscape Base Url: 
+                http://ca.avira.com
+            Netscape CA Policy Url: 
+                http://ca.avira.com/policy/policy.pdf
+            Netscape Comment: 
+                ALL YOUR CERTIFICATE ARE BELONG TO US!!
+    Signature Algorithm: sha256WithRSAEncryption
+        22:8b:ae:cd:61:03:6e:71:9b:5a:9f:d3:fd:aa:fd:8e:5c:d4:
+        18:da:dd:12:f5:9a:ca:31:0a:d4:fa:57:f3:e4:5e:e7:c0:d9:
+        35:92:19:e7:10:19:a5:54:78:03:7c:f4:a3:3e:0d:0c:06:89:
+        90:3e:5a:2d:24:74:66:c9:86:76:09:a7:06:a0:9a:4c:e7:56:
+        ed:41:ed:84:df:ef:17:5d:2a:11:15:9d:91:95:ec:7d:4b:19:
+        21:ab:3d:32:97:d3:8d:14:0f:ab:89:3c:5e:db:89:19:fb:58:
+        fd:76:18:33:a1:e1:30:75:64:5b:73:d4:38:09:e7:0d:c1:64:
+        b0:45:9e:30:f1:19:37:df:ea:11:b7:50:08:d3:92:5f:26:34:
+        d4:64:d9:83:e8:69:23:4d:5c:69:56:fc:4b:75:9c:02:59:29:
+        11:75:fc:2c:fa:5e:ce:11:1e:35:ff:5d:00:fd:c0:a1:aa:ae:
+        f3:61:c6:f1:63:3f:7f:e5:d0:e7:07:0d:31:cb:de:c4:ac:fe:
+        2c:af:27:72:33:a4:17:f7:e3:02:15:3e:93:6a:76:db:ae:22:
+        08:12:12:9a:da:ba:a3:2f:d4:81:db:3d:d2:2f:7b:a8:c8:f9:
+        76:ac:56:d5:be:f4:e2:f2:67:4e:a2:14:2e:f9:aa:94:96:ca:
+        99:09:c3:24:37:dd:56:ab:e5:0f:5b:8f:62:44:86:b8:e7:d9:
+        6d:7c:ea:e8:d0:3c:0f:99:52:14:20:b2:35:16:50:8e:b4:2a:
+        33:25:59:41:bf:c1:5b:a4:94:56:94:0c:1b:2e:47:08:c1:dc:
+        f4:c7:75:8b:6e:6a:40:03:0d:92:10:e9:22:7a:bd:77:84:9e:
+        a3:cc:9f:5f:b8:39:ee:af:6a:48:5f:c7:af:4d:70:95:d1:c4:
+        58:56:87:2c:60:2e:7a:fe:7a:0e:c6:03:64:21:01:c8:e4:05:
+        c8:93:06:3b:bb:32:92:99:5b:0c:1c:0e:e1:d2:7d:ce:9d:a8:
+        5a:ff:7a:0f:62:9b:4c:66:21:15:8f:e9:7a:b3:11:c5:d6:d2:
+        33:3b:81:b6:17:16:f3:8c:ad:83:21:9c:43:15:13:a3:1d:f8:
+        cd:fa:ca:07:08:25:0c:eb:ad:00:42:b9:a3:71:27:eb:e8:f8:
+        12:01:c5:e0:82:b0:ca:eb:16:cb:1b:c8:4b:3c:d0:60:68:3c:
+        82:67:eb:5d:50:14:5a:43:92:73:d1:d7:00:f4:28:33:1f:b1:
+        79:52:bc:f0:44:88:e2:f2:9d:46:45:92:07:6b:1f:e6:99:c2:
+        e4:77:57:ee:c0:ef:fb:bc:81:f9:36:41:4f:c8:10:f2:ed:07:
+        7e:1e:48:30:83:fe:cb:ff
+-----BEGIN CERTIFICATE-----
+MIIIeTCCBmGgAwIBAgIBBTANBgkqhkiG9w0BAQsFADCB2zELMAkGA1UEBhMCREUx
+GzAZBgNVBAgTEkJhZGVuLVd1ZXJ0dGVtYmVyZzERMA8GA1UEBxMIVGV0dG5hbmcx
+DjAMBgNVBBETBTg4MDY5MRswGQYDVQQJExJMaW5kYXVlcnN0cmFzc2UgMjExEzAR
+BgNVBAoTCkF2aXJhIEdtYkgxEjAQBgNVBAsTCUdsb2JhbC1JVDEpMCcGA1UEAxMg
+QXZpcmEgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkxGzAZBgkqhkiG9w0BCQEW
+DGNhQGF2aXJhLmNvbTAeFw0xNDEyMTcxOTU1MzlaFw0yMDAxMzAxOTU1MzlaMIHA
+MQswCQYDVQQGEwJERTEbMBkGA1UECBMSQmFkZW4tV3VlcnR0ZW1iZXJnMREwDwYD
+VQQHEwhUZXR0bmFuZzETMBEGA1UEChMKQXZpcmEgR21iSDESMBAGA1UECxMJR2xv
+YmFsLUlUMTswOQYDVQQDEzJBdmlyYSBJbnRlcm1lZGlhdGUgQ2VydGlmaWNhdGUg
+QXV0aG9yaXR5IDIwMTAtMjAyMDEbMBkGCSqGSIb3DQEJARYMY2FAYXZpcmEuY29t
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwA1U22gAbSEhQLy0t8DT
+h/9KL0EoCE9COqaTslO2Qg3K62kzVP7mZiZTUFVL+RZWdmQKUCnahE3XWNgHDBiN
+/VOUHOz7rTscOo2VIHSjianR+wJqap7eHRloUj8fjnehkv2fMsFApcia8dq0tWTn
+wxpKPVu7vA/Ow+9uQOd5H78gQ0OcTT3tRP4JPMm9LjAfWjgmnqYm2h76xazOqf7z
+xJoVN7l4NG/MT3ql0z18NvFxGBWx1tU8vo74kXdurXnrPwwsr9hOWYPCerKgblbv
+6bAF0xjY1uosB0HRQduEMcCGLZasY7W/Si8F4fzZrApBnhVn7M842rUQMhMTD7Hn
+rOvcdDgP5l8y6RlX0lAc0VkXtqiv1zIRUIGFc7zS99EQW3EZsN0gfFX2FBSp7M+r
+WpqA2YmdhUbVfBvGh5WHBLL5fDdvndGebPgXdXrIC7QMQoE8a5kQIrqRCq50tOFe
+6mvY5MYEvy6w0pmMJW8RRABZ6puP+oeHyMSP4ShRgcb5W3TlqNHxu+K/VZvRmzJb
++noOnn7LtwO6pJIHKIlwprTjbzI3OF9eHf/6W5wspP5VI4oEG2C3oCdFh9uxtfh6
+6j3X4SDTvt71bOmoMBKzF0jJQU596e2ZIRITKCBLlm42/9uHDpIrNR3u3OEdR93T
+TnPFzFqZ8L9t/6Gl1ApJiV8CAwEAAaOCAl8wggJbMAwGA1UdEwQFMAMBAf8wHQYD
+VR0OBBYEFNIvwwebaPGvuYZoYWGH63UMKZbQMIIBEgYDVR0jBIIBCTCCAQWAFM7Z
+MoPFJyVJ3fWXT3Nq536AVMB0oYHhpIHeMIHbMQswCQYDVQQGEwJERTEbMBkGA1UE
+CBMSQmFkZW4tV3VlcnR0ZW1iZXJnMREwDwYDVQQHEwhUZXR0bmFuZzEOMAwGA1UE
+ERMFODgwNjkxGzAZBgNVBAkTEkxpbmRhdWVyc3RyYXNzZSAyMTETMBEGA1UEChMK
+QXZpcmEgR21iSDESMBAGA1UECxMJR2xvYmFsLUlUMSkwJwYDVQQDEyBBdmlyYSBS
+b290IENlcnRpZmljYXRlIEF1dGhvcml0eTEbMBkGCSqGSIb3DQEJARYMY2FAYXZp
+cmEuY29tggkAiDUJ4Ylc3EUwCwYDVR0PBAQDAgEGMBEGCWCGSAGG+EIBAQQEAwIA
+BzAXBgNVHREEEDAOgQxjYUBhdmlyYS5jb20wFwYDVR0SBBAwDoEMY2FAYXZpcmEu
+Y29tMDIGA1UdHwQrMCkwJ6AloCOGIWh0dHA6Ly9jYS5hdmlyYS5jb20vY3JsL2Nl
+cnRzLmNybDAiBglghkgBhvhCAQIEFRYTaHR0cDovL2NhLmF2aXJhLmNvbTA0Bglg
+hkgBhvhCAQgEJxYlaHR0cDovL2NhLmF2aXJhLmNvbS9wb2xpY3kvcG9saWN5LnBk
+ZjA2BglghkgBhvhCAQ0EKRYnQUxMIFlPVVIgQ0VSVElGSUNBVEUgQVJFIEJFTE9O
+RyBUTyBVUyEhMA0GCSqGSIb3DQEBCwUAA4ICAQAii67NYQNucZtan9P9qv2OXNQY
+2t0S9ZrKMQrU+lfz5F7nwNk1khnnEBmlVHgDfPSjPg0MBomQPlotJHRmyYZ2CacG
+oJpM51btQe2E3+8XXSoRFZ2Rlex9Sxkhqz0yl9ONFA+riTxe24kZ+1j9dhgzoeEw
+dWRbc9Q4CecNwWSwRZ4w8Rk33+oRt1AI05JfJjTUZNmD6GkjTVxpVvxLdZwCWSkR
+dfws+l7OER41/10A/cChqq7zYcbxYz9/5dDnBw0xy97ErP4srydyM6QX9+MCFT6T
+anbbriIIEhKa2rqjL9SB2z3SL3uoyPl2rFbVvvTi8mdOohQu+aqUlsqZCcMkN91W
+q+UPW49iRIa459ltfOro0DwPmVIUILI1FlCOtCozJVlBv8FbpJRWlAwbLkcIwdz0
+x3WLbmpAAw2SEOkier13hJ6jzJ9fuDnur2pIX8evTXCV0cRYVocsYC56/noOxgNk
+IQHI5AXIkwY7uzKSmVsMHA7h0n3Onaha/3oPYptMZiEVj+l6sxHF1tIzO4G2Fxbz
+jK2DIZxDFROjHfjN+soHCCUM660AQrmjcSfr6PgSAcXggrDK6xbLG8hLPNBgaDyC
+Z+tdUBRaQ5Jz0dcA9CgzH7F5UrzwRIji8p1GRZIHax/mmcLkd1fuwO/7vIH5NkFP
+yBDy7Qd+Hkgwg/7L/w==
+-----END CERTIFICATE-----
