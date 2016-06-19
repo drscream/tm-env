@@ -1,2 +1,7 @@
+# Don't share ssh keys and known_hosts
+*id_rsa
+*id_rsa.pub
+known_hosts
+# Install vim bundles via Vundle
 etc/.vim/bundle
 etc/.vim/tmp
