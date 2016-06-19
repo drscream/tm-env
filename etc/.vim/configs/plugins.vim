@@ -171,7 +171,7 @@ let g:syntastic_jsl_conf = '$HOME/.vim/jsl.conf'
 " }}}
 " YankRing {{{
 
-let g:yankring_history_dir = expand('$TM_HOME/.vim.d/tmp')
+let g:yankring_history_dir = expand('$TM_HOME/.vim/tmp')
 
 function! YRRunAfterMaps()
     " Make Y yank to end of line.
