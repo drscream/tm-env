@@ -1,4 +1,9 @@
-private/.keep
-private/*/*
-tm-env.log
-public/etc/vim.d/tmp/
+# Don't share ssh keys and known_hosts
+*id_rsa
+*id_rsa.pub
+known_hosts
+# Ignore cache folders
+cache
+# Install vim bundles via Vundle
+etc/.vim/bundle
+etc/.vim/tmp
