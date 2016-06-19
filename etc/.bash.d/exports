@@ -3,7 +3,7 @@
 ##
 ## path and ssl variables
 ##
-export PATH=${TM_HOME}/.bin:${TM_HOME}/.tm-env/private/bin:${PATH}
+export PATH=${TM_HOME}/.bin:${TM_HOME}/.sbin:${PATH}
 export SSL_CERT_DIR=${TM_HOME}/.certs.d/
 
 ##
