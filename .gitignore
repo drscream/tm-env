@@ -7,3 +7,5 @@ cache
 # Install vim bundles via Vundle
 etc/.vim/bundle
 etc/.vim/tmp
+# SSL certificate hashes
+etc/.certs.d/*.[0-9]
