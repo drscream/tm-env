@@ -1,0 +1,3 @@
+if [ -r /opt/local/share/bash-completion/bash_completion ]; then
+	. /opt/local/share/bash-completion/bash_completion
+fi

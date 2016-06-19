@@ -3,7 +3,7 @@
 DOTPATH  := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTFILES := $(wildcard etc/.??*)
 
-all: etc bin vim
+all: etc bin vim certs
 
 
 # Install dotfiles and binfiles
@@ -15,12 +15,15 @@ bin:
 # Vim extra bundles
 vim:
 ifneq "$(wildcard $(HOME)/.vim/bundle/Vundle.vim )" ""
-	git pull $(HOME)/.vim/bundle/Vundle.vim
+	cd $(HOME)/.vim/bundle/Vundle.vim && git pull
 else
 	git clone https://github.com/VundleVim/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
 endif
 	vim +PluginInstall +qall
 
+# SSL certs hashes for openssl
+certs:
+	cd $(HOME)/.certs.d && cert.hashes
 
 # Meta install and uninstall targets
 _install/%:
