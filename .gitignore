@@ -2,6 +2,8 @@
 *id_rsa
 *id_rsa.pub
 known_hosts
+# Ignore cache folders
+cache
 # Install vim bundles via Vundle
 etc/.vim/bundle
 etc/.vim/tmp
