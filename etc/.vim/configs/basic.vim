@@ -28,7 +28,7 @@ set lcs+=trail:·
 set lcs+=precedes:«
 set lcs+=extends:»
 set lcs+=nbsp:·
-set shell=/bin/bash\ --login
+set shell=/usr/bin/env\ bash\ --login
 set lazyredraw
 set matchtime=3
 set showbreak=↪
