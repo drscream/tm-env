@@ -3,11 +3,13 @@
 [[ ! -x $(which tput 2>/dev/null) ]] && continue
 
 case ${TM_OS} in
-	FreeBSD*)
+	FreeBSD)
+		tput_color='Co'
 		tput_setaf='AF'
 		tput_sgr='op'
 		;;
 	*)
+		tput_color='colors'
 		tput_setaf='setaf'
 		tput_sgr='sgr0'
 		;;
@@ -15,7 +17,7 @@ esac
 
 case ${TERM} in
 	*256*|rxvt*|gnome*)
-		if [ $(tput Co) -ge 256 ]; then
+		if [ $(tput ${tput_color}) -ge 256 ]; then
 			_color_yellow=$(tput ${tput_setaf} 136)
 			_color_orange=$(tput ${tput_setaf} 166)
 			_color_red=$(tput ${tput_setaf} 160)
