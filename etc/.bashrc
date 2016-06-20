@@ -24,6 +24,10 @@ case ${OSTYPE} in
 		TM_OS='Solaris'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
+	freebsd*)
+		TM_OS='FreeBSD'
+		TM_USER=${SUDO_USER:-${USER}}
+	;;
 	*)
 		TM_OS='Unknown'
 		TM_USER=${SUDO_USER:-${USER}}

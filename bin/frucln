@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #--------------------------------------------------------------------
 # $Id: frucln,v 1.9 2009/12/27 18:01:09 drscream Exp $
 # Copyright 2007 Frubar Network (drscream@frubar.net)
@@ -30,7 +30,7 @@ case $1 in
 		fi
 
 		osys=$(uname)
-		if [[ ${osys} == "Linux" ]]; then
+		if [[ ${osys} == "Linux" || ${osys} == "FreeBSD" ]]; then
 			$(import -window root -pause 0 -quality 100 /tmp/sau.tmp.png)
 		elif [[ ${osys} == "Darwin"  ]]; then
 			$(screencapture -m /tmp/sau.tmp.png)

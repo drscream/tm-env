@@ -6,6 +6,9 @@ function root {
 		Darwin)
 			sudo -i "/opt/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc"
 		;;
+		FreeBSD)
+			sudo /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
+		;;
 		*)
 			sudo /bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 		;;
