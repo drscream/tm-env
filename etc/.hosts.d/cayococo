@@ -2,13 +2,10 @@
 # vim:ft=sh
 
 ##
-## pkgsrc
+## ports
 ##
-export PATH=/usr/pkg/gnu/bin:/usr/pkg/sbin:/usr/pkg/bin:$PATH
-export MANPATH=/usr/pkg/man:$MANPATH
-
-if [ -r /usr/pkg/share/bash-completion/bash_completion ]; then
-	source /usr/pkg/share/bash-completion/bash_completion
+if [ -r /usr/local/share/bash-completion/bash_completion ]; then
+	source /usr/local/share/bash-completion/bash_completion
 fi
 
 ##
@@ -59,28 +56,13 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/pkg/bin/virtualenvwrapper_lazy.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
 ##
 # dircolors exists only in brew repo, so run this command later
-[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
-
-##
-## EC2
-##
-JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
-EC2_PRIVATE_KEY=${HOME}/.ec2/cert-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
-EC2_CERT=${HOME}/.ec2/pk-QFCSGHCNKJVL6QCE6GK7QBH5JA7CPF4R.pem
-EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.7.1.0/libexec"
-export JAVA_HOME EC2_PRIVATE_KEY EC2_CERT EC2_HOME
-
-##
-## Homebrew API
-##
-[[ -f ${HOME}/.sec/github-api-token ]] && \
-	export HOMEBREW_GITHUB_API_TOKEN="$(cat ${HOME}/.sec/github-api-token)"
+[[ -f ${HOME}/.dir_colors ]] && eval $(gdircolors -b ${HOME}/.dir_colors)
 
 ##
 ## special admin scripts
