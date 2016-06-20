@@ -46,7 +46,7 @@ fi
 ##
 ## ruby virtual environment
 ##
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+alias rvm.load='[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"'
 
 ##
 ## some osx aliases
