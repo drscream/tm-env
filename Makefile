@@ -27,8 +27,8 @@ certs:
 
 # Compile SSH config file
 ssh:
-	echo "# Warning this file is created by compile-ssh-config" > $(HOME)/.ssh/config && \
-		cat $(HOME)/.ssh.extra/config.* $(HOME)/.ssh/config.global >> ~/.ssh/config
+	echo "# Warning this file is created by ssh-compile-config" > $(HOME)/.ssh/config
+	cat `ls $(HOME)/.ssh.extra/config.* | grep -v .secret` $(HOME)/.ssh/config.global >> $(HOME)/.ssh/config
 
 # Meta install and uninstall targets
 _install/%:

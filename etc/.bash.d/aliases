@@ -35,10 +35,11 @@ alias screen='screen -c ${TM_HOME}/.screenrc'
 alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # ssh socket
+alias ssh-sock='echo export $(env | grep SSH_AUTH_SOCK)'
 alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 
 # compile ssh config
-alias compile-ssh-config='echo "# Warning this file is created by compile-ssh-config" > /Users/tm/.ssh/config && cat /Users/tm/.ssh.extra/config.!(*.secret) /Users/tm/.ssh/config.global >> ~/.ssh/config'
+alias ssh-compile-config='echo "# Warning this file is created by ssh-compile-config" > ${TM_HOME}/.ssh/config && cat ${TM_HOME}/.ssh.extra/config.!(*.secret) ${TM_HOME}/.ssh/config.global >> ~/.ssh/config'
 
 # history grep
 alias h?='history | grep'
