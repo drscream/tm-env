@@ -1,9 +1,9 @@
-.PHONY: all bin etc
+.PHONY: all bin etc certs ssh
 
 DOTPATH  := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTFILES := $(wildcard etc/.??*)
 
-all: etc bin vim certs
+all: etc bin vim certs ssh
 
 
 # Install dotfiles and binfiles
@@ -23,7 +23,12 @@ endif
 
 # SSL certs hashes for openssl
 certs:
-	cd $(HOME)/.certs.d && cert.hashes
+	cd $(HOME)/.certs.d && $(HOME)/.bin/cert.hashes
+
+# Compile SSH config file
+ssh:
+	echo "# Warning this file is created by compile-ssh-config" > $(HOME)/.ssh/config && \
+		cat $(HOME)/.ssh.extra/config.* $(HOME)/.ssh/config.global >> ~/.ssh/config
 
 # Meta install and uninstall targets
 _install/%:

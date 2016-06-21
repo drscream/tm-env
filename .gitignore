@@ -1,7 +1,8 @@
 # Don't share ssh keys and known_hosts
-*id_rsa
-*id_rsa.pub
-known_hosts
+etc/.ssh/*id_rsa
+etc/.ssh/*id_rsa.pub
+etc/.ssh/known_hosts
+etc/.ssh/config
 # Ignore cache folders
 cache
 # Install vim bundles via Vundle
