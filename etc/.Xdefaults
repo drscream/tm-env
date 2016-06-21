@@ -1,0 +1,167 @@
+!-------------------------------------------------------------------------------
+!
+!   U R X V T
+!
+URxvt*geometry:     80x25
+URxvt*background:   #000000
+URxvt*foreground:   #ffffff
+URxvt*reverseVideo: false
+URxvt*tintColor:    #dfdfdf
+URxvt*shading:      5 !trans=100, 0=opaque
+URxvt.font:         xft:Hack:size=10
+!URxvt.font:         -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
+!URxvt.boldFont:     -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
+
+URxvt*scrollBar:            false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollBar_floating:   true
+URxvt*scrollBar_right:      false
+URxvt*scrollColor:          #000000
+URxvt*saveLines:            9999
+URxvt*termName:             xterm-256color
+URxvt*cursorColor:          #d8d8d8
+URxvt*colorBD:              lightyellow
+URxvt*colorUL:              white
+URxvt*eightBitInput:        true
+URxvt*metaSendsEscape:      true
+URxvt*visualBell:           false
+urxvt*inheritPixmap:        true
+URxvt*xftAntialias:         true
+urxvt.perl-ext-common:      mark-urls
+urxvt.urlLauncher:          chrome
+URxvt.internalBorder:       5
+
+!urxvt.tabbed.tabbar-fg:     0
+!urxvt.tabbed.tabbar-bg:     0
+!urxvt.tabbed.tab-fg:        1
+!urxvt.tabbed.tab-bg:        0
+
+! Fix home and end key on MacBook Keyboard
+URxvt.keysym.Home:          \033[H
+URxvt.keysym.End:           \033[F
+
+! COLORS
+!black
+URxvt*color0:           #333333
+URxvt*color8:           #686868
+!red
+URxvt*color1:           #CD8484
+URxvt*color9:           #cf8187
+!green
+URxvt*color2:           #B5CCA0
+URxvt*color10:          #A1B98B
+!yellow
+URxvt*color3:           #edb25d
+URxvt*color11:          #dfb374
+!blue
+URxvt*color4:           #8CA0B0
+URxvt*color12:          #7292ad
+!magenta
+URxvt*color5:           #BAA1C4
+URxvt*color13:          #AB839D
+!cyan
+URxvt*color6:           #81C5C7
+URxvt*color14:          #87C0C4
+!white
+URxvt*color7:           #CCCCCC
+URxvt*color15:          #CCCCCC
+
+!-------------------------------------------------------------------------------
+!
+!   C O L O S E T S
+!
+! colorset1
+!black
+set1*color0:            #333333
+set1*color8:            #686868
+!red
+set1*color1:            #CD8484
+set1*color9:            #cf8187
+!green
+set1*color2:            #B5CCA0
+set1*color10:           #A1B98B
+!yellow
+set1*color3:            #D4CE93
+set1*color11:           #C2BD8A
+!blue
+set1*color4:            #8CA0B0
+set1*color12:           #7292ad
+!magenta
+set1*color5:            #BAA1C4
+set1*color13:           #AB839D
+!cyan
+set1*color6:            #81C5C7
+set1*color14:           #87C0C4
+!white
+set1*color7:            #ECECEC
+set1*color15:           #E2E2E2
+
+! colorset2
+!black
+set2*color0:            #868686
+set2*color8:            #6D6D6D
+!red
+set2*color1:            #E49696
+set2*color9:            #cf8187
+!green
+set2*color2:            #B5CCA0
+set2*color10:           #A1B98B
+!yellow
+set2*color3:            #CEA88B
+set2*color11:           #C9A67E
+!blue
+set2*color4:            #7FB4DE
+set2*color12:           #7292ad
+!magenta
+set2*color5:            #BAA1C4
+set2*color13:           #AB839D
+!cyan
+set2*color6:            #81C5C7
+set2*color14:           #87C0C4
+!white
+set2*color7:            #ECECEC
+set2*color15:           #E2E2E2
+
+!-------------------------------------------------------------------------------
+!
+!   X C L O C K
+!
+XClock.geometry:     -5-5
+XClock.transient:    true
+XClock.clock.analog: false
+XClock.clock.update: 1
+
+!-------------------------------------------------------------------------------
+!
+!   X M E S S A G E
+!
+.xmessage.form.okay.shapeStyle: rectangle
+.xmessage.form.okay.background: #777777
+.xmessage.form.okay.foreground: snow
+xmessage*defaultButton:         okay
+Xmessage.form.message.Scroll:   WhenNeeded
+
+!-------------------------------------------------------------------------------
+!
+!   X C A L E D A R
+!
+xcalendar*title:           XCalendar
+xcalendar*calendarDir:    /home/tm/.calendar
+xcalendar*markHoliday:    True
+xcalendar*markBackground: Darkgray
+xcalendar*markCurrent:    True
+xcalendar*resizable:      False
+xcalendar*firstDay:       1
+xcalendar*daynames.SUN*Foreground: Darkred
+xcalendar*daynumbers.7*Foreground:  Darkred
+xcalendar*daynumbers.8*Foreground:  Black
+xcalendar*daynumbers.14*Foreground: Darkred
+xcalendar*daynumbers.15*Foreground: Black
+xcalendar*daynumbers.21*Foreground: Darkred
+xcalendar*daynumbers.22*Foreground: Black
+xcalendar*daynumbers.28*Foreground: Darkred
+xcalendar*daynumbers.29*Foreground: Black
+xcalendar*daynumbers.35*Foreground: Darkred
+xcalendar*daynumbers.36*Foreground: Black
+xcalendar*holiday*cursorPositionVisible: True
+xcalendar*holiday*displayCaret:          True
