@@ -38,7 +38,7 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 
 # compile ssh config
-alias compile-ssh-config='echo "# Warning this file is created by compile-ssh-config" > /Users/tm/.ssh/config && cat /Users/tm/.ssh.extra/config.* /Users/tm/.ssh/config.global >> ~/.ssh/config'
+alias compile-ssh-config='echo "# Warning this file is created by compile-ssh-config" > /Users/tm/.ssh/config && cat /Users/tm/.ssh.extra/config.!(*.secret) /Users/tm/.ssh/config.global >> ~/.ssh/config'
 
 # history grep
 alias h?='history | grep'
