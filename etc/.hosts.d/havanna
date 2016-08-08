@@ -88,10 +88,12 @@ JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 export JAVA_HOME
 
 ##
-## Homebrew API
+## GitHub API
 ##
-[[ -f ${HOME}/.sec/github-api-token ]] && \
-	export HOMEBREW_GITHUB_API_TOKEN="$(cat ${HOME}/.sec/github-api-token)"
+if [[ -f ${HOME}/.sec/github.api ]]; then
+	export GITHUB_TOKEN="$(cat ${HOME}/.sec/github.api)"
+	export HOMEBREW_GITHUB_API_TOKEN=${GITHUB_TOKEN}
+fi
 
 ##
 ## special admin scripts
