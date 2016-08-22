@@ -9,7 +9,7 @@ all: etc bin vim certs ssh
 # Install dotfiles and binfiles
 etc: $(foreach F, $(DOTFILES), _install/$F)
 bin:
-	/bin/ln -sfh $(DOTPATH)/bin $(HOME)/.bin
+	/bin/ln -sfn $(DOTPATH)/bin $(HOME)/.bin
 
 
 # Vim extra bundles
