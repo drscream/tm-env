@@ -35,6 +35,7 @@ Plugin 'vim-scripts/Syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'elzr/vim-json'
 Plugin 'vim-scripts/YankRing.vim'
+Plugin 'Yggdroot/indentLine'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
