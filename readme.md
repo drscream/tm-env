@@ -34,12 +34,18 @@ something else.
 ## screenshots
 
 I using MacOS X with Terminal.app and a modified theme called
-[Box Black](https://gist.github.com/3849042). Here are also two screenshots of
-the terminal with `ls` and `vim`.
+[Box Black 2014](https://gist.github.com/drscream/abaadf5f3ffdec2c476073cfeb2f61a3).
+Here are also two screenshots of the terminal with `ls` and `vim`.
 
-![tm-env Screenshot of ls](http://up.frubar.net/2307/tm-env_ls.png)
+![tm-env Screenshot of ls](https://up.frubar.net/3544/terminal-box-black-2014-ls.png)
 
-![tm-env Screenshot of vim](http://up.frubar.net/2308/tm-env_vim.png)
+![tm-env Screenshot of vim](https://up.frubar.net/3545/terminal-box-black-2014-vim.png)
+
+If you like to use a light background I also have an [Box White
+2015](https://gist.github.com/drscream/abaadf5f3ffdec2c476073cfeb2f61a3) theme
+but somehow it doesn't work that well with my colours.
+
+![tm-env Screenshot of ls in White Box](https://up.frubar.net/3546/terminal-box-white-2015-ls.png)
 
 ## usage
 
