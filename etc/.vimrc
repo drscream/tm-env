@@ -26,7 +26,6 @@ Plugin 'vim-scripts/Gundo'
 Plugin 'vim-scripts/linediff.vim'
 Plugin 'vim-scripts/The-NERD-tree'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'klen/python-mode'
 Plugin 'tpope/vim-repeat'
 Plugin 'saltstack/salt-vim'
 Plugin 'ervandew/supertab'
@@ -36,6 +35,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'elzr/vim-json'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
