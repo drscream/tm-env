@@ -26,13 +26,13 @@ fi
 
 save_cert() {
 	echo |\
-	openssl s_client -connect ${REMHOST}:${REMPORT} ${STARTTLS} 2>&1 |\
+	openssl s_client -connect ${REMHOST}:${REMPORT} -servername ${REMHOST} ${STARTTLS} 2>&1 |\
 	sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 }
 
 detail_cert() {
 	echo |\
-	openssl s_client -connect ${REMHOST}:${REMPORT} ${STARTTLS} 2>&1 |\
+	openssl s_client -connect ${REMHOST}:${REMPORT} -servername ${REMHOST} ${STARTTLS} 2>&1 |\
 	sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' |\
 	openssl x509 -text
 }
