@@ -60,6 +60,9 @@ alias v.cdsitepackages='cdsitepackages'
 alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
 
+# python / pip
+alias pip.upgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+
 # git
 # workaround for ~/.gitconfig file after sudo
 alias git='HOME=${TM_HOME} git'
