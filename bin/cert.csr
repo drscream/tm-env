@@ -56,7 +56,7 @@ cat <<EOF >> ${CONFIG}
  [ new_oids ]
  [ req ]
  default_days = 730 # how long to certify for
- default_keyfile = ${BASEDIR}/${HOST}.key
+ default_keyfile = "${BASEDIR}/${HOST}.key"
  distinguished_name	= req_distinguished_name
  encrypt_key = no
  string_mask = nombstr
@@ -98,14 +98,14 @@ echo "# -------------- END custom openssl.cnf -----" >> $CONFIG
 [[ ${DEBUG} ]] && cat $CONFIG
 
 
-read -p "OpenSSL Key size: " -i "2048" -e KEY
+read -p "OpenSSL Key size: " -i "4096" -e KEY
 
 echo "Running OpenSSL..."
-openssl req -config $CONFIG -newkey rsa:${KEY} -sha256 -out ${BASEDIR}/${HOST}.csr
+openssl req -config $CONFIG -newkey rsa:${KEY} -sha256 -out "${BASEDIR}/${HOST}.csr"
 echo "Copy the following Certificate Request and paste into CAcert website to obtain a Certificate."
 echo "When you receive your certificate, you 'should' name it something like ${HOST}.crt"
 echo
-cat ${BASEDIR}/${HOST}.csr
+cat "${BASEDIR}/${HOST}.csr"
 echo
 echo The Certificate request is also available in ${BASEDIR}/${HOST}.csr
 echo The Private Key is stored in ${BASEDIR}/${HOST}.key
