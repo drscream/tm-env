@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Thomas Merkel <tm@core.io>
+# Don't use this script in production, this a workaround to sign
+# pkgsrc packages on your local machine with your SSH key after
+# you've build them without an awesome build environment.
+
+MK_CONF=$(mktemp -q /tmp/mk-conf.XXXXXXXX)
+GPG_SIGN_AS=pkgsrc@skylime.net
+
+cat <<EOF >> ${MK_CONF}
+GPG_SIGN_AS=${GPG_SIGN_AS}
+GPG=$(which gpg)
+EOF
+
+pkg_admin -C ${MK_CONF} gpg-sign-package $@
+
+rm "${MK_CONF}"
