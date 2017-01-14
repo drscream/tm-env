@@ -17,7 +17,7 @@ ctrl - s                 :    /usr/local/bin/khd -e "mode activate prefix"
 cmd + alt + ctrl - q     :    /usr/local/bin/kwmc quit
 
 # Launch iTerm2
-cmd - return             :    open -na /Applications/Utilities/Terminal.app
+cmd - return             :    osascript -e 'tell application "Terminal" to do script "" activate'
 
 # Set Space Tiling Mode To BSP
 cmd + ctrl - a           :    /usr/local/bin/kwmc space -t bsp
