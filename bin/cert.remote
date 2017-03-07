@@ -3,6 +3,8 @@
 # Allow you to show ssl certificate details or show only the PEM
 # format.
 
+export PATH=/opt/pkg/bin:${PATH}
+
 show_help() {
 	echo "${0} [-d|-s] host port starttls"
 	echo
