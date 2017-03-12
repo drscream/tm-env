@@ -25,7 +25,7 @@ Plugin 'vim-scripts/gnupg.vim'
 Plugin 'vim-scripts/Gundo'
 Plugin 'vim-scripts/linediff.vim'
 Plugin 'vim-scripts/The-NERD-tree'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-repeat'
 Plugin 'saltstack/salt-vim'
 Plugin 'ervandew/supertab'
