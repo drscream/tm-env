@@ -12,6 +12,7 @@ cd ${WORKDIR}
 # Look for certificate files in different formats, don't check the content
 # trust the file extension.
 for cert in *.crt *.pem; do
+	if [[ "${cert}" = "ca-certificates.crt" ]]; then continue; fi
 	hash=$(openssl x509 -noout -hash -in ${cert})
 
 	# Check if the hash exists and increment the ID of the hash to be
@@ -25,3 +26,7 @@ for cert in *.crt *.pem; do
 		id=$((${id}+1))
 	done
 done
+
+# Generate ca-certificates.crt for gnutls software
+rm -f ca-certificates.crt
+cat *.crt *.pem > ca-certificates.crt
