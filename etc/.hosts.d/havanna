@@ -24,6 +24,11 @@ if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
 fi
 
 ##
+## gopass
+##
+source <(gopass completion bash)
+
+##
 ## grc
 ##
 GRC=$(which grc)
