@@ -80,15 +80,18 @@ fi
 ##
 if [[ -x $(which keychain 2>/dev/null) ]]; then
 	if [[ -f ${HOME}/.ssh/id_rsa ]]; then
-		param=${HOME}'/.ssh/id_rsa'
+		key=${HOME}'/.ssh/id_rsa'
 		ssh_src=${HOME}'/.keychain/'${HOST}'-sh'
+		keychain --agents ssh --host ${HOST} --nogui -q ${key}
 	fi
 	if [[ -f ${HOME}/.gnupg/secring.gpg ]]; then
-		param=${param}' E80BF2AB'
+		key='0x12AE4593D7A63833'
 		gpg_src=${HOME}'/.keychain/'${HOST}'-sh-gpg'
+		if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+			gpg-connect-agent /bye >/dev/null 2>&1
+			keychain --agents gpg --host ${HOST} --nogui -q ${key}
+		fi
 	fi
-
-	keychain --host ${HOST} --nogui -q ${param}
 	[[ -f ${ssh_src} ]] && . ${ssh_src}
 	[[ -f ${gpg_src} ]] && . ${gpg_src}
 fi
