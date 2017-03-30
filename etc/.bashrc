@@ -13,23 +13,23 @@ fi
 ##
 case ${OSTYPE} in
 	darwin*)
-		TM_OS='Darwin'
+		TM_OS='darwin'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
 	linux*)
-		TM_OS='Linux'
+		TM_OS='linux'
 		TM_USER=$(stat -c %U $(readlink -f /proc/self/fd/0))
 	;;
 	solaris*)
-		TM_OS='Solaris'
+		TM_OS='solaris'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
 	freebsd*)
-		TM_OS='FreeBSD'
+		TM_OS='freebsd'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
 	*)
-		TM_OS='Unknown'
+		TM_OS='unknown'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
 esac

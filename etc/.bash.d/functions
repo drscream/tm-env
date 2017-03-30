@@ -3,10 +3,10 @@
 # use root to set own env
 function root {
 	case ${TM_OS} in
-		Darwin)
+		darwin)
 			sudo /opt/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 		;;
-		FreeBSD)
+		freebsd)
 			sudo /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 		;;
 		*)
