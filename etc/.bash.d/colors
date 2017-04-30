@@ -3,7 +3,7 @@
 [[ ! -x $(which tput 2>/dev/null) ]] && continue
 
 case ${TM_OS} in
-	FreeBSD)
+	freebsd)
 		tput_color='Co'
 		tput_setaf='AF'
 		tput_sgr='op'
