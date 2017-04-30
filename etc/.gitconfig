@@ -11,6 +11,9 @@
 	editor = vim
 	excludesfile = ~/.gitignore
 
+[credential]
+	helper = cache --timeout=300
+
 [commit]
 	gpgsign = true
 
