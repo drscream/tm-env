@@ -67,7 +67,7 @@ alias dz-search='dz list -c | grep -i'
 alias zlogin='dz shell '
 
 function alogin() {
-	UUID=$(cat ~/.dz/vms.json | jq -r '.[][] | select(.alias=="'${1}'") | .uuid')
+	UUID=$(cat ~/.dz/vms.json | jq -r '.[][] | select(.alias=="'${1}'") | select(.state=="running") | .uuid')
 	dz shell ${UUID}
 }
 
