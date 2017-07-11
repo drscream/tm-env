@@ -8,7 +8,7 @@ URxvt*foreground:   #ffffff
 URxvt*reverseVideo: false
 URxvt*tintColor:    #dfdfdf
 URxvt*shading:      5 !trans=100, 0=opaque
-URxvt.font:         xft:Hack:size=10
+URxvt.font:         xft:Hack:size=9
 !URxvt.font:         -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 !URxvt.boldFont:     -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 
