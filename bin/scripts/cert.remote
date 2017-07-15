@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Thomas Merkel <tm@core.io>
 # Allow you to show ssl certificate details or show only the PEM
 # format.
