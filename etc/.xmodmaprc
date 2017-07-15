@@ -1,0 +1,2 @@
+! Support Shift+3 for # (hash) on Mac UK International keyboards
+keycode  12 = 3 numbersign 3 numbersign sterling numbersign sterling
