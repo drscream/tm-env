@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# This is a SkyLime simple pkgsrc_publish script to download a
+# package from one source and upload it to our mirror! Limited
+# to my needs.
+
+# Parameter and defaults
+SRC="${1}"
+
+DST_DOMAIN="root@pkgsrc.pub"
+DST_PATH="/var/www/pkgsrc.smartos.skylime.net/skylime-extra"
+
+# Help function
+function help() {
+	echo "${0} [SRC]"
+	echo
+	echo "PARAMETERS:"
+	echo "  SRC         URL to the source file"
+	exit 1
+}
+
+# One parameter is required
+if [[ -z ${SRC} ]]; then
+	help
+	exit 1
+fi
+
+# Parse URL for upload
+SHORT_URL=$(echo ${SRC} | sed 's|http[s]\?:\/\/\([^\/\]*\)\/\(packages\/\)\?||g')
+OS=$(echo ${SHORT_URL}      | awk -F \/ '{ print $1 }')
+RELEASE=$(echo ${SHORT_URL} | awk -F \/ '{ print $2 }')
+ARCH=$(echo ${SHORT_URL}    | awk -F \/ '{ print $3 }')
+PKG=$(echo ${SHORT_URL}     | awk -F \/ '{ print $NF }')
+
+# URL Validation check
+if [[ -z ${OS} || -z ${RELEASE} || -z ${ARCH} ||\
+      $(echo ${ARCH} | grep -c "_") -eq 0 || \
+      $(echo ${RELEASE} | grep -c "Q") -eq 0 ]]; then
+	echo "The source URL isn't valid and could not be parsed!"
+	echo "Verify if it looks like http[s]://DOMAIN/[packages/]OS/RELEASE/ARCH/All/PKG_NAME.tgz"
+	exit 2
+fi
+
+# Create and switch to working folder
+TMP_DIR=$(mktemp -d)
+
+echo "* Downloading: ${SRC}"
+curl -s -o "${TMP_DIR}/${PKG}" "${SRC}"
+
+echo "* Creating remote folder: ${DST_PATH}/${RELEASE}/${ARCH}"
+ssh ${DST_DOMAIN} "mkdir -p ${DST_PATH}/${RELEASE}/${ARCH}/"
+
+echo "* Uploading package: ${PKG}"
+scp "${TMP_DIR}/${PKG}" ${DST_DOMAIN}:${DST_PATH}/${RELEASE}/${ARCH}/
+
+echo "* Download available at:"
+echo "  $(echo ${DST_PATH} | sed 's|/var/www/|https://|g')/${RELEASE}/${ARCH}/${PKG}"
+
+# Cleanup
+rm -r "${TMP_DIR}"
