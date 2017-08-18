@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# pkgsrc remote lookup work with a packages file in the same folder
+# or the last parameter as packagename
+
+# Defaults
+RELEASE=$(date -d "-1 month" +%Y)Q$(( ($(date -d "-1 month" +%-m)-1)/3 ))
+ARCH='x86_64'
+OS='SmartOS'
+DOMAIN='pkgsrc.smartos.skylime.net'
+
+# Help function
+function help() {
+	echo "${0} [-r RELEASE] [-a ARCH] [-o OS] [-d DOMAIN] [PKG_NAME]"
+	echo
+	echo "OPTIONS:"
+	echo "  -r RELEASE  Quarterly based release version (default: ${RELEASE})"
+	echo "  -a ARCH     Architecture to lookup (default: ${ARCH}"
+	echo "  -o OS       Operating system to lookup (default: ${OS}"
+	echo "  -d DOMAIN   Domain to check for the package (default: ${DOMAIN})"
+	echo
+	echo "PARAMETER:"
+	echo "  PKG_NAME    Package name to lookup or \`packages\` file"
+	exit 1
+}
+
+# Option parameters
+while getopts ":r:a:o:d:" opt; do
+	case "${opt}" in
+		r) RELEASE=${OPTARG}; shift ;;
+		a) ARCH=${OPTARG}; shift ;;
+		o) OS=${OPTARG}; shift ;;
+		d) DOMAIN=${OPTARG}; shift ;;
+		*) help ;;
+	esac
+done
+
+# The URL
+URL="https://${DOMAIN}/packages/${OS}/${RELEASE}/${ARCH}/All/"
+
+# Receive pkg list
+dump=$(links -dump ${URL} | awk '{ print $1 }' | grep '\.tgz')
+
+# The lookup
+if [[ -e "packages" ]]; then
+	egrep -v "^(\#|https?:\/\/)" packages | while read pkg; do
+		if ! echo ${dump} | grep -q ${pkg}; then
+			echo "${pkg} not found: ${URL}"
+		fi
+	done
+else
+	pkg="${@: -1}"
+	if ! echo ${dump} | grep -q ${pkg}; then
+		echo "${pkg} not found: ${URL}"
+	fi
+fi
