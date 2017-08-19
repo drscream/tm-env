@@ -51,5 +51,7 @@ else
 	pkg="${@: -1}"
 	if ! echo ${dump} | grep -q ${pkg}; then
 		echo "${pkg} not found: ${URL}"
+	else
+		echo ${dump} | tr ' ' '\n' | grep ${pkg}
 	fi
 fi
