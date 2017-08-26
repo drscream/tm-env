@@ -34,6 +34,11 @@ if [[ "$TERM" != "screen" ]]; then
 
 	## show who is logged on
 	echo -e "${_color_blue}* ${_color_reset}${_color_bold}who${_color_reset}"; who -Hu; echo
+
+	## show tasks from taskwarrior if available
+	if [ -x "$(type -p task)" ]; then
+		echo -e "${_color_blue}* ${_color_reset}${_color_bold}tasks${_color_reset}"; task next due:today 2>/dev/null; echo
+	fi
 fi
 
 ## fortune on every login
