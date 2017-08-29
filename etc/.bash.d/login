@@ -37,7 +37,7 @@ if [[ "$TERM" != "screen" ]]; then
 
 	## show tasks from taskwarrior if available
 	if [ -x "$(type -p task)" ]; then
-		echo -e "${_color_blue}* ${_color_reset}${_color_bold}tasks${_color_reset}"; task next due:today rc.verbose=label; echo
+		echo -e "${_color_blue}* ${_color_reset}${_color_bold}tasks${_color_reset}"; task +DUETODAY or +OVERDUE list rc.verbose=label; echo
 	fi
 fi
 
