@@ -206,4 +206,9 @@ tmpd() {
 	cd "$dir" || exit
 }
 
+# Run `dig` and display the most useful info
+digga() {
+	dig +nocmd "$1" any +multiline +noall +answer
+}
+
 # vim:ft=sh
