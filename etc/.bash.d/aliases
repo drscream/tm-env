@@ -73,4 +73,7 @@ alias week='date +%V'
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
+# _ermbin service - valid 1 month only
+alias tb="nc termbin.com 9999"
+
 # vim:ft=sh
