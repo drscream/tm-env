@@ -23,7 +23,7 @@ endif
 
 # SSL certs hashes for openssl
 certs:
-	cd $(HOME)/.certs.d && $(HOME)/.bin/cert.hashes
+	cd $(HOME)/.certs.d && $(HOME)/.bin/scripts/cert.hashes
 
 # Compile SSH config file
 ssh:

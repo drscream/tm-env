@@ -177,6 +177,29 @@ vdz() {
 	echo "Switching to deploy-zone environment: ${DZ_ENV}"
 }
 
+dz-build-dev() {
+	# Be sure we're in a mibe folder
+	if [[ -e manifest.json ]]; then
+		# Switch to deploy zone virtual development environment
+		vdz development
+
+		# Receive last git hash
+		last=$(git log --format="%h" -n 1)
+
+		# Backup manifest.json
+		cp manifest.json manifest.json.bak
+
+		# Add git hash to version
+		jq '.version = .version + "-'$last'"' manifest.json.bak > manifest.json
+
+		# deploy-zone build
+		dz build
+
+		# Restore
+		mv manifest.json.bak manifest.json
+	fi
+}
+
 # Coloured man pages
 man () {
 	LESS_TERMCAP_mb=$'\e[1;31m' \
@@ -204,6 +227,11 @@ tmpd() {
 		dir=$(mktemp -d -t "${1}.XXXXXXXXXX")
 	fi
 	cd "$dir" || exit
+}
+
+# Run `dig` and display the most useful info
+digga() {
+	dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # vim:ft=sh
