@@ -73,6 +73,8 @@ bindcode $mod+Mod1+28 exec ~/.i3/i3_focus_or_run.sh -t mldonkey ~/bin/terminal m
 bindcode $mod+53 exec dmenu_run -fn "$ft" -nb "$back" -nf "$white" -sb "$yellow" -sf "$black"
 # start passdmenu (mod+p)
 bindcode $mod+33 exec /usr/local/share/password-store/dmenu/passmenu -fn "$ft" -nb "$back" -nf "$white" -sb "$yellow" -sf "$black"
+# lock screen
+bindcode $mod+46 exec xlock
 
 # Media keys
 # En Manzanita ya lo hace solo el pbbuttons
@@ -119,10 +121,10 @@ bindcode $mod+111 focus up
 bindcode $mod+114 focus right
 
 # Shitf+cursor for move windows
-bindcode $mod+Shift+113 move left
-bindcode $mod+Shift+116 move down
-bindcode $mod+Shift+111 move up
-bindcode $mod+Shift+114 move right
+bindcode $mod+Shift+100 move left
+bindcode $mod+Shift+104 move down
+bindcode $mod+Shift+98  move up
+bindcode $mod+Shift+102 move right
 
 # split in horizontal orientation (mod+h)
 bindcode $mod+43 split h
