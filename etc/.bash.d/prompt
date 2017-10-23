@@ -6,6 +6,11 @@ function is_git_repository {
 	git branch > /dev/null 2>&1
 }
 
+# Detect size of git repository
+function get_git_size {
+	git count-objects -v | sed -n 's|size-pack: \(.*\)|\1|p'
+}
+
 # Determine the branch/state information for this git repository.
 function set_git_branch {
 	# Capture the output of the "git status" command.
@@ -75,14 +80,11 @@ function set_bash_prompt () {
 	set_virtualenv
 
 	# Set the BRANCH variable.
+	BRANCH=''
 	if [ -z "${DISABLE_GIT_PROMPT}" ]; then
-		if is_git_repository ; then
-			set_git_branch
-		else
-			BRANCH=''
+		if is_git_repository && (( $(get_git_size) < 50000 )); then
+				set_git_branch
 		fi
-	else
-		BRANCH=''
 	fi
 
 	# Change the window title of X terminals
