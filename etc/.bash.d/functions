@@ -193,7 +193,8 @@ dz-build-dev() {
 		jq '.version = .version + "-'$last'"' manifest.json.bak > manifest.json
 
 		# deploy-zone build
-		dz build
+		grc -es --colour=auto \
+			dz build
 
 		# Restore
 		mv manifest.json.bak manifest.json
@@ -232,6 +233,18 @@ tmpd() {
 # Run `dig` and display the most useful info
 digga() {
 	dig +nocmd "$1" any +multiline +noall +answer
+}
+
+# apt-security update
+apt-security() {
+	# if ${1} connect to remote machine
+	local apt_security_update='sudo apt-get -s dist-upgrade | grep "^Inst" | grep -i securi | awk -F " " "{ print $2 }" | xargs sudo apt-get install'
+	if [[ -n "${1}" ]]; then
+		ssh ${1} ${apt_security_update}
+	else
+		${apt_security_update}
+	fi
+
 }
 
 # vim:ft=sh
