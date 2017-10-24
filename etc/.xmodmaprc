@@ -1,2 +1,16 @@
+! Capslock is ESC
+keycode  66 = Escape
+
 ! Support Shift+3 for # (hash) on Mac UK International keyboards
 keycode  12 = 3 numbersign 3 numbersign sterling numbersign sterling
+
+! Provide Umlaut support with alt+u, alt+o, alt+a or with alt+shift
+keycode  64 = Mode_switch
+keycode  26 = e E EuroSign cent
+keycode  30 = u U udiaeresis Udiaeresis
+keycode  32 = o O odiaeresis Odiaeresis
+keycode  38 = a A adiaeresis Adiaeresis
+keycode  39 = s S ssharp
+
+! Map ±§ to ~ because of PurePro keyboard
+keycode  49 = grave asciitilde

@@ -33,7 +33,7 @@ set $darkred            #A54242
 set $green              #B5BD56
 
 #class                  border      backgr.     text        split
-client.focused          $green     $green       $black      $red
+client.focused          $green      $green      $black      $red
 client.focused_inactive $grey       $grey       $lightgrey  $grey
 client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
@@ -54,7 +54,8 @@ set $mod Mod4
 floating_modifier $mod
 
 # Terminal (mod+Enter)
-bindcode $mod+36 exec urxvt
+#bindcode $mod+36 exec urxvt
+bindcode $mod+36 exec terminology
 # GTK Theme sector (mod+winkey+a)
 bindcode $mod+Mod1+38 exec lxappearance 
 # Color picker (mod+winkey+g)
@@ -73,9 +74,10 @@ bindcode $mod+Mod1+28 exec ~/.i3/i3_focus_or_run.sh -t mldonkey ~/bin/terminal m
 bindcode $mod+53 exec dmenu_run -fn "$ft" -nb "$back" -nf "$white" -sb "$yellow" -sf "$black"
 # start passdmenu (mod+p)
 bindcode $mod+33 exec /usr/local/share/password-store/dmenu/passmenu -fn "$ft" -nb "$back" -nf "$white" -sb "$yellow" -sf "$black"
+# lock screen
+bindcode $mod+46 exec xlock
 
 # Media keys
-# En Manzanita ya lo hace solo el pbbuttons
 #bindcode 123 exec --no-startud-id "amixer sset Master 5%+"
 #bindcode 122 exec --no-startud-id "amixer sset Master 5%-"
 #bindcode 121 exec --no-startud-id "amixer -q sset Master toggle"
@@ -85,9 +87,6 @@ bindcode $mod+33 exec /usr/local/share/password-store/dmenu/passmenu -fn "$ft" -
 #bindcode XF86AudioNext exec ncmpcpp next
 
 #assign application to workspace
-assign [class="Iceweasel"] 2:www
-assign [class="(i)VirtualBox"] 3:vbox
-assign [instance="(?i)TeamViewer.exe"] 4:vnc
 #assign [class="Firefox"] → 2
 #assign [class="Google-chrome"] → 2
 #assign [class="vlc"] → 4
@@ -119,10 +118,10 @@ bindcode $mod+111 focus up
 bindcode $mod+114 focus right
 
 # Shitf+cursor for move windows
-bindcode $mod+Shift+113 move left
-bindcode $mod+Shift+116 move down
-bindcode $mod+Shift+111 move up
-bindcode $mod+Shift+114 move right
+bindcode $mod+Shift+100 move left
+bindcode $mod+Shift+104 move down
+bindcode $mod+Shift+98  move up
+bindcode $mod+Shift+102 move right
 
 # split in horizontal orientation (mod+h)
 bindcode $mod+43 split h
@@ -157,28 +156,28 @@ bindcode $mod+38 focus parent
 bindcode $mod+52 focus child
 
 # switch to workspace
-bindcode $mod+10 workspace I
-bindcode $mod+11 workspace II
-bindcode $mod+12 workspace III
-bindcode $mod+13 workspace IV
-bindcode $mod+14 workspace V
-bindcode $mod+15 workspace VI
-bindcode $mod+16 workspace VII
-bindcode $mod+17 workspace VIII
-bindcode $mod+18 workspace IX
-bindcode $mod+19 workspace X
+bindcode $mod+10 workspace " "
+bindcode $mod+11 workspace " "
+bindcode $mod+12 workspace " "
+bindcode $mod+13 workspace " "
+bindcode $mod+14 workspace " "
+bindcode $mod+15 workspace " "
+bindcode $mod+16 workspace " "
+bindcode $mod+17 workspace " "
+bindcode $mod+18 workspace ""
+bindcode $mod+19 workspace " "
 
 # move focused container to workspace
-bindcode $mod+Shift+10 move container to workspace 1:term
-bindcode $mod+Shift+11 move container to workspace 2:www
-bindcode $mod+Shift+12 move container to workspace 3:vbox
-bindcode $mod+Shift+13 move container to workspace 4:vnc
-bindcode $mod+Shift+14 move container to workspace 5:doc
-bindcode $mod+Shift+15 move container to workspace 6:img
-bindcode $mod+Shift+16 move container to workspace 7:misc
-bindcode $mod+Shift+17 move container to workspace 8
-bindcode $mod+Shift+18 move container to workspace 9
-bindcode $mod+Shift+19 move container to workspace 10
+bindcode $mod+Shift+10 move container to workspace " "
+bindcode $mod+Shift+11 move container to workspace " "
+bindcode $mod+Shift+12 move container to workspace " "
+bindcode $mod+Shift+13 move container to workspace " "
+bindcode $mod+Shift+14 move container to workspace " "
+bindcode $mod+Shift+15 move container to workspace " "
+bindcode $mod+Shift+16 move container to workspace " "
+bindcode $mod+Shift+17 move container to workspace " "
+bindcode $mod+Shift+18 move container to workspace ""
+bindcode $mod+Shift+19 move container to workspace " "
 
 # reload the configuration file (mod+shitf+c)
 bindcode $mod+Shift+54 reload
@@ -214,5 +213,5 @@ bindcode $mod+27 mode "resize"
 
 # My bar
 bar {
-  i3bar_command ~/.i3/lemonbar/i3_lemonbar.sh
+  i3bar_command ~/.i3/lemonbar/start.sh
 }
