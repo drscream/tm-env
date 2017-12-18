@@ -108,3 +108,8 @@ alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs'
 ## Go
 ##
 export GOPATH=${HOME}/Development/go
+
+##
+## Vagrant
+##
+export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
