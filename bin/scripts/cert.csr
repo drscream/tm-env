@@ -66,6 +66,8 @@ if [ ! "${SANAMES}" = "" ]; then
 	echo "req_extensions = v3_req # Extensions to add to certificate request" >> ${CONFIG}
 fi
 
+EMAIL="$(echo ${COMMONNAME} | awk -F \. '{print $(NF-1)"."$NF}')"
+
 cat <<EOF >> $CONFIG
  [ req_distinguished_name ]
  commonName			  = $COMMONNAME
@@ -82,9 +84,10 @@ cat <<EOF >> $CONFIG
  0.organizationName             = Organization Name (eg, company)
  0.organizationName_default     = Internet Widgits Pty Ltd
  organizationalUnitName         = Organizational Unit Name (eg, section)
- organizationalUnitName_default = Operational IT
+ organizationalUnitName_default = Infrastructure Services
  emailAddress                   = Email Address
  emailAddress_max               = 64
+ emailAddress_default           = ca@$EMAIL
 
  [ v3_req ]
 EOF
