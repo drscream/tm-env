@@ -154,7 +154,7 @@ vdz() {
 	# Unset all env variables we use
 	if [[ ${DZ_ENV} =~ "deactivate" ]]; then
 		echo "Unset your current deploy-zone environment"
-		unset DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL DZ_BUILD_MIN_PLATFORM VIRTUAL_ENV
+		unset DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL DZ_BUILD_MIN_PLATFORM DZ_VIRTUALENV
 		return 0
 	fi
 
@@ -171,9 +171,9 @@ vdz() {
 	DZ_BUILD_MIN_PLATFORM=$(jq -r ".environments.${DZ_ENV}.min_platform" ${DZ_ENV_FILE})
 
 	# Use existing virtual environment variable
-	VIRTUAL_ENV=${DZ_ENV}
+	DZ_VIRTUALENV=${DZ_ENV}
 	# Export the Information
-	export DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL DZ_BUILD_MIN_PLATFORM VIRTUAL_ENV
+	export DZ_BUILD_HOST DZ_BUILD_TEMPLATE DZ_BUILD_PUBLISH_URL DZ_BUILD_MIN_PLATFORM DZ_VIRTUALENV
 	echo "Switching to deploy-zone environment: ${DZ_ENV}"
 }
 
