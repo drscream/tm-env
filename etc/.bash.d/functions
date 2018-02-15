@@ -244,7 +244,71 @@ apt-security() {
 	else
 		${apt_security_update}
 	fi
+}
 
+## Virtual Work Environment / Folder Environment
+# Create ENV
+mkwork() {
+	local timestamp=$(TZ=UTC; date "+%Y%m%dT%H%M%SZ")
+	local work=${1-${timestamp}}
+	local workhome="${TM_HOME}/env/${work}"
+	# create working home
+	if [[ -d "${workhome}" ]]; then
+		echo "Existing environment ${work}"
+	else
+		mkdir -p "${workhome}"
+	fi
+	work ${work}
+}
+
+# Remove ENV
+rmwork() {
+	local work=${1}
+	local workhome="${TM_HOME}/env/${work}"
+	# Sanity check
+	if [[ ! -n "${work}" ]]; then
+		echo "Please specify an enviroment."
+		return 1
+	fi
+	# Remove directory if possible
+	echo "Removing ${work}..."
+	rm -r "${workhome}" 2>/dev/null ||\
+		echo "Did not find environment \`${workhome}\` to remove."
+	# Unset variable and reset if needed
+	if [[ -n "${WORK_VIRTUALENV}" ]]; then
+		export -n WORK_VIRTUALENV
+		export HOME="${TM_HOME}"
+		# Change to HOME if folder no longer exists
+		if [[ $(pwd) == "${workhome}" ]]; then
+			cd ${HOME}
+		fi
+	fi
+}
+
+# List ENV
+lswork() {
+	local workhome="${TM_HOME}/env/"
+	ls ${@} ${workhome}
+}
+
+# Switch ENV
+work() {
+	local work=${1}
+	local workhome="${TM_HOME}/env/${work}"
+	# Sanity check
+	if [[ ! -n "${work}" ]]; then
+		echo "Please specify an enviroment."
+		return 1
+	fi
+	if [[ ! -d "${workhome}" ]]; then
+		echo "Did not find environment \`${work}\` so switch to."
+		return 2
+	fi
+	# environment variables
+	echo "Switching to ${work}..."
+	export WORK_VIRTUALENV="${work}"
+	export HOME="${workhome}"
+	cd "${HOME}"
 }
 
 # vim:ft=sh

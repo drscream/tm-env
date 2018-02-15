@@ -61,12 +61,17 @@ function set_prompt_symbol () {
 	fi
 }
 
-# Determine active Python virtualenv details.
-function set_virtualenv () {
-	if test -z "$VIRTUAL_ENV" ; then
-		PYTHON_VIRTUALENV=""
-	else
-		PYTHON_VIRTUALENV="\[${_color_magenta}\]‹`basename \"$VIRTUAL_ENV\"`›\[${_color_reset}\] "
+# Determine active environments (python, dz, work)
+function set_env () {
+	ENV=""
+	if [[ -n "${VIRTUAL_ENV}" ]]; then
+		ENV="${ENV}\[${_color_magenta}\]‹`basename \"$VIRTUAL_ENV\"`›\[${_color_reset}\] "
+	fi
+	if [[ -n "${WORK_VIRTUALENV}" ]]; then
+		ENV="${ENV}\[${_color_blue}\]‹${WORK_VIRTUALENV}›\[${_color_reset}\] "
+	fi
+	if [[ -n "${DZ_VIRTUALENV}" ]]; then
+		ENV="${ENV}\[${_color_yellow}\]‹${DZ_VIRTUALENV}›\[${_color_reset}\] "
 	fi
 }
 
@@ -77,7 +82,7 @@ function set_bash_prompt () {
 	set_prompt_symbol $?
 
 	# Set the PYTHON_VIRTUALENV variable.
-	set_virtualenv
+	set_env
 
 	# Set the BRANCH variable.
 	BRANCH=''
@@ -92,15 +97,15 @@ function set_bash_prompt () {
 
 	# Set the bash prompt variable.
 	if [[ ${EUID} == 0 ]] ; then
-		PS1="${PYTHON_VIRTUALENV}\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w ${BRANCH}#\[${_color_reset}\] "
+		PS1="${ENV}\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w ${BRANCH}#\[${_color_reset}\] "
 		PS2='root %> '
 	else
 		if [ -n "${SSH_CLIENT}" ] || [ -n "${SSH_TTY}" ]; then
-			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
+			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
  ${PROMPT_SYMBOL} "
 			PS2='%> '
 		else
-			PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${PYTHON_VIRTUALENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
+			PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
  ${PROMPT_SYMBOL} "
 			PS2='%> '
 		fi
