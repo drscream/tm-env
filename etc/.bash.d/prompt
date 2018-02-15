@@ -82,7 +82,7 @@ function set_bash_prompt () {
 	# Set the BRANCH variable.
 	BRANCH=''
 	if [ -z "${DISABLE_GIT_PROMPT}" ]; then
-		if is_git_repository && (( $(get_git_size) < 50000 )); then
+		if is_git_repository && ((( $(get_git_size) < 50000 )) || ${FORCE_GIT_PROMPT:-false}); then
 				set_git_branch
 		fi
 	fi
