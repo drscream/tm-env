@@ -6,6 +6,7 @@
 #
 # Author: gihnius@gmail.com
 #
+PATH=/usr/local/sbin:${PATH}
 
 # default wlan
 iface=${IFACE-'wlan0'}
