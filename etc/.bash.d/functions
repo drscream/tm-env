@@ -128,6 +128,11 @@ function cdf() {
 	cd "$(pfd)"
 }
 
+# shuffle if shuf is not installed
+function shuffle() {
+	awk 'BEGIN{srand();} {printf "%06d %s\n", rand()*1000000, $0;}' | sort -n | cut -c8- | head -n1
+}
+
 # Switch to different dz environments, requires bash, jq, shuf and dz
 vdz() {
 	DZ_ENV=${1}
@@ -159,7 +164,7 @@ vdz() {
 	fi
 
 	# Create DZ_BUILD_HOST
-	DZ_BUILD_HOST=$(jq -r ".build_hosts[]" ${DZ_ENV_FILE} | shuf -n1)
+	DZ_BUILD_HOST=$(jq -r ".build_hosts[]" ${DZ_ENV_FILE} | shuffle)
 
 	# Get ENV information
 	if [[ $(jq ".environments.${DZ_ENV}" ${DZ_ENV_FILE}) == "null" ]]; then
