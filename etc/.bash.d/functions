@@ -237,7 +237,9 @@ tmpd() {
 
 # Run `dig` and display the most useful info
 digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
+	type -p dig   >/dev/null && cmd='dig'
+	type -p drill >/dev/null && cmd='drill'
+	${cmd} +nocmd "$1" any +multiline +noall +answer
 }
 
 # apt-security update
