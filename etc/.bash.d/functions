@@ -318,4 +318,10 @@ work() {
 	cd "${HOME}"
 }
 
+ssh-diff() {
+	local remote=${1}
+	local file=${2}
+	diff -u <(cat ${file}) <(ssh ${remote} cat /${file})
+}
+
 # vim:ft=sh
