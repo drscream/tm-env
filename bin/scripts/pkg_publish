@@ -25,7 +25,7 @@ if [[ -z ${SRC} ]]; then
 fi
 
 # Parse URL for upload
-SHORT_URL=$(echo ${SRC} | sed 's|http[s]\?:\/\/\([^\/\]*\)\/\(packages\/\)\?||g')
+SHORT_URL=$(echo ${SRC} | gsed 's|http[s]\?:\/\/\([^\/\]*\)\/\(packages\/\)\?||g')
 OS=$(echo ${SHORT_URL}      | awk -F \/ '{ print $1 }')
 RELEASE=$(echo ${SHORT_URL} | awk -F \/ '{ print $2 }')
 ARCH=$(echo ${SHORT_URL}    | awk -F \/ '{ print $3 }')
@@ -33,7 +33,7 @@ PKG=$(echo ${SHORT_URL}     | awk -F \/ '{ print $NF }')
 
 # URL Validation check
 if [[ -z ${OS} || -z ${RELEASE} || -z ${ARCH} ||\
-      $(echo ${ARCH} | grep -c "_") -eq 0 || \
+      $(echo ${ARCH} | egrep -c "(multiarch|_)") -eq 0 || \
       $(echo ${RELEASE} | grep -c "Q") -eq 0 ]]; then
 	echo "The source URL isn't valid and could not be parsed!"
 	echo "Verify if it looks like http[s]://DOMAIN/[packages/]OS/RELEASE/ARCH/All/PKG_NAME.tgz"
