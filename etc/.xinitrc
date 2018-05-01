@@ -11,6 +11,9 @@ fc-cache
 # Configure extra keys
 xmodmap ~/.xmodmaprc
 
+# Sync all clipboards
+clipit --daemon --no-icon &
+
 # Wallpaper
 feh --bg-scale ~/.bg.png
 
