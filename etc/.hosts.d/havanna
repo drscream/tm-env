@@ -2,22 +2,10 @@
 # vim:ft=sh
 
 ##
-## pkgsrc
-##
-export PATH=/opt/pkg/gnu/bin:/opt/pkg/sbin:/opt/pkg/bin:$PATH
-export MANPATH=/opt/pkg/man:$MANPATH
-
-##
-## plan9
-##
-export PLAN9=/opt/plan9
-export PATH=$PATH:$PLAN9/bin
-
-##
 ## bash-completion
 ##
-if [ -r /opt/pkg/share/bash-completion/bash_completion ]; then
-	source /opt/pkg/share/bash-completion/bash_completion
+if [ -r /usr/local/share/bash-completion/bash_completion ]; then
+	source /usr/local/share/bash-completion/bash_completion
 fi
 
 ##
@@ -57,8 +45,6 @@ alias ls='gls --color=auto --quoting-style=escape'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-
 
 ##
 ## dz tool
@@ -75,27 +61,13 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /opt/pkg/bin/virtualenvwrapper_lazy.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 ##
 ## special commands
 ##
 # dircolors exists only in brew repo, so run this command later
-[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
-
-##
-## Java
-##
-JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
-export JAVA_HOME
-
-##
-## GitHub API
-##
-if [[ -f ${HOME}/.sec/github.api ]]; then
-	export GITHUB_TOKEN="$(cat ${HOME}/.sec/github.api)"
-	export HOMEBREW_GITHUB_API_TOKEN=${GITHUB_TOKEN}
-fi
+[[ -f ${HOME}/.dir_colors ]] && eval $(gdircolors -b ${HOME}/.dir_colors)
 
 ##
 ## special admin scripts
@@ -103,13 +75,3 @@ fi
 [[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
 [[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
 alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
-
-##
-## Go
-##
-export GOPATH=${HOME}/Development/go
-
-##
-## Vagrant
-##
-export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
