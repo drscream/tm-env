@@ -11,3 +11,7 @@ etc/.vim/tmp
 # SSL certificate hashes
 etc/.certs.d/*.[0-9]
 etc/.certs.d/ca-certificates.crt
+# Real binary data
+bin/*/gopass
+bin/*/terraform
+bin/*/packer
