@@ -11,11 +11,10 @@ PATH=/usr/local/sbin:${PATH}
 # default wlan
 iface=${IFACE-'wlan0'}
 # driver device
-dev=$(sysctl -n net.wlan.0.%parent)
-if ifconfig $dev >/dev/null 2>&1 ; then
-    phy_iface=$dev
+if sysctl -n net.wlan.0.%parent 2>/dev/null; then
+    phy_iface=$(sysctl -n net.wlan.0.%parent)
 else
-    phy_iface=ath0
+    phy_iface=iwm0
 fi
 # use system wpa_supplicant.conf
 wpa_supplicant_conf=/etc/wpa_supplicant.conf
