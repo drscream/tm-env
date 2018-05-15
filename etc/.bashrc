@@ -84,7 +84,7 @@ if [[ -x $(which keychain 2>/dev/null) ]]; then
 		ssh_src=${HOME}'/.keychain/'${HOST}'-sh'
 		keychain --agents ssh --host ${HOST} --nogui -q ${key}
 	fi
-	if [[ -f ${HOME}/.gnupg/secring.gpg ]]; then
+	if [[ -d ${HOME}/.gnupg/private-keys-v1.d ]]; then
 		key='0x12AE4593D7A63833'
 		gpg_src=${HOME}'/.keychain/'${HOST}'-sh-gpg'
 		if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
