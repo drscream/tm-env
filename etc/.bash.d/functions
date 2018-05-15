@@ -324,4 +324,16 @@ ssh-diff() {
 	diff -u <(cat ${file}) <(ssh ${remote} cat /${file})
 }
 
+mutt() {
+	local workhome="${TM_HOME}/downloads/"
+	local run_mutt=$(type -P neomutt || type -P mutt)
+	if [[ -x ${run_mutt} ]]; then
+		mkdir -p "${workhome}" && \
+			cd "${workhome}"
+		eval ${run_mutt} && cd -
+	else
+		echo "No mutt version installed on the system!" && return 1
+	fi
+}
+
 # vim:ft=sh
