@@ -20,6 +20,9 @@ feh --bg-scale ~/.bg.png
 # Transparency
 xcompmgr &
 
+# Enable Dunst notification service
+dunst &
+
 # Socks Proxy
 autossh -f -M 0 -6 -N -Dlocalhost:7070 tmerkel@embassy.doc.fruky.net
 
