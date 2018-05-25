@@ -26,6 +26,9 @@ dunst &
 # Socks Proxy
 autossh -f -M 0 -6 -N -Dlocalhost:7070 tmerkel@embassy.doc.fruky.net
 
+# Lock after 5 min
+xautolock -time 5 -locker slock &
+
 # Disable Touchpad (via BIOS for now)
 #sysctl hw.psm.synaptics.min_pressure=220 # 22
 
