@@ -198,8 +198,7 @@ dz-build-dev() {
 		jq '.version = .version + "-'$last'"' manifest.json.bak > manifest.json
 
 		# deploy-zone build
-		grc -es --colour=auto \
-			dz build
+		dz build
 
 		# Restore
 		mv manifest.json.bak manifest.json
