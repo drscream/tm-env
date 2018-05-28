@@ -158,17 +158,8 @@ let maplocalleader = "\\"
 " Color scheme {{{
 syntax on
 set background=dark
-let g:badwolf_html_link_underline = 0
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 256
-"colorscheme badwolf
-colorscheme solarized
-
-" Reload the colorscheme whenever we write the file.
-augroup color_badwolf_dev
-    au!
-    au BufWritePost badwolf.vim color badwolf
-augroup END
+colorscheme gruvbox
+highlight Normal ctermbg=None
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
