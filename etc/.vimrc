@@ -8,42 +8,36 @@ set runtimepath=${TM_HOME}/.vim,${VIMRUNTIME}
 
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=${TM_HOME}/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set the runtime path to include vim-plug and initialize
+call plug#begin($TM_HOME."/.vim/bundle/")
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-scripts/AnsiEsc.vim'
-Plugin 'vim-scripts/ack.vim'
-Plugin 'vim-scripts/Clam'
-Plugin 'vim-scripts/commentary.vim'
-Plugin 'ompugao/ctrlp-locate'
-Plugin 'vim-scripts/fugitive.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-scripts/gnupg.vim'
-Plugin 'vim-scripts/Gundo'
-Plugin 'vim-scripts/linediff.vim'
-Plugin 'vim-scripts/The-NERD-tree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-repeat'
-Plugin 'saltstack/salt-vim'
-Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/surround.vim'
-Plugin 'vim-scripts/Syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'elzr/vim-json'
-Plugin 'vim-scripts/YankRing.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ekalinin/Dockerfile.vim'
+" let use vim-plug because it's so much faster
+Plug 'VundleVim/Vundle.vim'
+Plug 'vim-scripts/AnsiEsc.vim'
+Plug 'vim-scripts/ack.vim'
+Plug 'vim-scripts/Clam'
+Plug 'vim-scripts/commentary.vim'
+Plug 'ompugao/ctrlp-locate'
+Plug 'vim-scripts/fugitive.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/gnupg.vim'
+Plug 'vim-scripts/Gundo'
+Plug 'vim-scripts/linediff.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-repeat'
+Plug 'saltstack/salt-vim'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/surround.vim'
+Plug 'godlygeek/tabular'
+Plug 'elzr/vim-json'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
+call plug#end()
 " }}}
 
 " Sources other config files {{{
