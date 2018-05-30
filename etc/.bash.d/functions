@@ -317,12 +317,14 @@ work() {
 	cd "${HOME}"
 }
 
+# Diff for local and remote files
 ssh-diff() {
 	local remote=${1}
 	local file=${2}
 	diff -u <(cat ${file}) <(ssh ${remote} cat /${file})
 }
 
+# Start mutt (which version ever exists) in an download folder
 mutt() {
 	local workhome="${TM_HOME}/downloads/"
 	local run_mutt=$(type -P neomutt || type -P mutt)
@@ -332,6 +334,27 @@ mutt() {
 		eval ${run_mutt} && cd -
 	else
 		echo "No mutt version installed on the system!" && return 1
+	fi
+}
+
+# Upload file or text via scp / ssh for sharing
+upload() {
+	local share_url="https://www.qwe123.de/share/"
+	local share_host="tm.srv.customer.skylime.net"
+	local share_folder="/var/www/www.qwe123.de/htdocs/share/"
+
+	if (( ${#} > 0 )); then
+		# Use scp for files
+		local files=${@}
+		for file in ${files}; do
+			scp "${file}" ${share_host}:${share_folder} >/dev/null && \
+			echo "${share_url}${file}"
+		done
+	else
+		# Read stdin and use ssh
+		local hash=$(date | md5)
+		cat - | ssh ${share_host} "cat > ${share_folder}${hash}" >/dev/null && \
+		echo "${share_url}${hash}"
 	fi
 }
 

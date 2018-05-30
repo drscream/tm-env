@@ -106,8 +106,8 @@ final () {
     wpa_cli -i $iface select_network $nid
     wpa_cli -i $iface enable_network $nid
     wpa_cli -i $iface reconnect
-    wpa_cli -i $iface save_config
-    dhclient -b $iface
+    #wpa_cli -i $iface save_config
+    #dhclient -b $iface
     exit 0
 }
 

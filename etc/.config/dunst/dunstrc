@@ -151,12 +151,12 @@
     # Otherwise the '#' and following  would be interpreted as a comment.
     background = "#222222"
     foreground = "#888888"
-    timeout = 20
+    timeout = 10
 
 [urgency_normal]
     background = "#023256"
     foreground = "#ffffff"
-    timeout = 30
+    timeout = 20
 
 [urgency_critical]
     background = "#7b0c88"
@@ -194,3 +194,6 @@
 ## This notification will not be displayed
 #    summary = "foobar"
 #    format = ""
+
+
+# vim:syntax=ini
