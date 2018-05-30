@@ -358,4 +358,11 @@ upload() {
 	fi
 }
 
+# Send alert via notify-send after X amount of time
+tea() {
+	local time="${1}"; shift
+	local msg="${@}"
+	gsleep ${time} && notify-send --urgency=critical --app-name="Tea Time" "${time} gone" "${msg}" &
+}
+
 # vim:ft=sh
