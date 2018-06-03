@@ -51,16 +51,6 @@ function set_git_branch {
 	BRANCH="${state}(${branch})${remote}${_color_reset} "
 }
 
-# Return the prompt symbol to use, colorized based on the return value of the
-# previous command.
-function set_prompt_symbol () {
-	if test $1 -eq 0 ; then
-		PROMPT_SYMBOL="»"
-	else
-		PROMPT_SYMBOL="\[${_color_red}\]»\[${_color_reset}\]"
-	fi
-}
-
 # Determine active environments (python, dz, work)
 function set_env () {
 	ENV=""
@@ -77,10 +67,6 @@ function set_env () {
 
 # Set the full bash prompt.
 function set_bash_prompt () {
-	# Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
-	# return value of the last command.
-	set_prompt_symbol $?
-
 	# Set the PYTHON_VIRTUALENV variable.
 	set_env
 
@@ -102,11 +88,11 @@ function set_bash_prompt () {
 	else
 		if [ -n "${SSH_CLIENT}" ] || [ -n "${SSH_TTY}" ]; then
 			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
- ${PROMPT_SYMBOL} "
+ "
 			PS2='%> '
 		else
 			PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
- ${PROMPT_SYMBOL} "
+ "
 			PS2='%> '
 		fi
 	fi
