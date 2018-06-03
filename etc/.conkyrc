@@ -1,0 +1,13 @@
+conky.config = {
+	background = false,
+	own_window = false,
+	out_to_x = false,
+	out_to_console = true,
+	update_interval = 60,
+	total_run_times = 0,
+	use_spacer = 'none'
+}
+
+conky.text = [[
+${if_empty $battery_time}${if_match $battery_percent >= 100}${else}${endif}${else}${endif} ${battery_short}    ${time %a %d %b %H:%M}
+]]
