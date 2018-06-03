@@ -14,12 +14,7 @@ bin:
 
 # Vim extra bundles
 vim:
-ifneq "$(wildcard $(HOME)/.vim/bundle/Vundle.vim )" ""
-	cd $(HOME)/.vim/bundle/Vundle.vim && git pull
-else
-	git clone https://github.com/VundleVim/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
-endif
-	vim +PluginInstall +qall
+	vim +PlugInstall +qall
 
 # SSL certs hashes for openssl
 certs:
