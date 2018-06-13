@@ -18,14 +18,14 @@ if [[ "$TERM" != "screen" ]]; then
 	echo -e "${_color_blue}* ${_color_reset}${_color_bold}uname${_color_reset}"; uname -snrmp; echo
 	
 	## uptime (records)
-	if [ -x "$(type -p uprecords)" ]; then
+	if type -p uprecords >/dev/null 2>&1; then
 		echo -e "${_color_blue}* ${_color_reset}${_color_bold}uptime records${_color_reset}"; uprecords -m 3 -s; echo
 	else
 		echo -e "${_color_blue}* ${_color_reset}${_color_bold}uptime${_color_reset}"; uptime | sed "s/^ //"; echo
 	fi
 
 	# show gentoo news if available
-	if [ -x "$(type -p eselect)" ]; then
+	if type -p eselect >/dev/null 2>&1; then
 		# slow eselect news workaround
 		if [ -s "/var/lib/gentoo/news/news-gentoo.unread" ]; then
 			echo -e "${_color_blue}* ${_color_reset}${_color_bold}gentoo news${_color_reset}"; eselect news read new 2>/dev/null; echo
@@ -36,13 +36,13 @@ if [[ "$TERM" != "screen" ]]; then
 	echo -e "${_color_blue}* ${_color_reset}${_color_bold}who${_color_reset}"; who -Hu; echo
 
 	## show tasks from taskwarrior if available
-	if [ -x "$(type -p task)" ]; then
+	if type -p task >/dev/null 2>&1; then
 		echo -e "${_color_blue}* ${_color_reset}${_color_bold}tasks${_color_reset}"; task +DUETODAY or +OVERDUE list rc.verbose=label; echo
 	fi
 fi
 
 ## fortune on every login
-test -x "$(type -p fortune)" && {
+type -p fortune >/dev/null 2>&1 && {
 	echo -e "${_color_blue}* ${_color_reset}${_color_bold}fortune${_color_reset}"; fortune -s; echo
 }
 
