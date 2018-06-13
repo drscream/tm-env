@@ -39,12 +39,20 @@ fi
 alias rvm.load='[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"'
 
 ##
-## some osx aliases
+## some local aliases
 ##
+# GNU
 alias ls='gls --color=auto --quoting-style=escape'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+# PIM
+alias todo="${TM_HOME}/.virtualenvs/pim/bin/todo"
+alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
+alias ical="${TM_HOME}/.virtualenvs/pim/bin/ikhal"
+alias addr="${TM_HOME}/.virtualenvs/pim/bin/khard"
+alias vdirsyncer="${TM_HOME}/.virtualenvs/pim/bin/vdirsyncer"
+
 
 ##
 ## dz tool
