@@ -97,7 +97,7 @@
 	color = auto
 
 [push]
-	default = matching
+	default = upstream
 
 [filter "media"]
 	clean = git-media-clean %f
