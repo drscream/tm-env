@@ -14,10 +14,10 @@ function get_git_size {
 # Determine the branch/state information for this git repository.
 function set_git_branch {
 	# Capture the output of the "git status" command.
-	git_status="$(git status 2> /dev/null)"
+	git_status="$(git status -uno 2> /dev/null)"
 
 	# Set color based on clean/staged/dirty.
-	if [[ ${git_status} =~ "working tree clean" ]]; then
+	if [[ ${git_status} =~ "nothing to commit" ]]; then
 		state="${_color_lime}"
 	elif [[ ${git_status} =~ "Changes to be committed" ]]; then
 		state="${_color_yellow}"
@@ -73,7 +73,7 @@ function set_bash_prompt () {
 	# Set the BRANCH variable.
 	BRANCH=''
 	if [ -z "${DISABLE_GIT_PROMPT}" ]; then
-		if is_git_repository && ((( $(get_git_size) < 50000 )) || ${FORCE_GIT_PROMPT:-false}); then
+		if is_git_repository; then
 				set_git_branch
 		fi
 	fi
