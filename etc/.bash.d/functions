@@ -362,6 +362,12 @@ upload() {
 tea() {
 	local time="${1}"; shift
 	local msg="${@}"
+
+	if [[ -z "${time}" || -z "${msg}" ]]; then
+		echo "tea [time] [msg]"
+		return 0
+	fi
+
 	gsleep ${time} && notify-send --urgency=critical --app-name="Tea Time" "${time} gone" "${msg}" &
 }
 
