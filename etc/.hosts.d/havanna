@@ -52,7 +52,14 @@ alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
 alias ical="${TM_HOME}/.virtualenvs/pim/bin/ikhal"
 alias addr="${TM_HOME}/.virtualenvs/pim/bin/khard"
 alias vdirsyncer="${TM_HOME}/.virtualenvs/pim/bin/vdirsyncer"
-
+# SYSTEM
+function b() {
+	if [[ ${1+x} ]]; then
+		sudo sysctl hw.acpi.video.lcd0.brightness=${1}
+	else
+		sysctl -n hw.acpi.video.lcd0.brightness
+	fi
+}
 
 ##
 ## dz tool
