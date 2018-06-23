@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+st -c ssh -n coconut -e bash -c 'ssh coconut.frubar.net'
