@@ -1,3 +1,4 @@
+set enable-keypad on
 set editing-mode vi
 set keymap vi-command
 set show-mode-in-prompt on
