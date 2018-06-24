@@ -52,6 +52,9 @@ alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
 alias ical="${TM_HOME}/.virtualenvs/pim/bin/ikhal"
 alias addr="${TM_HOME}/.virtualenvs/pim/bin/khard"
 alias vdirsyncer="${TM_HOME}/.virtualenvs/pim/bin/vdirsyncer"
+# OTHER
+alias leo="${TM_HOME}/.virtualenvs/leo/bin/leo"
+alias translate="${TM_HOME}/.virtualenvs/leo/bin/leo"
 # SYSTEM
 alias fm='pcmanfm'
 alias open='xdg-open'
