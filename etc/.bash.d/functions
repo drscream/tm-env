@@ -371,4 +371,16 @@ tea() {
 	gsleep ${time} && notify-send --urgency=critical --app-name="Tea Time" "${time} gone" "${msg}" &
 }
 
+# gdatediff
+gdatediff() {
+	if [[ -z "${1}" || -z "${2}" ]]; then
+		echo "gdatediff [start] [end]"
+		return 0
+	fi
+
+	d1=$(gdate -d "${1}" +%s)
+	d2=$(gdate -d "${2}" +%s)
+	echo $(( (d2 - d1) / 60 ))m
+}
+
 # vim:ft=sh
