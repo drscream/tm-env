@@ -47,7 +47,7 @@ case ${OPTION} in
 		save_cert
 	;;
 	*)
-		echo -e "/!\\ WARNING: legacy support\n"
+		echo -e "/!\\ WARNING: legacy support\n" 1>&2
 		STARTTLS=${@}
 		REMPORT=${REMHOST:-443}
 		REMHOST=${OPTION}
