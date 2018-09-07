@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Simple xrandr wrapper build for my needs.
+
+auto() {
+	dpCount=$(xrandr --query | egrep -c '(DP-1-2|DP-1-3) connected')
+	if (( ${dpCount} == 2 )); then
+		dock
+	fi
+}
+
+dock() {
+	echo "[${0##*/}] docking station mode"
+	xrandr --output eDP-1 --off
+}
+
+beamer() {
+	echo "[${0##*/}] beamer mode"
+	xrandr --output HDMI --auto
+}
+
+# Main
+case ${1} in
+	auto) auto ;;
+	dock) dock ;;
+	beamer) beamer ;;
+	*) echo "${0##*/} [dock|beamer|auto]"; exit 1 ;;
+esac
