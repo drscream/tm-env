@@ -133,6 +133,15 @@ function shuffle() {
 	awk 'BEGIN{srand();} {printf "%06d %s\n", rand()*1000000, $0;}' | sort -n | cut -c8- | head -n1
 }
 
+function is_uuid() {
+	local uuid=${1}
+	if [[ $uuid =~ ^\{?[A-F0-9a-f]{8}-[A-F0-9a-f]{4}-[A-F0-9a-f]{4}-[A-F0-9a-f]{4}-[A-F0-9a-f]{12}\}?$ ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 # Switch to different dz environments, requires bash, jq, shuf and dz
 vdz() {
 	DZ_ENV=${1}
@@ -203,6 +212,45 @@ dz-build-dev() {
 		# Restore
 		mv manifest.json.bak manifest.json
 	fi
+}
+
+dz-reprovision() {
+	local DZ_VMS_FILE=~/.dz/vms.json
+
+	if (( ${#} != 2 )); then
+		echo "Usage: dz-reprovision [vm-uuid|alias] [img-uuid|name]"
+		echo "Example:"
+		echo "  $ dz-reprovision 26afac8e-... b36f71d6-..."
+		echo "  $ dz-reprovision local-zone mi-core-base"
+		return 1
+	fi
+
+	if [[ -z ${DZ_BUILD_PUBLISH_URL} ]]; then
+		echo 'Sorry please use `vdz`, to switch to different dz environments!'
+		return 1
+	fi
+
+	local machine=${1}
+	local image=${2}
+	local hypervisor=$(jq -r '.[][]|select((.alias == "'${machine}'") or (.uuid == "'${machine}'")).host' ${DZ_VMS_FILE})
+
+	if ! is_uuid ${machine}; then
+		if ! machine=$(ssh ${hypervisor} vmadm lookup -1 alias=${machine} 2>/dev/null); then
+			echo "Sorry the requested alias '${1}' couldn't be found on ${hypervisor}!"
+			return 2
+		fi
+	fi
+	
+	if ! is_uuid ${image}; then
+		if ! image=$(curl -s "${DZ_BUILD_PUBLISH_URL}/images?name=~${image}&sort=published_at.desc" | jq -re .[0].uuid); then
+			echo "Sorry the image '${2}' couldn't be found on https://${DZ_BUILD_PUBLISH_URL#*@}"
+			return 3
+		fi
+	fi
+
+	ssh ${hypervisor} "imgadm import ${image}"
+	ssh ${hypervisor} "echo '{ \"image_uuid\": \"'${image}'\" }' | vmadm reprovision ${machine}"
+
 }
 
 # Coloured man pages
