@@ -38,6 +38,10 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ssh-sock='echo export $(env | grep SSH_AUTH_SOCK)'
 alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 
+# ssh/scp insecure
+alias ssh-insecure='ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null'
+alias scp-insecure='scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null'
+
 # compile ssh config
 alias ssh-compile-config='echo "# Warning this file is created by ssh-compile-config" > ${TM_HOME}/.ssh/config && cat ${TM_HOME}/.ssh.extra/config.!(*.secret) ${TM_HOME}/.ssh/config.global >> ~/.ssh/config'
 
