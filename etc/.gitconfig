@@ -14,9 +14,6 @@
 [credential]
 	helper = cache --timeout=300
 
-[commit]
-	gpgsign = true
-
 [alias]
 	tags = tag -l
 	branches = branch -a
@@ -26,10 +23,12 @@
 
 	graft = cherry-pick -x
 
-	l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
-	ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
-	gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
-	gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
+	l   = log -18       --color=always --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
+	la  = log -18 --all --color=always --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
+	ll  = log           --color=always --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s%Cred%d%Creset %C(blue bold)(%cr) %C(black bold)<%an>%Creset'
+	gl  = log -12       --color=always --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
+	gla = log -12 --all --color=always --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
+	gll = log           --color=always --graph --topo-order --pretty='format:%Cgreen%h%Creset %Cblue%G?%Creset %s %C(blue bold)(%cr) %C(black bold)<%an>%Creset%C(yellow bold)%d%Creset%n'
 	ld  = log -1  -p
 
 	pull = pull --ff-only
@@ -39,6 +38,7 @@
 	discard-merge = reset --hard HEAD
 
 	ci   = commit
+	cis  = commit -S
 	cm   = commit -a -m
 	cwtf = !git commit -a -m \"$(whatthecommit -n)\"
 
