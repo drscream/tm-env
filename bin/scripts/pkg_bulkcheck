@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# pkgsrc remote bulk lookup
+
+# Defaults
+LIST_DOMAIN='mail-index.netbsd.org'
+PKGSRC_LIST="https://mail-index.netbsd.org/pkgsrc-bulk/index.html"
+REPORT_RELEASE="upstream-trunk64"
+
+# Help function
+function help() {
+	echo "${0} [-r RELEASE]"
+	echo
+	echo "OPTIONS:"
+	echo "  -r RELEASE  Quarterly based release version (default: ${REPORT_RELEASE})"
+	echo
+	echo "PARAMETER:"
+	echo "  PKG_NAME    Package name to lookup or \`packages\` file"
+	exit 1
+}
+
+# Option parameters
+while getopts ":r:" opt; do
+	case "${opt}" in
+		r) REPORT_RELEASE=${OPTARG}; shift ;;
+		*) help ;;
+	esac
+done
+
+
+# Find correct report URL in mailinglist archive
+LIST_URL=$(curl -s "https://${LIST_DOMAIN}/pkgsrc-bulk/index.html" | \
+	grep "${REPORT_RELEASE}" | \
+	head -n 1 |\
+	sed 's|.*href="\(.*\).html".*|\1.html|')
+
+# Receive pkg list
+dump=$(links -dump "https://${LIST_DOMAIN}/${LIST_URL}" | awk '/\//{ print $1 }')
+
+# The lookup
+if [[ -e "packages" ]]; then
+	egrep -v "^(\#|https?:\/\/)" packages | while read pkg; do
+		if echo ${dump} | grep -q "/${pkg}"; then
+			echo "${pkg} broken: https://${LIST_DOMAIN}/${LIST_URL}"
+		fi
+	done
+else
+	pkg="${@: -1}"
+	if echo ${dump} | grep -q "/${pkg}"; then
+		echo "${pkg} broken: ${LIST_DOMAIN}/${LIST_URL}"
+	fi
+fi
