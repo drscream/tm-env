@@ -20,7 +20,8 @@ for cert in *.crt *.pem; do
 	id=0
 	while true; do
 		if [ ! -f ${hash}.${id} ]; then
-			ln -sv ${cert} ${hash}.${id}
+			echo "${cert} -> ${hash}.${id}"
+			ln -s ${cert} ${hash}.${id}
 			break
 		fi
 		id=$((${id}+1))
