@@ -28,6 +28,10 @@ case ${OSTYPE} in
 		TM_OS='freebsd'
 		TM_USER=${SUDO_USER:-${USER}}
 	;;
+	openbsd*)
+		TM_OS='openbsd'
+		TM_USER=${SUDO_USER:-${USER}}
+	;;
 	*)
 		TM_OS='unknown'
 		TM_USER=${SUDO_USER:-${USER}}
