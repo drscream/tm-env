@@ -2,34 +2,45 @@
 
 [[ ! -x $(which tput 2>/dev/null) ]] && continue
 
-case ${TM_OS} in
-	freebsd)
-		tput_color='Co'
-		tput_setaf='AF'
-		tput_sgr='op'
-		;;
-	*)
-		tput_color='colors'
-		tput_setaf='setaf'
-		tput_sgr='sgr0'
-		;;
-esac
+function _tput() {
+	local opt=${1}
+	local col=${2}
+
+	if [[ "${opt}" = "set" ]]; then
+		case ${TM_OS} in
+			freebsd) tput AF ${col} ;;
+			openbsd) tput setaf ${col} 0 0 ;;
+			*)       tput setaf ${col} ;;
+		esac
+	elif [[ "${opt}" = "reset" ]]; then
+		case ${TM_OS} in
+			freebsd) tput op ;;
+			*)       tput sgr0 ;;
+		esac
+	else
+		case ${TM_OS} in
+			freebsd) tput Co ;;
+			*)       tput colors ;;
+		esac
+	fi
+}
+
 
 case ${TERM} in
 	*256*|rxvt*|gnome*)
-		if [ $(tput ${tput_color}) -ge 256 ]; then
-			_color_yellow=$(tput ${tput_setaf} 136)
-			_color_orange=$(tput ${tput_setaf} 166)
-			_color_red=$(tput ${tput_setaf} 160)
-			_color_magenta=$(tput ${tput_setaf} 125)
-			_color_violet=$(tput ${tput_setaf} 61)
-			_color_blue=$(tput ${tput_setaf} 33)
-			_color_cyan=$(tput ${tput_setaf} 37)
-			_color_green=$(tput ${tput_setaf} 64)
-			_color_lime=$(tput ${tput_setaf} 82)
+		if [ $(_tput) -ge 256 ]; then
+			_color_yellow=$(_tput set 136)
+			_color_orange=$(_tput set 166)
+			_color_red=$(_tput set 160)
+			_color_magenta=$(_tput set 125)
+			_color_violet=$(_tput set 61)
+			_color_blue=$(_tput set 33)
+			_color_cyan=$(_tput set 37)
+			_color_green=$(_tput set 64)
+			_color_lime=$(_tput set 82)
 		fi
 		_color_bold=$(tput bold)
-		_color_reset=$(tput ${tput_sgr})
+		_color_reset=$(_tput reset)
 	;;
 	*)
 		_color_yellow='\033[1;33m'
