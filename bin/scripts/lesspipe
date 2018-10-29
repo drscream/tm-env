@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Preprocessor for 'less'. Used when this environment variable is set:
 # LESSOPEN="|lesspipe %s"
