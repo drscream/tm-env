@@ -1,13 +1,30 @@
-conky.config = {
-	background = false,
-	own_window = false,
-	out_to_x = false,
-	out_to_console = true,
-	update_interval = 60,
-	total_run_times = 0,
-	use_spacer = 'none'
-}
+##
+## conky version 1
+##
+background no
+update_interval 30
+total_run_times 0
+use_spacer none
 
-conky.text = [[
-${if_empty $battery_time}${if_match $battery_percent >= 100}${else}${endif}${else}${endif} ${battery_short}    ${time %a %d %b %H:%M}
-]]
+# OpenBSD
+TEXT
+${if_match "$apm_adapter" == "on-line"}${if_match "$apm_battery_life" != "100%"}+ ${apm_battery_life}${else}~ ${apm_adapter}${endif}${else}- ${apm_battery_time}${endif}  ${time %a %d %b %H:%M}
+
+
+##
+## conky version 2
+##
+#conky.config = {
+#	background = false,
+#	own_window = false,
+#	out_to_x = false,
+#	out_to_console = true,
+#	update_interval = 60,
+#	total_run_times = 0,
+#	use_spacer = 'none'
+#}
+#
+# FreeBSD
+#conky.text = [[
+#${if_empty $battery_time}${if_match $battery_percent >= 100}${else}${endif}${else}${endif} ${battery_short}    ${time %a %d %b %H:%M}
+#]]
