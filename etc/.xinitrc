@@ -1,6 +1,9 @@
 # Force locale
 export LC_ALL=en_US.UTF-8
 
+# Force extra BIN folder
+export PATH=/opt/tools/bin:${PATH}
+
 # Personal fonts
 find ~/.fonts -type f -name fonts.dir 2>/dev/null | while read fontsdir; do
 	font=$(dirname "${fontsdir}")
