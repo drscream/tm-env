@@ -4,33 +4,8 @@
 ##
 ## bash-completion
 ##
-if [ -r /usr/local/share/bash-completion/bash_completion ]; then
-	source /usr/local/share/bash-completion/bash_completion
-fi
-
-##
-## gopass
-##
-source <(gopass completion bash)
-
-##
-## grc
-##
-GRC=$(which grc)
-if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
-	alias colourify="$GRC -es --colour=auto"
-	alias configure='colourify ./configure'
-	alias diff='colourify diff'
-	alias make='colourify make'
-	alias gcc='colourify gcc'
-	alias g++='colourify g++'
-	alias as='colourify as'
-	alias gas='colourify gas'
-	alias ld='colourify ld'
-	alias netstat='colourify netstat'
-	alias ping='colourify ping'
-	alias traceroute='colourify /usr/sbin/traceroute'
-	alias dz='colourify dz'
+if [ -r /opt/tools/share/bash-completion/bash_completion ]; then
+	source /opt/tools/share/bash-completion/bash_completion
 fi
 
 ##
@@ -43,9 +18,6 @@ alias rvm.load='[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scri
 ##
 # GNU
 alias ls='gls --color=auto --quoting-style=escape'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 # PIM
 alias todo="${TM_HOME}/.virtualenvs/pim/bin/todo"
 alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
@@ -60,9 +32,9 @@ alias fm='pcmanfm'
 alias open='xdg-open'
 function b() {
 	if [[ ${1+x} ]]; then
-		sudo sysctl hw.acpi.video.lcd0.brightness=${1}
+		sudo wsconsctl display.brightness=${1}
 	else
-		sysctl -n hw.acpi.video.lcd0.brightness
+		sudo wsconsctl display.brightness
 	fi
 }
 
