@@ -30,7 +30,7 @@ case ${OSTYPE} in
 	;;
 	openbsd*)
 		TM_OS='openbsd'
-		TM_USER=${SUDO_USER:-${USER}}
+		TM_USER=${DOAS_USER:-${USER}}
 	;;
 	*)
 		TM_OS='unknown'

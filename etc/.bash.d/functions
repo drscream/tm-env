@@ -5,10 +5,13 @@ function root {
 	case ${TM_OS} in
 		darwin)
 			sudo /opt/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
-		;;
-		*bsd)
+			;;
+		freebsd)
 			sudo /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
-		;;
+			;;
+		openbsd)
+			doas /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
+			;;
 		*)
 			sudo /bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 		;;
