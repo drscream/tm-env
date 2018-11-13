@@ -2,6 +2,13 @@
 # vim:ft=sh
 
 ##
+## xterm transparency workaround
+##
+if [ -n "${XTERM_VERSION}" ]; then
+	transset-df 0.85 --id "${WINDOWID}" 2>&1 >/dev/null
+fi
+
+##
 ## bash-completion
 ##
 if [ -r /opt/tools/share/bash-completion/bash_completion ]; then
@@ -16,8 +23,6 @@ alias rvm.load='[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scri
 ##
 ## some local aliases
 ##
-# GNU
-alias ls='gls --color=auto --quoting-style=escape'
 # PIM
 alias todo="${TM_HOME}/.virtualenvs/pim/bin/todo"
 alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
@@ -53,8 +58,9 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-source /usr/local/bin/virtualenvwrapper_lazy.sh
-
+if [ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]; then 
+	source /usr/local/bin/virtualenvwrapper_lazy.sh
+fi
 ##
 ## special commands
 ##
