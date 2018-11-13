@@ -89,11 +89,11 @@ if [[ -x $(which keychain 2>/dev/null) ]]; then
 		keychain --agents ssh --host ${HOST} --nogui -q ${key}
 	fi
 	if [[ -d ${HOME}/.gnupg/private-keys-v1.d ]]; then
-		key='0x12AE4593D7A63833'
+		key='tm@core.io'
 		gpg_src=${HOME}'/.keychain/'${HOST}'-sh-gpg'
 		if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
 			gpg-connect-agent /bye >/dev/null 2>&1
-			keychain --agents gpg --host ${HOST} --nogui -q ${key}
+			keychain --agents gpg --gpg2 --host ${HOST} --nogui -q ${key}
 		fi
 	fi
 	[[ -f ${ssh_src} ]] && . ${ssh_src}
