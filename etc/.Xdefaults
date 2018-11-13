@@ -1,142 +1,137 @@
-!-------------------------------------------------------------------------------
-!
-! X F T
-!
-Xft.antialias: 1
-Xft.rgba:      rgb
-Xft.autohint:  0
-Xft.hinting:   1
-Xft.hintstyle: hintfull
+! ===== fonts
+Xft.antialias : 1
+Xft.rgba      : rgb
+Xft.autohint  : 0
+Xft.hinting   : 1
+Xft.hintstyle : hintfull
+! fixed is the one true font - use iso10646 for unicode characters
+!*font         : -misc-fixed-medium-r-semicondensed-*-12-*-*-*-*-*-iso10646-1
+*font          : -*-terminesspowerline-medium-r-normal-*-18-*-*-*-*-*-iso10646-1
 
 Xcursor.theme: Neutral
-*font:         -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
 
-!-------------------------------------------------------------------------------
-!
-!   U R X V T
-!
-! Colores
-! bold, italic, underline
-URxvt.colorBD: #B5BD68
-URxvt.colorIT: #B294BB
-URxvt.colorUL: #81A2BE
-
-! Fonts for Powerline
-URxvt*xftAntialias:   True
-URxvt.letterSpace:    -2
-URxvt.font:           xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-URxvt.boldFont:       xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-URxvt.italicFont:     xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-URxvt.boldItalicFont: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-
-! Varios
-URxvt*termName:             xterm-256color
-URxvt*scrollBar:            False
-URxvt*scrollWithBuffer:     True
-URxvt*scrollBar_floating:   True
-URxvt.urgentOnBell:         True
-URxvt.visualBell:           False
-URxvt*saveLines:            99999
-URxvt*mouseWheelScrollPage: True
-URxvt*reverseVideo:         False
-URxvt*eightBitInput:        True
-URxvt*metaSendsEscape:      True
-URxvt*visualBell:           False
-
+! ===== colours
 ! Hybrid E7 term colours
-*background:  #1D1F21
-*foreground:  #C5C8C6
-*cursorColor: #C3FF00
+*background:  #000000
+*foreground:  #cccccc
+*cursorColor: #555555
 
 ! black
-*color0:  #282A2E
-*color8:  #373B41
+*color0:  #282828
+*color8:  #928374
 ! red
-*color1:  #A54242
-*color9:  #CC6666
+*color1:  #cc241d
+*color9:  #fb4934
 ! green
-*color2:  #8C9440
-*color10: #B5BD68
+*color2:  #98971a
+*color10: #b8bb26
 ! yellow
-*color3:  #DE935F
-*color11: #F0C674
+*color3:  #d79921
+*color11: #fabd2f
 ! blue
-*color4:  #5F819D
-*color12: #81A2BE
+*color4:  #458588
+*color12: #83a598
 ! magenta
-*color5:  #BAA1C4
-*color13: #AB839D
+*color5:  #b16286
+*color13: #d3869b
 ! cyan
-*color6:  #5E8D87
-*color14: #8ABEB7
+*color6:  #689d6a
+*color14: #8ec07c
 ! white
-*color7:  #707880
-*color15: #C5C8C6
+*color7:  #a89984
+*color15: #ebdbb2
 
-! Extensions ~/.urxvt./ext
-URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
-! Clipboard
-URxvt.keysym.C-S-C:       perl:clipboard:copy
-URxvt.keysym.C-S-V:       perl:clipboard:paste
-URxvt.keysym.C-S-W:       perl:clipboard:paste_escaped
-URxvt.clipboard.copycmd:  xsel -ib
-URxvt.clipboard.pastecmd: xsel -ob
-! Keyboard-select
-URxvt.keysym.C-Escape: perl:keyboard-select:activate
-URxvt.keysym.C-S-S:    perl:keyboard-select:search
-! Url-select
-URxvt.keysym.C-S-U:         perl:url-select:select_next
-URxvt.url-select.autocopy:  true
-URxvt.url-select.button:    1
-URxvt.url-select.launcher:  firefox
-URxvt.url-select.underline: true
 
-! Reasigning keys for vim keys
-URxvt.keysym.S-Up             : \033[1;2A
-URxvt.keysym.S-Down           : \033[1;2B
-URxvt.keysym.S-Right          : \033[1;2C
-URxvt.keysym.S-Left           : \033[1;2D
-URxvt.keysym.S-Home           : \033[1;2H
-URxvt.keysym.S-End            : \033[1;2F
-URxvt.keysym.M-Up             : \033[1;3A
-URxvt.keysym.M-Down           : \033[1;3B
-URxvt.keysym.M-Right          : \033[1;3C
-URxvt.keysym.M-Left           : \033[1;3D
-URxvt.keysym.M-Page_Up        : \033[5;3~
-URxvt.keysym.M-Page_Down      : \033[6;3~
-URxvt.keysym.M-Home           : \033[1;3H
-URxvt.keysym.M-End            : \033[1;3F
-URxvt.keysym.M-S-Up           : \033[1;4A
-URxvt.keysym.M-S-Down         : \033[1;4B
-URxvt.keysym.M-S-Right        : \033[1;4C
-URxvt.keysym.M-S-Left         : \033[1;4D
-URxvt.keysym.M-S-Home         : \033[1;4H
-URxvt.keysym.M-S-End          : \033[1;4F
-URxvt.keysym.C-Up             : \033[1;5A
-URxvt.keysym.C-Down           : \033[1;5B
-URxvt.keysym.C-Right          : \033[1;5C
-URxvt.keysym.C-Left           : \033[1;5D
-URxvt.keysym.C-Page_Up        : \033[5;5~
-URxvt.keysym.C-Page_Down      : \033[6;5~
-URxvt.keysym.C-Home           : \033[1;5H
-URxvt.keysym.C-End            : \033[1;5F
-URxvt.keysym.C-S-Up           : \033[1;6A
-URxvt.keysym.C-S-Down         : \033[1;6B
-URxvt.keysym.C-S-Right        : \033[1;6C
-URxvt.keysym.C-S-Left         : \033[1;6D
-URxvt.keysym.C-S-Home         : \033[1;6H
-URxvt.keysym.C-S-End          : \033[1;6F
-URxvt.keysym.M-C-Up           : \033[1;7A
-URxvt.keysym.M-C-Down         : \033[1;7B
-URxvt.keysym.M-C-Right        : \033[1;7C
-URxvt.keysym.M-C-Left         : \033[1;7D
-URxvt.keysym.M-C-Page_Up      : \033[5;7~
-URxvt.keysym.M-C-Page_Down    : \033[6;7~
-URxvt.keysym.M-C-Home         : \033[1;7H
-URxvt.keysym.M-C-End          : \033[1;7F
-URxvt.keysym.M-C-S-Up         : \033[1;8A
-URxvt.keysym.M-C-S-Down       : \033[1;8B
-URxvt.keysym.M-C-S-Right      : \033[1;8C
-URxvt.keysym.M-C-S-Left       : \033[1;8D
-URxvt.keysym.M-C-S-Home       : \033[1;8H
-URxvt.keysym.M-C-S-End        : \033[1;8F
+! ===== xidle
+! drag pointer to lower left corner to lock screen
+xidle*position : sw
+! and leave it there for one second.
+xidle*delay    : 1
+! also lock screen after 5 minutes idle
+xidle*timeout  : 300
+
+! ===== xlock
+! plain white-on-black lock screen
+XLock.icongeometry: 0x0
+xlock.description : off
+xlock.echokeys    : off
+xlock.info        :
+xlock.background  : black
+xlock.foreground  : white
+xlock.mode        : blank
+xlock.username    : username: 
+xlock.password    : password: 
+xlock.font        : -*-terminesspowerline-medium-r-normal-*-20-*-*-*-*-*-iso10646-1
+xlock.planfont    : -*-terminesspowerline-medium-r-normal-*-14-*-*-*-*-*-iso10646-1
+
+! ===== xclock
+! digital clock in lower right-hand corner
+XClock*analog      : false
+XClock*twentyfour  : true
+XClock*padding     : 0
+XClock*geometry    : -2-2
+XClock*render      : false
+XClock*font        : -misc-fixed-bold-r-normal-*-13-*-*-*-*-*-iso10646-1
+XClock*height      : 12
+XClock*background  : dimgray
+XClock*foreground  : white
+XClock*borderWidth : 0
+
+! ===== xterm
+! use ttf font because of hdpi
+XTerm*faceName               : Hack
+XTerm*faceSize               : 12
+! remove the additional black border
+XTerm*borderWidth            : 0
+XTerm*internalBorder         : 2
+! set TERM env variable to use 256 colors
+XTerm*termName               : xterm-256color
+! make alt key work normally
+XTerm*vt100.metaSendsEscape  : true
+! save ~10,000 lines of scrollback
+XTerm*v100.saveLines         : 10240
+! hide scrollbar
+XTerm*vt100.scrollBar        : false
+! terminal bell tells the window manager to raise urgent flag
+XTerm*vt100.bellIsUrgent     : true
+! no bold fonts - just use brighter colors
+XTerm*allowBoldFonts         : true
+! pressing a key automatically scrolls to the bottom
+XTerm*scrollKey              : true
+! don't allow terminal to go fullscreen
+XTerm*fullscreen             : never
+! clicking a line selects only from the current word forward
+XTerm*cutToBeginningOfLine   : false
+! and don't include a trailing newline in the selection!
+XTerm*cutNewline             : false
+! some black magic to change what characters XTerm considers "word delimiters"
+XTerm*charClass              : 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! select word on two clicks
+XTerm*on2Clicks              : word
+! select whole line on three clicks
+XTerm*on3Clicks              : line
+! shift + ctrl + left click to open selection in web browser
+XTerm*VT100*Translations: #override \n\
+  Shift Ctrl <Btn1Up>: exec-formatted("chrome --enable-unveil '%t'", PRIMARY)\n\
+  Alt <Key>o: exec-formatted("chrome --enable-unveil '%t'", PRIMARY) select-start() select-end()
+
+! ===== ssh-askpass
+! default font is used
+SshAskpass*Dialog.font          : -*-fixed-bold-r-*-*-18-*-*-*-*-*-*-*
+SshAskpass*Dialog.fixedFont     : -*-fixed-bold-r-*-*-18-*-*-*-*-*-*-*
+! black background
+SshAskpass*background           : #000000
+SshAskpass*foreground           : #ffffff
+SshAskpass*Indicator.foreground :  #ffffff
+SshAskpass*Indicator.background :  #000000
+! hide buttons
+SshAskpass*Button.font            : -*-*-*-r-*-*-4-*-*-*-*-*-*-*
+SshAskpass*Button.shadowThickness : 0
+SshAskpass*Button.borderWidth     : 0
+SshAskpass*Button.background      : #000000
+SshAskpass*Button.foreground      : #000000
+! overwrite label
+SshAskpass*Dialog.title           : OpenSSH Authentication
+SshAskpass*Dialog.label           : OpenSSH Authentication
+! timeout (before closing)
+SshAskpass*inputTimeout           : 10
