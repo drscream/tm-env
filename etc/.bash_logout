@@ -9,7 +9,7 @@ test ! -r ~/.ssh/authorized_keys && {
 }
 
 # Clear sudo auth cache
-test -x $(which sudo 2> /dev/null) && sudo -k
+type -p sudo >/dev/null && sudo -k
 
 # Clear terminal screen
 [ -x $(type -p clear) ] && clear -q
