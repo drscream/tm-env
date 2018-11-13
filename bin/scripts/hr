@@ -1,10 +1,25 @@
 #!/usr/bin/env bash
 # inspired by https://github.com/LuRsT/hr
 
-hr="\033[0;32m-"
+cols=$(tput cols)
 
-for i in $(seq 1 $(tput cols)); do
+# options
+case ${1} in
+	--nocolor|-n)
+		color=""
+		color_reset=""
+		;;
+	--color|*)
+		color="\033[0;32m"
+		color_reset="\033[0m"
+		;;
+esac
+
+
+hr="${color}-"
+
+for ((i=1; i<=${cols}; i++)); do
 	echo -en "${hr}";
 done
 
-echo -e "\033[0m"
+echo -e "${color_reset}"
