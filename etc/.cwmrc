@@ -1,0 +1,152 @@
+# automatically add new windows to the current group
+sticky yes
+# snap windows to edges at 4 pixels distance
+snapdist 4
+# leave a gap for xclock
+gap 20 0 0 0
+
+# set font for menus
+fontname "Hack:pixelsize=14"
+
+# remove all default keybindings
+unbind-key all
+
+# KEYBINDINGS:
+# 4 = mod (windows key)
+# S = shift
+# C = control
+# M = meta (alt)
+
+# mod + enter = new xterm
+bind-key 4-Return terminal
+# ctrl + alt + L = lock screen (xlock)
+bind-key CM-l lock
+# mod + backspace = hide window
+bind-key 4-BackSpace window-hide
+
+# mod + down arrow = lower window's focus
+bind-key 4-Down window-lower
+# mod + up arrow = raise window's focus
+bind-key 4-Up window-raise
+# mod/alt + tab = cycle through current windows
+bind-key 4-Tab window-cycle
+bind-key M-Tab window-cycle
+# mod/alt + shift + tab = same thing in reverse
+bind-key 4S-Tab window-rcycle
+bind-key MS-Tab window-rcycle
+# mod + w = kill window
+bind-key 4-w window-delete
+# set a window's label
+bind-key 4-n window-menu-label
+
+# mod + $N = show only windows for group $N
+# (you can think of this as switching to virtual desktop $N)
+bind-key 4-1 group-only-1
+bind-key 4-2 group-only-2
+bind-key 4-3 group-only-3
+bind-key 4-4 group-only-4
+bind-key 4-5 group-only-5
+bind-key 4-6 group-only-6
+bind-key 4-7 group-only-7
+bind-key 4-8 group-only-8
+bind-key 4-9 group-only-9
+
+# mod + shift +$N = move window to group $N
+bind-key 4S-1 window-movetogroup-1
+bind-key 4S-2 window-movetogroup-2
+bind-key 4S-3 window-movetogroup-3
+bind-key 4S-4 window-movetogroup-4
+bind-key 4S-5 window-movetogroup-5
+bind-key 4S-6 window-movetogroup-6
+bind-key 4S-7 window-movetogroup-7
+bind-key 4S-8 window-movetogroup-8
+bind-key 4S-9 window-movetogroup-9
+
+# mod + A = toggle showing windows from all groups
+bind-key 4-a group-toggle-all
+# mod + G = toggle current window's group membership
+bind-key 4-g window-group
+
+# mod + right arrow = cycle through the window groups
+# (you can think of this as switching to the next virtual desktop)
+bind-key 4-Right group-cycle
+# mod + left arrow = same thing in reverse
+bind-key 4-Left group-rcycle
+# mod + S = stick current window to be visible in all groups
+bind-key 4-s window-stick
+
+# mod + F = make current window fullscreen
+bind-key 4-f window-fullscreen
+# mod + M = maximize current window
+bind-key 4-m window-maximize
+# mod + equals = maximize window in vertical direction only
+bind-key 4-equal window-vmaximize
+# mod + shift + equals = maximize window in horizontal direction only
+bind-key 4S-equal window-hmaximize
+
+# mod + H,J,K,L = move window left, down, up, right 10 pixels
+bind-key 4-h window-move-left-big
+bind-key 4-j window-move-down-big
+bind-key 4-k window-move-up-big
+bind-key 4-l window-move-right-big
+
+# mod + shift + H,J,K,L = resize window left, down, up, right by 10 pixels
+bind-key 4S-h window-resize-left-big
+bind-key 4S-j window-resize-down-big
+bind-key 4S-k window-resize-up-big
+bind-key 4S-l window-resize-right-big
+
+# mod + V = tile windows vertically, current window to the left
+bind-key 4-v window-vtile
+# mod + V = tile windows horizontally, current window to the top
+bind-key 4-c window-htile
+
+# mod + / = show popup menu of current windows
+bind-key 4-slash menu-window
+# mod + d = show popup menu to run a command (configured below)
+bind-key 4-d menu-cmd
+# mod + space = show demnu to run any command
+bind-key 4-space "dmenu_run -fn 'Hack:size=10' -p '> exec'"
+# mod + p = show dmenu for password-store
+bind-key 4-p "passmenu -fn 'Hack:size=10' -p '$ pass'"
+# mod + ? = show popup menu to run an arbitrary command
+bind-key 4-question menu-exec
+# mod + . = show popup menu of known ssh hosts to connect to
+bind-key 4-period menu-ssh
+
+# mod + shift + R = restart cwm, reloading configuration
+bind-key 4S-r restart
+# mod + shift + E = log out
+bind-key 4S-e quit
+
+# unbind default mouse actions
+unbind-mouse M-1
+unbind-mouse CM-1
+unbind-mouse M-2
+unbind-mouse M-3
+unbind-mouse CMS-3
+
+bind-mouse 1 window-raise
+
+# mod + left click drag = move window
+bind-mouse 4-1 window-move
+# mod + right click drag = resize window
+bind-mouse 4-3 window-resize
+# mod + middle click = lower window's focus
+bind-mouse 4-2 window-lower
+# mod + shift + middle click = hide window
+bind-mouse 4S-2 window-hide
+
+# these commands will appear in the command menu
+command xterm            "xterm"
+command chrome           "chrome --enable-unveil"
+command browser          "chrome --enable-unveil"
+command chrome-incognito "chrome --enable-unveil --incognito"
+
+# ignore these windows when tiling/cycling
+ignore xclock
+ignore lemonbar
+ignore dmenu
+
+# autogroup these windows based on class
+autogroup 9 "chromium-browser,Chromium-browser"
