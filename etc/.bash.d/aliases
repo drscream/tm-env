@@ -1,10 +1,5 @@
 # Thomas Merkel <tm@core.io>
 
-# use coreutils if they are available
-_ls=$(type -P gls ls)
-_dircolors=$(type -P gdircolors dircolors)
-_grep=$(type -P ggrep grep)
-
 # if dircolors is available it might be a gnu tool system
 if [[ -x "${_dircolors%%$'\n'*}" ]]; then
 	alias ls="${_ls%%$'\n'*} --color=auto"

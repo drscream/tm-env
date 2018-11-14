@@ -63,9 +63,14 @@ export TM_OS TM_USER TM_HOME TM_BASHDIR
 ##
 ## dir colors
 ##
-if [[ -x $(which dircolors 2>/dev/null) ]]; then
-	[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
-	[[ -f ${HOME}/.dir_colors ]] && eval $(dircolors -b ${HOME}/.dir_colors)
+# use coreutils if they are available
+_ls=$(type -P gls ls)
+_dircolors=$(type -P gdircolors dircolors)
+_grep=$(type -P ggrep grep)
+
+if [[ -x "${_dircolors%%$'\n'*}" ]]; then
+	[[ -f /etc/DIR_COLORS ]] && eval $(${_dircolors%%$'\n'*} -b /etc/DIR_COLORS)
+	[[ -f ${TM_HOME}/.dir_colors ]] && eval $(${_dircolors%%$'\n'*} -b ${TM_HOME}/.dir_colors)
 fi
 
 ##
