@@ -37,9 +37,9 @@ alias fm='pcmanfm'
 alias open='xdg-open'
 function b() {
 	if [[ ${1+x} ]]; then
-		sudo wsconsctl display.brightness=${1}
+		doas wsconsctl display.brightness=${1}
 	else
-		sudo wsconsctl display.brightness
+		doas wsconsctl display.brightness
 	fi
 }
 
@@ -61,11 +61,6 @@ WORKON_HOME="${TM_HOME}/.virtualenvs"
 if [ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]; then 
 	source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
-##
-## special commands
-##
-# dircolors exists only in brew repo, so run this command later
-[[ -f ${HOME}/.dir_colors ]] && eval $(gdircolors -b ${HOME}/.dir_colors)
 
 ##
 ## special admin scripts
