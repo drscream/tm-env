@@ -5,7 +5,7 @@ export LC_ALL=en_US.UTF-8
 export PATH=/opt/tools/bin:${PATH}
 
 # Personal fonts
-find ~/.fonts -type f -name fonts.dir 2>/dev/null | while read fontsdir; do
+find ~/.fonts/ -type f -name fonts.dir 2>/dev/null | while read fontsdir; do
 	font=$(dirname "${fontsdir}")
 	xset +fp "${font}"
 done
@@ -33,7 +33,13 @@ xidle &
 ~/.bin/scripts/notify-server.py &
 
 # Disable Touchpad
-synclient TouchpadOff=1
+#synclient TouchpadOff=1
+
+# if you have a ThinkPad, the following lines enable TrackPoint
+# scrolling by dragging with the middle button.
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
 
 # WM
 exec cwm
