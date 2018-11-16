@@ -15,3 +15,5 @@ etc/.certs.d/ca-certificates.crt
 bin/*/gopass
 bin/*/terraform
 bin/*/packer
+# Font cache / UUID
+etc/.fonts/.uuid
