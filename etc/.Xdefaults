@@ -113,7 +113,9 @@ XTerm*on3Clicks              : line
 ! shift + ctrl + left click to open selection in web browser
 XTerm*VT100*Translations: #override \n\
   Shift Ctrl <Btn1Up>: exec-formatted("chrome --enable-unveil '%t'", PRIMARY)\n\
-  Alt <Key>o: exec-formatted("chrome --enable-unveil '%t'", PRIMARY) select-start() select-end()
+  Alt <Key>o: exec-formatted("chrome --enable-unveil '%t'", PRIMARY) select-start() select-end()\n\
+  Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>C:  copy-selection(CLIPBOARD)
 
 ! ===== ssh-askpass
 ! default font is used
