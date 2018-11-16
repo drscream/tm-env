@@ -18,7 +18,7 @@ xmodmap ~/.xmodmaprc
 clipit --daemon --no-icon &
 
 # Wallpaper
-feh --bg-scale ~/.bg.png
+feh --no-fehbg --bg-scale ~/.bg.png
 
 # Transparency
 xcompmgr &
