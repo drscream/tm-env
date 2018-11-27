@@ -2,7 +2,7 @@
 # Simple xrandr wrapper build for my needs.
 
 auto() {
-	dpCount=$(xrandr --query | egrep -c '(DP-1-2|DP-1-3) connected')
+	dpCount=$(xrandr --query | egrep -c '^DP.* connected')
 	if (( ${dpCount} == 2 )); then
 		dock
 	fi
@@ -10,7 +10,9 @@ auto() {
 
 dock() {
 	echo "[${0##*/}] docking station mode"
-	xrandr --output eDP-1 --off
+	xrandr --output eDP1 --off
+	local -a DPS=( $(xrandr --listmonitors | sed -n 's|.*+.*[^e]\(DP[0-9]\).*|\1|p') )
+	xrandr --output ${DPS[1]} --right-of ${DPS[0]}
 }
 
 beamer() {
