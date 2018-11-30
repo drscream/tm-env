@@ -25,5 +25,6 @@ case ${1} in
 	auto) auto ;;
 	dock) dock ;;
 	beamer) beamer ;;
-	*) echo "${0##*/} [dock|beamer|auto]"; exit 1 ;;
+	-h|--help) echo "${0##*/} [dock|beamer|auto]"; exit 1 ;;
+	*) auto ;;
 esac
