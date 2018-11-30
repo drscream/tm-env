@@ -388,27 +388,6 @@ mutt() {
 	fi
 }
 
-# Upload file or text via scp / ssh for sharing
-upload() {
-	local share_url="https://www.qwe123.de/share/"
-	local share_host="tm.srv.customer.skylime.net"
-	local share_folder="/var/www/www.qwe123.de/htdocs/share/"
-
-	if (( ${#} > 0 )); then
-		# Use scp for files
-		local files=${@}
-		for file in ${files}; do
-			scp "${file}" ${share_host}:${share_folder} >/dev/null && \
-			echo "${share_url}${file}"
-		done
-	else
-		# Read stdin and use ssh
-		local hash=$(date | md5)
-		cat - | ssh ${share_host} "cat > ${share_folder}${hash}" >/dev/null && \
-		echo "${share_url}${hash}"
-	fi
-}
-
 # Send alert via notify-send after X amount of time
 tea() {
 	local time="${1}"; shift
