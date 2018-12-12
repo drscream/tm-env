@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Simple, minimal telegram desktop wrapper
+
+if type -p telegram-desktop; then
+	# Use real desktop client if it's installed
+	telegram-desktop &
+else
+	# Use own surf (with notify option enabled)
+	surf -z 1.25 -L https://web.telegram.org &
+fi
