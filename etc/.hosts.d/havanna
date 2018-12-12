@@ -4,9 +4,9 @@
 ##
 ## xterm transparency workaround
 ##
-if [ -n "${XTERM_VERSION}" ]; then
-	transset-df 0.85 --id "${WINDOWID}" 2>&1 >/dev/null
-fi
+#if [ -n "${XTERM_VERSION}" ]; then
+#	transset-df 0.85 --id "${WINDOWID}" 2>&1 >/dev/null
+#fi
 
 ##
 ## bash-completion
@@ -33,7 +33,7 @@ alias vdirsyncer="${TM_HOME}/.virtualenvs/pim/bin/vdirsyncer"
 alias leo="${TM_HOME}/.virtualenvs/leo/bin/leo"
 alias translate="${TM_HOME}/.virtualenvs/leo/bin/leo"
 # SYSTEM
-alias fm='pcmanfm'
+alias fm='pcmanfm &'
 alias open='xdg-open'
 function b() {
 	if [[ ${1+x} ]]; then
