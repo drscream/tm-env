@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But not these files or folders
+!.gitignore
+!dunst/
+!gtk-3.0/
+!user-dirs.dirs
