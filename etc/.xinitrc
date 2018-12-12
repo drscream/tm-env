@@ -14,9 +14,6 @@ fc-cache
 # Configure extra keys
 xmodmap ~/.xmodmaprc
 
-# Sync all clipboards
-clipit --daemon --no-icon &
-
 # Wallpaper
 feh --no-fehbg --bg-scale ~/.bg.png
 
@@ -33,7 +30,7 @@ xidle &
 ~/.bin/scripts/notify-server.py &
 
 # Disable Touchpad
-#synclient TouchpadOff=1
+synclient TouchpadOff=1
 
 # if you have a ThinkPad, the following lines enable TrackPoint
 # scrolling by dragging with the middle button.
