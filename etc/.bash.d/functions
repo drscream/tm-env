@@ -6,10 +6,7 @@ function root {
 		darwin)
 			sudo /opt/pkg/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 			;;
-		freebsd)
-			sudo /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
-			;;
-		openbsd)
+		*bsd)
 			doas /usr/local/bin/bash --rcfile $(echo ${TM_HOME})/.bashrc
 			;;
 		*)
