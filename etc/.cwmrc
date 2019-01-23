@@ -3,7 +3,7 @@ sticky yes
 # snap windows to edges at 4 pixels distance
 snapdist 4
 # leave a gap for xclock
-gap 20 0 0 0
+gap 22 0 0 0
 
 # set font for menus
 fontname "Hack:pixelsize=14"
@@ -21,9 +21,11 @@ unbind-key all
 bind-key 4-Return terminal
 # ctrl + alt + L = lock screen (xlock)
 bind-key CM-l lock
+# ctrl + alt + Z = zzz
+bind-key CM-z zzz
+
 # mod + backspace = hide window
 bind-key 4-BackSpace window-hide
-
 # mod + down arrow = lower window's focus
 bind-key 4-Down window-lower
 # mod + up arrow = raise window's focus
@@ -108,7 +110,7 @@ bind-key 4-d menu-cmd
 # mod + space = show demnu to run any command
 bind-key 4-space "dmenu_run -fn 'Hack:size=10' -p '> exec'"
 # mod + p = show dmenu for password-store
-bind-key 4-p "passmenu -fn 'Hack:size=10' -p '$ pass'"
+bind-key 4-p "/home/tm/.bin/scripts/passmenu -fn 'Hack:size=10' -p '$ pass'"
 # mod + ? = show popup menu to run an arbitrary command
 bind-key 4-question menu-exec
 # mod + . = show popup menu of known ssh hosts to connect to
@@ -126,8 +128,6 @@ unbind-mouse M-2
 unbind-mouse M-3
 unbind-mouse CMS-3
 
-bind-mouse 1 window-raise
-
 # mod + left click drag = move window
 bind-mouse 4-1 window-move
 # mod + right click drag = resize window
@@ -142,6 +142,8 @@ command xterm            "xterm"
 command chrome           "chrome --enable-unveil"
 command browser          "chrome --enable-unveil"
 command chrome-incognito "chrome --enable-unveil --incognito"
+command telegram         "telegram-desktop"
+command zzz              "zzz"
 
 # ignore these windows when tiling/cycling
 ignore xclock
