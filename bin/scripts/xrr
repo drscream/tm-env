@@ -10,9 +10,9 @@ auto() {
 
 dock() {
 	echo "[${0##*/}] docking station mode"
-	xrandr --output eDP1 --off
-	local -a DPS=( $(xrandr --listmonitors | sed -n 's|.*+.*[^e]\(DP[0-9]\).*|\1|p') )
-	xrandr --output ${DPS[1]} --right-of ${DPS[0]}
+	local -a DPS=( $(xrandr --listmonitors | sed -n 's|\ [0-9]:\ +\(DP[-0-9]*\)\ .*|\1|p') )
+	xrandr --output eDP-1 --off \
+		   --output ${DPS[1]} --right-of ${DPS[0]}
 }
 
 beamer() {
@@ -20,11 +20,15 @@ beamer() {
 	xrandr --output HDMI --auto
 }
 
+single() {
+	echo "[${0##*/}] single screen mode"
+}
+
 # Main
 case ${1} in
 	auto) auto ;;
 	dock) dock ;;
 	beamer) beamer ;;
-	-h|--help) echo "${0##*/} [dock|beamer|auto]"; exit 1 ;;
+	-h|--help) echo "${0##*/} [dock|beamer|single|auto]"; exit 1 ;;
 	*) auto ;;
 esac
