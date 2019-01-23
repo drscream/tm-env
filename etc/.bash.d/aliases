@@ -68,6 +68,7 @@ alias pip.upgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs 
 # git
 # workaround for ~/.gitconfig file after sudo
 alias git='HOME=${TM_HOME} git'
+alias git-crypt-users='pushd .git-crypt/keys/default/0; for file in *.gpg; do echo "${file} : " && git log -- ${file} | sed -n 9p; done; popd'
 
 # Get week number
 alias week='date +%V'
