@@ -5,4 +5,5 @@
 !.gitignore
 !dunst/
 !gtk-3.0/
+!nvim/
 !user-dirs.dirs
