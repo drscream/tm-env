@@ -242,7 +242,7 @@ dz-reprovision() {
 	fi
 	
 	if ! is_uuid ${image}; then
-		if ! image=$(curl -s "${DZ_BUILD_PUBLISH_URL}/images?name=~${image}&sort=published_at.desc" | jq -re .[0].uuid); then
+		if ! image=$(curl -s "${DZ_BUILD_PUBLISH_URL}/images?name=${image}&sort=published_at.desc" | jq -re .[0].uuid); then
 			echo "Sorry the image '${2}' couldn't be found on https://${DZ_BUILD_PUBLISH_URL#*@}"
 			return 3
 		fi
