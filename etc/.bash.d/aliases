@@ -23,8 +23,8 @@ alias St='sudo top'
 alias Sh='sudo htop'
 
 # vim
-alias vim='vim -u ${TM_HOME}/.vimrc'
-alias vimdiff='vimdiff -u ${TM_HOME}/.vimrc'
+alias vim='nvim -u ${TM_HOME}/.config/nvim/init.vim'
+alias vimdiff='nvim -u ${TM_HOME}/.config/nvim/init.vim -d'
 
 # screen
 alias screen='screen -c ${TM_HOME}/.screenrc'
