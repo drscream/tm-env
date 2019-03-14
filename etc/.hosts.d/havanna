@@ -11,8 +11,8 @@
 ##
 ## bash-completion
 ##
-if [ -r /opt/tools/share/bash-completion/bash_completion ]; then
-	source /opt/tools/share/bash-completion/bash_completion
+if [ -r /usr/local/share/bash-completion/bash_completion ]; then
+	source /usr/local/share/bash-completion/bash_completion
 fi
 
 ##
@@ -35,13 +35,26 @@ alias translate="${TM_HOME}/.virtualenvs/leo/bin/leo"
 # SYSTEM
 alias fm='pcmanfm &'
 alias open='xdg-open'
+alias zzz='doas zzz'
 function b() {
-	if [[ ${1+x} ]]; then
-		doas wsconsctl display.brightness=${1}
-	else
-		doas wsconsctl display.brightness
-	fi
+	case ${TM_OS} in
+		freebsd)
+			[[ ${1+x} ]] \
+				&& doas sysctl hw.acpi.video.lcd0.brightness=${1} \
+				|| doas sysctl hw.acpi.video.lcd0.brightness
+			;;
+		openbsd)
+			[[ ${1+x} ]] \
+				&& doas wsconsctl display.brightness=${1} \
+				|| doas wsconsctl display.brightness
+			;;
+	esac
 }
+
+##
+## git
+##
+export GITCHANGELOG_CONFIG_FILENAME=${TM_HOME}/.gitchangelog.rc
 
 ##
 ## dz tool
