@@ -61,23 +61,23 @@ update_psk () {
 }
 
 stop_wifi () {
-    sudo ifconfig $iface down delete
+    doas ifconfig $iface down delete
     exit 0
 }
 
 cfg_dev () {
-    sudo ifconfig $iface create wlandev $phy_iface
-    sudo ifconfig $iface up
-    sudo service wpa_supplicant start $iface
+    doas ifconfig $iface create wlandev $phy_iface
+    doas ifconfig $iface up
+    doas service wpa_supplicant start $iface
 }
 
 recfg_dev () {
-    sudo ifconfig $iface down delete
-    sudo ifconfig $iface destroy
-    sudo ifconfig $phy_iface down
-    sudo ifconfig $phy_iface up
-    sudo ifconfig $iface create wlandev $phy_iface
-    sudo ifconfig $iface up
+    doas ifconfig $iface down delete
+    doas ifconfig $iface destroy
+    doas ifconfig $phy_iface down
+    doas ifconfig $phy_iface up
+    doas ifconfig $iface create wlandev $phy_iface
+    doas ifconfig $iface up
 }
 
 wpa_lookup () {
@@ -102,7 +102,7 @@ final () {
     local nid=$2
 	echo $nw
     wpa_cli -i $iface disconnect
-    sudo ifconfig $iface ssid "$nw"
+    doas ifconfig $iface ssid "$nw"
     wpa_cli -i $iface select_network $nid
     wpa_cli -i $iface enable_network $nid
     wpa_cli -i $iface reconnect
