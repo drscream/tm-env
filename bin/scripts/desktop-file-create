@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Script to create xdg *.desktop files for applications.
+
+usage() {
+	cat <<-EOF
+	${0} -n NAME -e EXEC [-m MIME_TYPES] [-i ICON] [-c [CATEGORY] [-C COMMENT] [-t]
+
+	OPTIONS:
+	  -n NAME           : Application name
+	  -e EXEC           : Command which is executed
+	  -m [MIME_TYPES]   : Assigned mime types to the application
+	  -i [ICON]         : Icon name if available
+	  -c [CATEGORY]     : Category if the application
+	  -C [COMMENT]      : Description of the application
+	  -t                : Terminal application
+	EOF
+	exit 1
+}
+while getopts 'n:e:m:i:c:C:t' opt; do
+	case "${opt}" in
+		n) name=${OPTARG} ;;
+		e) cmd=${OPTARG}  ;;
+		m) mime=${OPTARG} ;;
+		i) icon=${OPTARG} ;;
+		c) category=${OPTARG} ;;
+		C) comment=${OPTARG}  ;;
+		t) terminal=1         ;;
+		*) usage              ;;
+	esac
+done
+
+[[ -z ${name} || -z ${cmd} ]] && usage
+
+file="${HOME}/.local/share/applications/${name}.desktop"
+cat > "${file}" <<-EOF
+[Desktop Entry]
+Version=1.0
+Name=${name}
+Exec=${cmd}
+Type=Application
+EOF
+
+[ ! -z ${mime+x} ] && echo "MimeType=${mime}" >> "${file}"
+[ ! -z ${icon+x} ] && echo "Icon=${icon}"     >> "${file}"
+[ ! -z ${category+x} ]  && echo "Categories=${category}" >> "${file}"
+[ ! -z ${comment+x} ]   && echo "Comment=${comment}"     >> "${file}"
+[ ! -z ${terminal+x} ]  && echo "Terminal=true"          >> "${file}"
