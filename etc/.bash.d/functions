@@ -410,4 +410,10 @@ gdatediff() {
 	echo $(( (d2 - d1) / 60 ))m
 }
 
+notify() {
+	local last_status=${?}
+	local last_command=$(fc -ln -1 | sed 's|;.*notify$||g' | tr -d '\t')
+	notify-send -a script 'Command Finished' "${last_command}"
+}
+
 # vim:ft=sh
