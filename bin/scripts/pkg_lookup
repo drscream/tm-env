@@ -42,8 +42,8 @@ dump=$(links -dump ${URL} | awk '{ print $1 }' | grep '\.tgz')
 
 # The lookup
 if [[ -e "packages" ]]; then
-	egrep -v "^(\#|https?:\/\/)" packages | while read pkg; do
-		if ! echo ${dump} | grep -q ${pkg}; then
+	egrep -v '^(\#|https?:\/\/)' packages | while read pkg; do
+		if ! echo ${dump} | grep -q "${pkg}"; then
 			echo "${pkg} not found: ${URL}"
 		fi
 	done
