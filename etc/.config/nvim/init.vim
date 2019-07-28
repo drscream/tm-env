@@ -1,5 +1,6 @@
 " Preamble --------------------------------------------------------------- {{{
 set runtimepath+=$TM_HOME/.config/nvim
+set runtimepath+=$TM_HOME/.local/share/nvim/site
 
 " set the runtime path to include vim-plug and initialize
 call plug#begin($TM_HOME.'/.local/share/nvim/plugged')
@@ -10,6 +11,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
+Plug 'ervandew/supertab'
+Plug 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -63,10 +66,27 @@ set lcs+=nbsp:·
 set linebreak
 set showbreak=↪
 
+" Controls the wrap width you would like to use.
+set textwidth=79
+
+" Controls whether or not automatic text wrapping is enabled, depending on
+" whether or not the t flag is set.
+set formatoptions-=t
+
+" Screen coloums that are highlighted with ColorColumn hl-ColorColumn. Use
+" textwidth+1.
+set colorcolumn=+1
+
 " }}}
 
-" Sources other config files --------------------------------------------- {{{
 set background=dark
 colorscheme gruvbox
 highlight Normal ctermbg=None
+
+
+set title
+
+" Sources other config files --------------------------------------------- {{{
+runtime! vimwiki.vim
+runtime! nerdtree.vim
 " }}}
