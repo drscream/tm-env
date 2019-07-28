@@ -127,7 +127,9 @@ XTerm*VT100*Translations: #override \n\
   Shift Ctrl <Btn1Up>: exec-formatted("chrome --enable-unveil '%t'", PRIMARY)\n\
   Alt <Key>o: exec-formatted("chrome --enable-unveil '%t'", PRIMARY) select-start() select-end()\n\
   Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
-  Ctrl Shift <Key>C:  copy-selection(CLIPBOARD)
+  Ctrl Shift <Key>C:  copy-selection(CLIPBOARD) \n\
+Meta <Key> minus: smaller-vt-font() \n\
+Meta <Key> plus: larger-vt-font() \n\
 
 ! ===== ssh-askpass
 ! default font is used
@@ -149,3 +151,14 @@ SshAskpass*Dialog.title           : OpenSSH Authentication
 SshAskpass*Dialog.label           : OpenSSH Authentication
 ! timeout (before closing)
 SshAskpass*inputTimeout           : 10
+
+! ===== rofi
+! default font
+rofi.font                         : Hack 18
+! color theme
+rofi.color-enabled                : true
+rofi.color-window                 : #2f343f, #2f343f, #2f343f
+rofi.color-normal                 : #2f343f, #d8dee8, #2f343f, #2f343f, #bf616a
+rofi.color-active                 : #2f343f, #b48ead, #2f343f, #2f343f, #93e5cc
+rofi.color-urgent                 : #2f343f, #ebcb8b, #2f343f, #2f343f, #ebcb8b
+
