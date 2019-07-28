@@ -29,26 +29,27 @@ sep_right=""                       # Powerline separator right
 sep_l_left=""                      # Powerline light separator left
 sep_l_right=""                     # Powerline light sepatator right
 
-# Icon glyphs from Terminusicons2
-icon_clock=''
-icon_cal=''
-icon_bat_0='' #0-20
-icon_bat_1='' #21-40
-icon_bat_2='' #41-60
-icon_bat_3='' #61-80
-icon_bat_4='' #81-100
-icon_plug=''
-icon_power=''
-icon_db=''
-icon_square=''
-icon_cpu=''
-icon_mem=''
-icon_vol=''
-icon_prog=''
-icon_wsp=''
+# Icon glyphs from Font Awesome
+icon_clock=$(echo -ne '\uf017')
+icon_bat_0=$(echo -ne '\uf244') #0-20
+icon_bat_1=$(echo -ne '\uf243') #21-40
+icon_bat_2=$(echo -ne '\uf242') #41-60
+icon_bat_3=$(echo -ne '\uf241') #61-80
+icon_bat_4=$(echo -ne '\uf240') #81-100
+icon_plug=$(echo -ne '\uf1e6')
+icon_power=$(echo -ne '\uf0e7')
+icon_db=''
+icon_square=''
+icon_cpu=''
+icon_mem=''
+icon_vol=$(echo -ne '\uf028')
+icon_prog=''
+icon_wsp=''
 
 # Size and fonts
-geometry="x14"
-#font="-xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1"
-font="Terminess Powerline:size=8"
-iconfont="FontAwesome:size=8"
+geometry="x20"
+font="Hack:size=12"
+iconfont="Font Awesome 5 Free Solid:size=10"
+
+# Default number of desktops
+number_of_desktops=10

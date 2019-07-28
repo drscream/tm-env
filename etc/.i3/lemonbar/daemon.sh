@@ -39,17 +39,22 @@ fi
 # Use xprop to receive all details about windows with focus
 if ! is_running xprop; then
 	{
-		xprop -spy -root _NET_ACTIVE_WINDOW 1> >(sed -un 's/.*\(0x.*\)/XPROP\|\1/p' >"${panel_fifo}") & pid=${!};
+		xprop \
+			-spy -root -notype \
+			-f _NET_ACTIVE_WINDOW '32x' '|$0\n' \
+			-f _NET_CURRENT_DESKTOP '32i' '|$0\n' \
+			_NET_ACTIVE_WINDOW _NET_CURRENT_DESKTOP \
+		1> >(sed -un 's/^/XPROP\|/p' >"${panel_fifo}") & pid=${!};
 	}
 	save_pid xprop ${pid}
 fi
 
 # We would like to know which workspace is in use
-if ! is_running wsp; then
-	{
-		$(dirname ${0})/workspaces.py >"${panel_fifo}" & pid=${!}
-	}
-	save_pid wsp ${pid}
-fi
+#if ! is_running wsp; then
+#	{
+#		$(dirname ${0})/workspaces.py >"${panel_fifo}" & pid=${!}
+#	}
+#	save_pid wsp ${pid}
+#fi
 
 wait
