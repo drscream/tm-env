@@ -109,4 +109,10 @@
 	process = git-lfs filter-process
 	required = true
 
+[merge "git-crypt"]
+	name = A custom merge driver used to merge git-crypted files.
+	driver = ~/.bin/scripts/git-crypt-super-merge %O %A %B
+	recursive = binary
+
+
 # vim:ft=dosini
