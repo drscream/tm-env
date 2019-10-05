@@ -25,6 +25,8 @@ alias rvm.load='[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scri
 ##
 ## some local aliases
 ##
+# GitHub gist
+alias gist='gist -c -p'
 # PIM
 alias todo="${TM_HOME}/.virtualenvs/pim/bin/todo"
 alias cal="${TM_HOME}/.virtualenvs/pim/bin/khal"
