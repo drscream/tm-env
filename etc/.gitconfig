@@ -7,7 +7,6 @@
 	user = drscream
 
 [core]
-	pager = cat
 	editor = vim
 	excludesfile = ~/.gitignore
 
@@ -61,6 +60,10 @@
 
 	currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
 
+	br = !git for-each-ref --color=always --sort='committerdate:iso8601' --format='%(color:bold red)%(committerdate:relative)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t
+	bl = !git for-each-ref --sort='committerdate:iso8601' --format='%(committerdate:relative)|%(refname:short)|%(committername)' refs/heads/ | column -s '|' -t
+
+
 	fo = fetch origin
 	fu = fetch upstream
 
@@ -82,9 +85,6 @@
 	diff = auto
 	interactive = auto
 	status = auto
-
-[apply]
-	whitespace = strip
 
 [diff]
 	color = auto
