@@ -26,7 +26,7 @@ case ${OSTYPE} in
 	;;
 	freebsd*)
 		TM_OS='freebsd'
-		TM_USER=${SUDO_USER:-${USER}}
+		TM_USER=${DOAS_USER:-${USER}}
 	;;
 	openbsd*)
 		TM_OS='openbsd'
