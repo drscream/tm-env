@@ -1,14 +1,21 @@
 ! ===== fonts
+! default dpi 96
+Xft.dpi       : 120
+!Xft.dpi       : 192
+!Xft.dpi       : 144
 Xft.antialias : 1
 Xft.rgba      : rgb
 Xft.autohint  : 0
 Xft.hinting   : 1
 Xft.hintstyle : hintfull
 ! fixed is the one true font - use iso10646 for unicode characters
-!*font         : -misc-fixed-medium-r-semicondensed-*-12-*-*-*-*-*-iso10646-1
 *font          : -*-terminesspowerline-medium-r-normal-*-18-*-*-*-*-*-iso10646-1
+!*font         : -misc-fixed-medium-r-semicondensed-*-12-*-*-*-*-*-iso10646-1
+!*font         : -misc-spleen-medium-r-normal--64-640-72-72-c-320-iso10646-1
 
-Xcursor.theme: Neutral
+! ===== cursor
+Xcursor.size   : 24
+Xcursor.theme  : whiteglass
 
 ! ===== colours
 ! Hybrid E7 term colours
@@ -40,7 +47,6 @@ Xcursor.theme: Neutral
 ! white
 *color7:  #a89984
 *color15: #ebdbb2
-
 
 ! ===== xidle
 ! drag pointer to lower left corner to lock screen
@@ -124,8 +130,8 @@ XTerm*on2Clicks              : word
 XTerm*on3Clicks              : line
 ! shift + ctrl + left click to open selection in web browser
 XTerm*VT100*Translations: #override \n\
-  Shift Ctrl <Btn1Up>: exec-formatted("chrome --enable-unveil '%t'", PRIMARY)\n\
-  Alt <Key>o: exec-formatted("chrome --enable-unveil '%t'", PRIMARY) select-start() select-end()\n\
+  Shift Ctrl <Btn1Up>: exec-formatted("chrome '%t'", PRIMARY)\n\
+  Alt <Key>o: exec-formatted("chrome '%t'", PRIMARY) select-start() select-end()\n\
   Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
   Ctrl Shift <Key>C:  copy-selection(CLIPBOARD) \n\
 Meta <Key> minus: smaller-vt-font() \n\
