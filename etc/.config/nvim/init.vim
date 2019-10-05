@@ -86,6 +86,14 @@ highlight Normal ctermbg=None
 
 set title
 
+
+" Extra features --------------------------------------------------------- {{{
+
+" Clean trailing whitespace
+nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
+" }}}
+
 " Sources other config files --------------------------------------------- {{{
 runtime! vimwiki.vim
 runtime! nerdtree.vim
