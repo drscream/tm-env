@@ -9,7 +9,7 @@ GPG_SIGN_AS=pkgsrc@skylime.net
 
 cat <<EOF >> ${MK_CONF}
 GPG_SIGN_AS=${GPG_SIGN_AS}
-GPG=$(which gpg)
+GPG=$(which gpg2)
 EOF
 
 pkg_admin -C ${MK_CONF} gpg-sign-package $@
