@@ -17,3 +17,5 @@ bin/*/terraform
 bin/*/packer
 # Font cache / UUID
 etc/.fonts/.uuid
+etc/.fonts/*/.uuid
+etc/.fonts/*/*/.uuid
