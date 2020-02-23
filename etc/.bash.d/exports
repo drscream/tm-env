@@ -48,12 +48,6 @@ elif [ $(type -P nano 2>/dev/null) ]; then
 fi
 
 ##
-## compression on gzip and bzip2
-##
-export GZIP="-9 -v --name"
-export BZIP2="-9 -v"
-
-##
 ## pager and less
 ##
 export PAGER="less"
