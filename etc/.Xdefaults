@@ -1,17 +1,15 @@
 ! ===== fonts
 ! default dpi 96
-Xft.dpi       : 120
+!Xft.dpi       : 120
 !Xft.dpi       : 192
-!Xft.dpi       : 144
+Xft.dpi       : 144
 Xft.antialias : 1
 Xft.rgba      : rgb
 Xft.autohint  : 0
 Xft.hinting   : 1
 Xft.hintstyle : hintfull
 ! fixed is the one true font - use iso10646 for unicode characters
-*font          : -*-terminesspowerline-medium-r-normal-*-18-*-*-*-*-*-iso10646-1
-!*font         : -misc-fixed-medium-r-semicondensed-*-12-*-*-*-*-*-iso10646-1
-!*font         : -misc-spleen-medium-r-normal--64-640-72-72-c-320-iso10646-1
+*font         : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
 
 ! ===== cursor
 Xcursor.size   : 24
@@ -67,8 +65,8 @@ xlock.foreground  : white
 xlock.mode        : blank
 xlock.username    : username:
 xlock.password    : password:
-xlock.font        : -*-terminesspowerline-medium-r-normal-*-20-*-*-*-*-*-iso10646-1
-xlock.planfont    : -*-terminesspowerline-medium-r-normal-*-14-*-*-*-*-*-iso10646-1
+xlock*font        : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
+xlock*planfont    : -misc-spleen-*-*-normal-*-16-*-*-*-*-*-*-*
 
 ! ===== xclock
 ! digital clock in lower right-hand corner
@@ -77,7 +75,7 @@ XClock*twentyfour  : true
 XClock*padding     : 0
 XClock*geometry    : -2-2
 XClock*render      : false
-XClock*font        : -misc-fixed-bold-r-normal-*-13-*-*-*-*-*-iso10646-1
+XClock*font        : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
 XClock*height      : 12
 XClock*background  : dimgray
 XClock*foreground  : white
@@ -86,13 +84,13 @@ XClock*borderWidth : 0
 ! ===== xterm
 ! use ttf font because of hdpi
 XTerm*faceName               : Hack
-XTerm*faceSize               : 12
+XTerm*faceSize               : 13
 ! Unreadable:
 XTerm.VT100.faceSize1:  8
 ! Tiny:
 XTerm.VT100.faceSize2:  10
 ! Small:
-XTerm.VT100.faceSize3:  12
+XTerm.VT100.faceSize3:  13
 ! Medium:
 XTerm.VT100.faceSize4:  14
 ! Large:
@@ -139,8 +137,8 @@ Meta <Key> plus: larger-vt-font() \n\
 
 ! ===== ssh-askpass
 ! default font is used
-SshAskpass*Dialog.font          : -*-fixed-bold-r-*-*-18-*-*-*-*-*-*-*
-SshAskpass*Dialog.fixedFont     : -*-fixed-bold-r-*-*-18-*-*-*-*-*-*-*
+SshAskpass*Dialog.font          : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
+SshAskpass*Dialog.FixedFont     : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
 ! black background
 SshAskpass*background           : #000000
 SshAskpass*foreground           : #ffffff
