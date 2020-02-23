@@ -42,14 +42,23 @@ xidle &
 # Enable local notify server
 ~/.bin/scripts/notify-server.py &
 
+
+ulimit -c 0
+
 # Disable Touchpad (in OpenBSD)
 #synclient TouchpadOff=1
 
+# Reverse / Natural Scroll via Touchpad
+synclient VertScrollDelta=-114
+
 # if you have a ThinkPad, the following lines enable TrackPoint
 # scrolling by dragging with the middle button (on OpenBSD)
-#xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
-#xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
-#xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+
+# increase pointer speed
+xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4
 
 # Used for statusbar information in dwm
 ( conky | while read LINE; do xsetroot -name "$LINE"; done ) &
