@@ -13,11 +13,14 @@ release tarballs contain the fonts in the following formats: `PCF`, `PSF`
 (for the Linux console), and `.dfont` for Macintosh users.
 
 All font sizes contain all ISO/IEC 8859-1 characters (Basic Latin and Latin-1
-Supplement Unicode block), Latin Extended-A characters, and both Box Drawing
-and Braille Patterns Unicode blocks, except for the 5x8 version.
+Supplement Unicode block), Latin Extended-A characters, as well as Box Drawing,
+Block Elements, and Braille Patterns Unicode blocks, except for the 5x8 version.
 
 Due to character size constraints, the 5x8 version only contains printable
-ASCII characters.
+ASCII characters, the Braille Patterns Unicode block, and light Box Drawing
+characters.
+
+Spleen also has support for Powerline symbols out of the box.
 
 The font name is a reference to Baudelaire.
 
@@ -77,9 +80,15 @@ Packages are available for the following operating systems:
 Clone the repository, convert the files to the Portable Compiled Format
 (PCF) using **bdftopcf** and run **mkfontdir** in the directory.
 
+Alternatively, release tarballs provide PCF files for each size.
+
 ### Mac OS X / macOS
 
-macOS users should use the provided `.dfont` file containing all sizes.
+macOS users should use the `.dfont` files provided in the release tarballs.
+
+### Windows
+
+Windows users should use the `.otf` file provided in the release tarballs.
 
 ## Usage
 
@@ -129,6 +138,11 @@ Use the following sizes:
 - Spleen 16x32: 32 Pt
 - Spleen 32x64: 64 Pt
 
+### Windows
+
+Configure the terminal application to use Spleen in size 12, and make sure
+anti-aliasing is disabled.
+
 ## License
 
 Spleen is released under the BSD 2-Clause license. See `LICENSE` file for
@@ -143,6 +157,12 @@ Spleen is developed by Frederic Cambus.
 ## Resources
 
 GitHub: https://github.com/fcambus/spleen
+
+
+## Trivia
+
+- Spleen is the default font for OpenBSD consoles since January 2019
+- Spleen was imported in the NetBSD src tree in March 2019
 
 [1]: https://www.cambus.net/content/2018/09/spleen-hello.png
 [2]: https://www.cambus.net/content/2018/09/spleen-etranger.png

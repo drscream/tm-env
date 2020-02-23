@@ -1,3 +1,40 @@
+Spleen 1.6.0 (2019-12-02)
+
+- Make it clear that .dfont files are provided in release tarballs
+- Initial SFD version converted from the 8x16 BDF file
+- Add a 'otf' target in the Makefile to generate an OTF version
+- Mention the OTF version in the README, in notes for Windows users
+
+
+
+Spleen 1.5.0 (2019-10-01)
+
+- Shift the middle bar of the digit '3' one pixel up, for better
+  alignement (12x24 version)
+- Tweak the digit '7' for consistency with other sizes (5x8 version)
+- Make the 'Z', 'z' and derived characters more balanced, as is the
+  case with other sizes  (12x24 version)
+- Tweak the digit '2' for consistency with other sizes (12x24 version)
+- Make the slash inside the digit '0' one pixel thiner (32x64 version)
+- Add light box drawings characters in the 5x8 version
+- Add full support for the Braille Patterns Unicode block in the 5x8 version
+- Add branch, LN, and padlock icons for Powerline users
+- Also provide a fonts.alias file, along with fonts.alias-spleen
+
+
+
+Spleen 1.4.0 (2019-09-24)
+
+- Add left and right single quotation mark characters, both identical to
+  an apostrophe
+- Add left and right double quotation mark characters, both identical to
+  ASCII quotation mark
+- Add bullet and horizontal ellipsis characters
+- Add the eight trigrams
+- Add full support for the Block Elements Unicode block
+
+
+
 Spleen 1.3.0 (2019-09-12)
 
 - Add full support for the Box Drawing Unicode block
