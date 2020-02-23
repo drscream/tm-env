@@ -11,9 +11,7 @@
 ##
 ## bash-completion
 ##
-if [ -r /usr/local/share/bash-completion/bash_completion ]; then
-	source /usr/local/share/bash-completion/bash_completion
-fi
+source /opt/tools/etc/profile.d/bash_completion.sh
 
 complete -C /opt/tools/bin/terraform terraform
 
@@ -91,3 +89,9 @@ alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs'
 ## Disable GTK warnings to stderr / stdout
 ##
 export GTK_ENABLE_WARNINGS=0
+
+##
+## EDITOR / VISUAL
+##
+export EDITOR=vi
+export VISUAL=nvim
