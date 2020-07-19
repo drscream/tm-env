@@ -14,6 +14,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'sakshamgupta05/vim-todo-highlight'
+Plug 'gilsondev/searchtasks.vim'
+
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
+
 " All of your Plugins must be added before the following line
 call plug#end()
 " }}}
