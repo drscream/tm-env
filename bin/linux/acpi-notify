@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Defaults
+percent=$(cat /sys/class/power_supply/BAT0/capacity)
+
+info() {
+	info="$(acpi | sed -e 's|^.*[0-9]: \(.*\), \(.*%\), \(.*\)|\1: \2\\n\3|g')"
+	notify-send --urgency=low \
+		-a "BATTERY" "INFO" "${info}"
+}
+
+cron() {
+	local warn=${1}
+	local crit=${2}
+	if (( percent <= crit )); then
+		notify-send --urgency=critical \
+			-a "BATTERY" "CRITICAL"         \
+			"$(apm | head -n 1 | sed 's:, :\\n:g')"
+	elif (( percent <= warn )); then
+		notify-send --urgency=normal   \
+			-a "BATTERY" "WARNING"          \
+			"$(apm | head -n 1 | sed 's:, :\\n:g')"
+	fi
+}
+
+# Main
+case ${1} in
+	cron) shift
+		while getopts "w:c:" opt; do
+			case $opt in
+				w) warn=${OPTARG} ;;
+				c) crit=${OPTARG} ;;
+			esac
+		done
+		cron ${warn-"10"} ${crit-"5"}
+		;;
+	*) info ;;
+esac

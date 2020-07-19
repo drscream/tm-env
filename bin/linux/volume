@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+##
+## Global
+##
+msgId=420001
+
+
+##
+## Functions
+##
+function getProgressString() {
+	# getProgressString <TOTAL ITEMS> <FILLED LOOK> <NOT FILLED LOOK> <STATUS>
+	# For instance:
+	# $ getProgressString 10 "#" "-" 50
+	# #####-----
+	# Note: if you want to use | in your progress bar string you need to change the delimiter in the sed commands
+
+	ITEMS="$1"           # The total number of items(the width of the bar)
+	FILLED_ITEM="$2"     # The look of a filled item 
+	NOT_FILLED_ITEM="$3" # The look of a not filled item
+	STATUS="$4"          # The current progress status in percent
+
+	# calculate how many items need to be filled and not filled
+	FILLED_ITEMS=$(echo "((${ITEMS} * ${STATUS})/100 + 0.5) / 1" | bc)
+	NOT_FILLED_ITEMS=$(echo "$ITEMS - $FILLED_ITEMS" | bc)
+
+	# Assemble the bar string
+	msg=$(printf "%${FILLED_ITEMS}s" | sed "s| |${FILLED_ITEM}|g")
+	msg=${msg}$(printf "%${NOT_FILLED_ITEMS}s" | sed "s| |${NOT_FILLED_ITEM}|g")
+	echo "$msg"
+}
+
+##
+## Main
+##
+mute=$(pulsemixer --get-mute)
+volume=0
+
+option=${1}; shift
+case "${option}" in
+	up)
+		if (( mute == 1 )); then
+			pulsemixer --toggle-mute
+			mute=0
+		fi
+		pulsemixer --change-volume +5
+		;;
+	down) 
+		if (( mute == 1 )); then
+			pulsemixer --toggle-mute
+			mute=0
+		fi
+		pulsemixer --change-volume -5
+		;;
+	mute)
+		pulsemixer --toggle-mute
+		mute=$(pulsemixer --get-mute)
+		;;
+esac
+
+if (( mute == 0 )); then
+	volume=$(pulsemixer --get-volume | awk '{ print $1}')
+fi
+
+dunstify -a "Volume" -u low -r "$msgId" \
+    "${volume}%" \
+    "$(getProgressString 10 "<b> </b>" " " ${volume})"
