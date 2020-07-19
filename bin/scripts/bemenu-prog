@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Run program based on a text based list with extra exec command. This is a
+# simple wrapper program because bemenu and bemenu-run both do both do not
+# provide what I'm looking for.
+
+CONF_DIR=${HOME}/.config/bemenu/
+
+# Create simple bash array based on the key (display name) and value (command)
+declare -A progs
+while read line; do
+	name=$(echo ${line} | awk '{ print $1 }')
+	cmd=$(echo ${line} | awk '{$1=""; print $0 }')
+
+	progs[${name}]="${cmd}"
+done < ${CONF_DIR}/progs
+
+# Provide bemenu which only show the display name for the menu
+menu=$(echo ${!progs[@]} | tr " " "\n" | bemenu "${@}")
+
+# Run the program assigned to the value
+eval "${progs[${menu}]}" &
