@@ -9,7 +9,7 @@ Xft.autohint  : 0
 Xft.hinting   : 1
 Xft.hintstyle : hintfull
 ! fixed is the one true font - use iso10646 for unicode characters
-*font         : -misc-spleen-*-*-normal-*-24-*-*-*-*-*-*-*
+*font         : -misc-spleen-*-*-normal-*-32-*-*-*-*-*-*-*
 
 ! ===== cursor
 Xcursor.size   : 24
@@ -84,7 +84,7 @@ XClock*borderWidth : 0
 ! ===== xterm
 ! use ttf font because of hdpi
 XTerm*faceName               : Hack
-XTerm*faceSize               : 13
+XTerm*faceSize               : 8
 ! Unreadable:
 XTerm.VT100.faceSize1:  8
 ! Tiny:
@@ -166,3 +166,12 @@ rofi.color-normal                 : #2f343f, #d8dee8, #2f343f, #2f343f, #bf616a
 rofi.color-active                 : #2f343f, #b48ead, #2f343f, #2f343f, #93e5cc
 rofi.color-urgent                 : #2f343f, #ebcb8b, #2f343f, #2f343f, #ebcb8b
 
+! ===== Emacs
+! default font
+Emacs*menubar*Font: Hack 8
+Emacs*popup*Font:   Hack 8
+Emacs.font: Hack 8
+Emacs.pane.menubar.background: darkGrey
+Emacs.pane.menubar.foreground: black
+Emacs*menubar.margin: 0
+Emacs*shadowThickness: 1
