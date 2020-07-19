@@ -1,0 +1,7 @@
+gtk-double-click-time = 450
+gtk-font-name =  "Lucida Sans Regular 10"
+gtk-theme-name = "NsCDE"
+gtk-icon-theme-name = "NsCDE"
+gtk-button-images = 0
+gtk-menu-images = 0
+gtk-cursor-blink = 0
