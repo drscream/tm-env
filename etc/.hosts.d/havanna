@@ -2,18 +2,35 @@
 # vim:ft=sh
 
 ##
-## xterm transparency workaround
+## Wayland and HiDPI
 ##
-#if [ -n "${XTERM_VERSION}" ]; then
-#	transset-df 0.85 --id "${WINDOWID}" 2>&1 >/dev/null
-#fi
+# Default ENV for Wayland
+#export MOZ_ENABLE_WAYLAND=1
+#
+#export GDK_DPI_SCALE=2
+#export GDK_BACKEND=wayland
+#
+#export QT_FONT_DPI=192
+#export QT_AUTO_SCREEN_SCALE_FACTOR=2
+
+unset MOZ_ENABLE_WAYLAND
+unset GDK_DPI_SCALE
+unset GDK_BACKEND
+unset QT_FONT_DPI
+unset QT_AUTO_SCREEN_SCALE_FACTOR
+
+# Wayland XKB key setup
+export XKB_DEFAULT_LAYOUT="gb-german-umlaut"
+export XKB_DEFAULT_OPTIONS="grp:alt_shift_toggle,caps:escape"
+
+# Theme for Midnight Commander
+export MC_SKIN=gruvbox256
 
 ##
-## bash-completion
+## Use libvirt (vagrant) defaults
 ##
-source /opt/tools/etc/profile.d/bash_completion.sh
-
-complete -C /opt/tools/bin/terraform terraform
+export VAGRANT_DEFAULT_PROVIDER=libvirt
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 ##
 ## ruby virtual environment
@@ -38,6 +55,9 @@ alias translate="${TM_HOME}/.virtualenvs/leo/bin/leo"
 alias fm='pcmanfm &'
 alias open='xdg-open'
 alias zzz='doas zzz'
+# IMAGE VIEWER
+alias mvi='mpv --config-dir=$HOME/.config/mvi'
+# configure brightness
 function b() {
 	case ${TM_OS} in
 		freebsd)
@@ -73,17 +93,9 @@ function alogin() {
 ## python virtual environment
 ##
 WORKON_HOME="${TM_HOME}/.virtualenvs"
-if [ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]; then 
-	source /usr/local/bin/virtualenvwrapper_lazy.sh
+if [ -r /usr/bin/virtualenvwrapper_lazy.sh ]; then 
+	source /usr/bin/virtualenvwrapper_lazy.sh
 fi
-
-##
-## special admin scripts
-##
-[[ -e ~/.padmin/.adminrc ]] && . ~/.padmin/.adminrc
-[[ -e ~/.padmin/admin/_std/srv_functions ]] && . ~/.padmin/admin/_std/srv_functions
-alias csshA="csshX --ssh '/Users/tm/.padmin/admin/_std/pass.sh' --ssh_args '-rs' "
-
 
 ##
 ## Disable GTK warnings to stderr / stdout
@@ -95,3 +107,20 @@ export GTK_ENABLE_WARNINGS=0
 ##
 export EDITOR=vi
 export VISUAL=nvim
+
+##
+## Always TMUX
+##
+
+if [[ "$(tty)" != "/dev/tty1" ]]; then
+
+if which tmux 2>&1 >/dev/null; then
+	if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+		if [[ -z "$TMUX" ]]; then
+			(tmux ls | grep -vq attached && tmux at) || tmux new -s $(shuf -n 1 /usr/share/dict/words)
+			exit
+		fi
+	fi
+fi
+
+fi
