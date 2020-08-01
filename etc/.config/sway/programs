@@ -1,0 +1,7 @@
+Terminal	alacritty
+Firefox		firefox-bin
+Office		libreoffice
+Inkscape	inkscape
+Thunderbird	thunderbird-bin
+Vivaldi		GDK_DPI_SCALE=1 GDK_BACKEND=x11 vivaldi
+XTerm		xterm

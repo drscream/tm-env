@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=/home/tm/.bin/scripts/notify-server.py
+Name=notify-server
+Type=Application
