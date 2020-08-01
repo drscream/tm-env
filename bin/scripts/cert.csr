@@ -44,6 +44,10 @@ while [ ! "${SAN}" = "" ]; do
 	fi
 done
 
+ORG_NAME=""
+[ -f ~/.config/cert-tools/conf_orgnames.sh ] && \
+	source ~/.config/cert-tools/conf_orgnames.sh
+
 # Config File Generation
 
 cat <<EOF > ${CONFIG}
@@ -82,7 +86,7 @@ cat <<EOF >> $CONFIG
  localityName                   = Locality Name (eg, city)
  localityName_default           = Tettnang
  0.organizationName             = Organization Name (eg, company)
- 0.organizationName_default     = Internet Widgits Pty Ltd
+ 0.organizationName_default     = $ORG_NAME
  organizationalUnitName         = Organizational Unit Name (eg, section)
  organizationalUnitName_default = Infrastructure Services
  emailAddress                   = Email Address
