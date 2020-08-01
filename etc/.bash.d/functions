@@ -232,7 +232,7 @@ dz-reprovision() {
 
 	local machine=${1}
 	local image=${2}
-	local hypervisor=$(jq -r '.[][]|select((.alias == "'${machine}'") or (.uuid == "'${machine}'")).host' ${DZ_VMS_FILE})
+	local hypervisor=$(jq -r '.[][]|select(.state == "running" and ((.alias == "'${machine}'") or (.uuid == "'${machine}'"))).host' ${DZ_VMS_FILE})
 
 	if ! is_uuid ${machine}; then
 		if ! machine=$(ssh ${hypervisor} vmadm lookup -1 alias=${machine} 2>/dev/null); then
@@ -395,7 +395,7 @@ tea() {
 		return 0
 	fi
 
-	gsleep ${time} && notify-send --urgency=critical --app-name="Tea Time" "${time} gone" "${msg}" &
+	sleep ${time} && notify-send --urgency=critical --app-name="Tea Time" "${time} gone" "${msg}" &
 }
 
 # gdatediff
@@ -405,8 +405,8 @@ gdatediff() {
 		return 0
 	fi
 
-	d1=$(gdate -d "${1}" +%s)
-	d2=$(gdate -d "${2}" +%s)
+	d1=$(date -d "${1}" +%s)
+	d2=$(date -d "${2}" +%s)
 	echo $(( (d2 - d1) / 60 ))m
 }
 
