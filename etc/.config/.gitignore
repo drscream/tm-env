@@ -3,7 +3,12 @@
 
 # But not these files or folders
 !.gitignore
+!autostart/
 !dunst/
+!gtk-2.0/
 !gtk-3.0/
 !nvim/
+!systemd/
+!sway/
+!hikari/
 !user-dirs.dirs
