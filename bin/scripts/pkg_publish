@@ -6,7 +6,7 @@
 # Parameter and defaults
 SRC="${1}"
 
-DST_DOMAIN="root@pkgsrc.pub"
+DST_DOMAIN="root@de-fns-hetzner.pkgsrc.pub"
 DST_PATH="/var/www/pkgsrc.smartos.skylime.net/skylime-extra"
 
 # Help function
@@ -25,7 +25,7 @@ if [[ -z ${SRC} ]]; then
 fi
 
 # Parse URL for upload
-SHORT_URL=$(echo ${SRC} | gsed 's|http[s]\?:\/\/\([^\/\]*\)\/\(packages\/\)\?||g')
+SHORT_URL=$(echo ${SRC} | sed 's|http[s]\?:\/\/\([^\/\]*\)\/\(packages\/\)\?||g')
 OS=$(echo ${SHORT_URL}      | awk -F \/ '{ print $1 }')
 RELEASE=$(echo ${SHORT_URL} | awk -F \/ '{ print $2 }')
 ARCH=$(echo ${SHORT_URL}    | awk -F \/ '{ print $3 }')
