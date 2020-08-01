@@ -15,6 +15,7 @@ bin:
 # Vim extra bundles
 vim:
 	vim +PlugInstall +qall
+	nvim +PlugInstall +qall
 
 # SSL certs hashes for openssl
 certs:
