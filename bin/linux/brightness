@@ -36,11 +36,16 @@ function getProgressString() {
 ##
 option=${1}; shift
 case "${option}" in
-	up)   light -A 10 ;;
-	down) light -U 10 ;;
+	up)   light -A 5 ;;
+	down) light -U 5 ;;
 esac
 
-brightness=$(light -G)
+brightness=$(light -G | awk -F\. '{ print $1 }')
+kbd_bright=$(cat /sys/class/leds/tpacpi::kbd_backlight/brightness || echo 0)
+
+if [[ ${brightness} -lt 30 ]] && [[ ${kbd_bright} -eq 0 ]]; then
+	echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness
+fi
 
 dunstify -a "Brightness" -u low -r "$msgId" \
     "${brightness}%" \
