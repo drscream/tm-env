@@ -85,8 +85,17 @@ alias dz-search='dz list -c | grep -i'
 alias zlogin='dz shell '
 
 function alogin() {
-	UUID=$(cat ~/.dz/vms.json | jq -r '.[][] | select(.alias=="'${1}'") | select(.state=="running") | .uuid')
-	dz shell ${UUID}
+	INFO=$(cat ~/.dz/vms.json | jq -r '.[][] | select(.alias=="'${1}'") | select(.state=="running") | .host + " " + .uuid')
+	HOST=$(echo ${INFO/ */} | awk -F \. '{ print $1 }')
+	UUID=${INFO/* /}
+	if [[ -n "${UUID}" ]]; then
+		[[ -n "${TMUX}" ]] && printf "\033k${HOST}/${1}\033\\"
+		dz shell ${UUID}
+		[[ -n "${TMUX}" ]] && tmux setw automatic-rename
+	else
+		echo "Unknown UUID, please specify host or refresh cache"
+		return 1
+	fi
 }
 
 ##
