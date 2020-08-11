@@ -1,3 +1,77 @@
+Spleen 1.8.2 (2020-07-31)
+
+- Fix size of the lower case 'ae' character in the 16x32 and 32x64 versions
+- Fix size of the lower case 'oe' character in the 16x32 and 32x64 versions
+- Add 'AE' and 'ae' characters with acute accent
+- Add 'AE' and 'ae' characters with macron
+- Add 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'R', 'r', 'U', 'u' with
+  inverted breve
+- Add 'A', 'a', 'O', 'o' characters with dot above
+- Add 'O' and 'o' characters with ogonek
+- Add 'O' and 'o' characters with ogonek and macron
+- Shorten parentheses, square brackets, braces, slash, backslash in the
+  8x16 version, fixing alignment issues
+- Shift vertical line and double vertical line characters one pixel
+  up (8x16 version)
+
+
+
+Spleen 1.8.1 (2020-07-16)
+
+- Center tilde vertically for all sizes, as modern fonts do
+- Add black triangles in the 25E2-25E5 range
+- Add single angle quotation mark characters
+- Add white and black circle characters
+- Add inverse bullet and inverse white circle characters
+- Add 'A', 'a', 'O', 'o', 'U', 'u' characters with caron
+- Add 'I', 'i', 'G', 'g', 'j' characters with caron
+- Add 'H', 'h', 'K', 'k', characters with caron
+- Add 'E' and 'e' characters with cedilla
+- Add 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'R', 'r', 'U', 'u' with
+  double grave
+- Add "almost equal to" character
+- Add 'G' and 'g' characters with acute accent
+- Add 'O' and 'o' characters with stroke and acute
+- Add double vertical bar and double exclamation mark characters
+- Add stand alone breve, dot above, ogonek, small tilde, and double
+  acute accent
+
+
+
+Spleen 1.8.0 (2020-06-29)
+
+- Add Initial 6x12 version, containing printable ASCII characters, the
+  Braille Patterns Unicode block, and light Box Drawing characters
+- Improve ampersand character, making it more consistent with other
+  sizes (5x8 version)
+- Add instructions on how to use Spleen in the NetBSD console
+
+
+
+Spleen 1.7.1 (2020-06-21)
+
+- Add some Powerline characters (arrows symbols and padlock) (5x8 version)
+- Fix duplicate character names for Powerline symbols
+- Uppercase ISO in the FONT property so fonts can be processed through
+  ucs2any(1)
+- Add "Black Diamond" and "Lozenge" characters for all sizes
+- Add "Black Heart Suit" and "Black Diamond Suit" characters for all sizes
+- Remove strain pixel on the '5' digit (5x8 version)
+- Improve the Esszet character (8x16, 12x24, 16x32, and 32x64 versions)
+
+
+
+Spleen 1.7.0 (2020-02-13)
+
+- Improve generated PSF files so that box-drawing characters are correctly
+  displayed
+- Add the FONT_VERSION XFLD property for all BDF sizes
+- Generate OpenType (OTF) versions for the 8x16, 12x24, 16x32 and 32x64 sizes
+- Stop generating .dfont files, OTF versions should be used instead
+- Add links to Debian and Ubuntu packages.
+
+
+
 Spleen 1.6.0 (2019-12-02)
 
 - Make it clear that .dfont files are provided in release tarballs
