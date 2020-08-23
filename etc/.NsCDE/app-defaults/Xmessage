@@ -1,0 +1,19 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+xmessage*title: 
+xmessage.geometry: 410x84
+xmessage*background: #ae00b200c300
+xmessage*foreground: #000000000000
+xmessage*borderColor: #000000000000
+xmessage*ShapeStyle: Rectangle
+xmessage.form.message.height: 40
+xmessage*message*foreground: #000000000000
+xmessage*message*background: #ff00f700e900
+xmessage*font: -*-lucida-bold-r-normal-*-18-*-*-*-*-*-*
+xmessage.Scroll: Never
+xmessage*translations: #override \n\
+ <Key>Q: exit()

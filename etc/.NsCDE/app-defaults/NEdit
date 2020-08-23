@@ -1,0 +1,17 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+NEdit*XmCursorPositionVisible: FALSE
+NEdit*text.cursorForeground: Green
+NEdit*text.cursorBackground: Red
+NEdit.textFgColor: #000000000000
+NEdit.textBgColor: #ff00f700e900
+NEdit.cursorFgColor: #000000000000
+NEdit*text.autoWrapPastedText: False
+NEdit*text.heavyCursor: True
+NEdit*text.blinkRate: 0
+NEdit.helpLinkColor: cyan
+nc.autoStart: True

@@ -1,0 +1,44 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+Editres.Geometry:	456x531-86-10
+Editres*font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-*
+Editres.paned.porthole.background: #ff00f700e900
+Editres*box*background: #ae00b200c300
+Editres*background: #ae00b200c300
+Editres.paned.porthole.tree.background: #ff00f700e900
+Editres.paned.hPane.xt.shadowWidth: 2
+Editres.paned.hPane.xt.topShadowContrast: 18
+Editres.paned.hPane.panner.background: #ae00b200c300
+Editres.paned.hPane.panner.foreground: #000000000000
+Editres.paned.hPane.panner.shadowColor: #000000000000
+Editres.paned.hPane.xt.background: #5e43606d69a3
+Editres.paned.hPane.xt.foreground: #000000000000
+Editres.paned.hPane.xt.font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-*
+Editres*SimpleMenu*borderWidth: 2
+Editres*SimpleMenu*shadowWidth: 2
+Editres*SimpleMenu*topShadowContrast: 18
+Editres*SimpleMenu*borderColor: #5e43606d69a3
+Editres.paned.hPane.panner.shadowThickness: 2
+Editres*namesList.background: #ff00f700e900
+Editres*namesLabel.background: #5e43606d69a3
+Editres*namesLabel.foreground: #000000000000
+Editres*namesLabel.shadowWidth: 2
+Editres*namesLabel.topShadowContrast: 48
+Editres*valueText.background: #ff00f700e900
+Editres*commandBox.background: #5e43606d69a3
+Editres*namesAndClasses.background: #ff00f700e900
+Editres*resourceLabel.background: #5e43606d69a3
+Editres*resourceLabel.foreground: #000000000000
+Editres*resourceLabel.shadowWidth: 2
+Editres*grip*shadowWidth: 3
+Editres*valueForm.valueLabel.background: #5e43606d69a3
+Editres*valueForm.valueLabel.foreground: #000000000000
+Editres*valueForm.valueLabel.shadowWidth: 2
+Editres.xt*geometry: 749x549-18+9
+Editres*resourceLabel.allowResize: False
+Editres*allowShellResize: False
+

@@ -1,0 +1,24 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+! ==================================================================
+! XBoard
+! ==================================================================
+
+XBoard*geometry: +120+30
+XBoard*background: #ae00b200c300
+XBoard*foreground: #000000000000
+XBoard*SimpleMenu*shadowWidth: 3
+XBoard*whiteTime*shadowWidth: 3
+XBoard*blackTime*shadowWidth: 3
+XBoard.normalLayout.form.whiteTime.foreground: #000000000000
+XBoard.normalLayout.form.whiteTime.background: #5e43606d69a3
+XBoard*highlightLastMove: True
+XBoard*whitePieceColor: #FFF7E9
+XBoard*blackPieceColor: #000000
+XBoard*lightSquareColor: #000000000000
+XBoard*darkSquareColor: #ae00b200c300
+XBoard*highlightSquareColor: #93e6974ca5c0

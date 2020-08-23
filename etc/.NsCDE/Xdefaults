@@ -1,0 +1,431 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+! ============================================================
+! .Xdefaults
+! ============================================================
+
+! ==================================================================
+! Athena widgets and general ...
+! ==================================================================
+
+*eightBitInput: 	True
+*visualBell:		True
+*scrollTtyOutput:	False
+*scrollKey:		True
+Scrollbar.JumpCursor:	True
+*basicLocale:		hr_HR
+*inputLang:		hr_HR
+*ShapeStyle:		Rectangle
+*Command.ShapeStyle:    Rectangle
+*Toggle.ShapeStyle:     Rectangle
+*ShadowWidth:		2
+*BeNiceToColormap:	0
+*Command.highlightThickness:	1
+*Toggle.highlightThickness:	1
+*Label.ShadowWidth:	1
+
+*Form*Text*Background:	#000000000000
+*Form*Text*Scrollbar*Background:	#93e6974ca5c0
+*Text*Background:	#ff00f700e900
+*Text*Foreground:	#000000000000
+*Text*ThreeD*Background:	#93e6974ca5c0
+*Text*Scrollbar*Background:	#93e6974ca5c0
+*Viewport.background:	#ae00b200c300
+*Command.Background:	#ae00b200c300
+*Toggle.Background:	#93e6974ca5c0
+*MenuButton.Background:	#ae00b200c300
+*SimpleMenu.Background:	#ae00b200c300
+*List*Background:	#ff00f700e900
+*Box.Background:	#ae00b200c300
+*Label.Background:	#ff00f700e900
+*Scrollbar.Background:	#93e6974ca5c0
+*SimpleMenu*MenuLabel*Background:	#000000000000
+*Dialog.Background:	#ff00f700e900
+*Form*Background:	#ae00b200c300
+*Form*Viewport*Background:	#000000000000
+*Form*Viewport*Scrollbar*Background:	#ae00b200c300
+
+*SimpleMenu*MenuLabel*Font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-iso8859-2
+*SimpleMenu*Font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-iso8859-2
+*Toggle.Font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-iso8859-2
+*Command.Font: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-iso8859-2
+
+*MenuButton.translations:  Any<BtnDown>:  PopupMenu()
+*Paned.Text.translations: #override\n\
+ Shift<Btn4Down>,<Btn4Up>: scroll-one-line-down()\n\
+ Shift<Btn5Down>,<Btn5Up>: scroll-one-line-up()\n\
+ Ctrl<Btn4Down>,<Btn4Up>:  previous-page()\n\
+ Ctrl<Btn5Down>,<Btn5Up>:  next-page()\n\
+ None<Btn4Down>,<Btn4Up>:  scroll-one-line-down()scroll-one-line-down()scroll-one-line-down()scroll-one-line-down()scroll-one-line-down()\n\
+ None<Btn5Down>,<Btn5Up>:  scroll-one-line-up()scroll-one-line-up()scroll-one-line-up()scroll-one-line-up()scroll-one-line-up()\n\
+
+! =============== End of Athena and general resources ==================
+
+! ==================================================================
+! Motif X Resources
+! ==================================================================
+
+#include ".NsCDE/Xdefaults.fontdefs"
+
+*.renderTable: variable
+*.renderTable.variable.fontName: FONT_VARIABLE_NORMAL_MEDIUM_NAME
+*.renderTable.variable.fontSize: FONT_VARIABLE_NORMAL_MEDIUM_SIZE
+*.renderTable.variable.fontStyle: FONT_VARIABLE_NORMAL_MEDIUM_STYLE
+*.renderTable.variable.fontType: FONT_IS_XFT
+
+*XmText.renderTable: variable
+*XmText.renderTable.variable.fontName: FONT_MONOSPACED_NORMAL_MEDIUM_NAME
+*XmText.renderTable.variable.fontSize: FONT_MONOSPACED_NORMAL_MEDIUM_SIZE
+*XmText.renderTable.variable.fontStyle: FONT_MONOSPACED_NORMAL_MEDIUM_STYLE
+*XmText.renderTable.variable.fontType: FONT_IS_XFT
+
+*XmList.renderTable: variable
+*XmList.renderTable.variable.fontName: FONT_MONOSPACED_NORMAL_MEDIUM_NAME
+*XmList.renderTable.variable.fontSize: FONT_MONOSPACED_NORMAL_MEDIUM_SIZE
+*XmList.renderTable.variable.fontStyle: FONT_MONOSPACED_NORMAL_MEDIUM_STYLE
+*XmList.renderTable.variable.fontType: FONT_IS_XFT
+
+*XmTextField.renderTable: variable
+*XmTextField.renderTable.variable.fontName: FONT_MONOSPACED_NORMAL_MEDIUM_NAME
+*XmTextField.renderTable.variable.fontSize: FONT_MONOSPACED_NORMAL_MEDIUM_SIZE
+*XmTextField.renderTable.variable.fontStyle: FONT_MONOSPACED_NORMAL_MEDIUM_STYLE
+*XmTextField.renderTable.variable.fontType: FONT_IS_XFT
+
+*enableEtchedInMenu:    True
+*enableThinThickness:   True
+*enableToggleColor:     True
+*enableButtonTab:       True
+*multiClickTime:        500
+
+*XmToggleButton.indicatorOn: INDICATOR_CHECK_BOX
+*XmToggleButton.indicatorType: ONE_OF_MANY_ROUND
+*XmToggleButtonGadget.indicatorOn: INDICATOR_CHECK_BOX
+*XmToggleButtonGadget.indicatorType: ONE_OF_MANY_ROUND
+
+*XmFileSelectionBox.pattern: [^.]*
+*XmFileSelectionBox.resizePolicy: XmRESIZE_GROW
+*XmFileSelectionBox.width: 480
+*XmFileSelectionBox.height: 548
+
+*background: #ae00b200c300
+*foreground: #000000000000
+*highlightColor: #b2004d007a00
+
+*XmLabelGadget*background: #ae00b200c300
+*XmLabelGadget*foreground: #000000000000
+*XmSelectionBox.background: #ae00b200c300
+*XmSelectionBox.foreground: #000000000000
+*XmRowColumn*background: #ae00b200c300
+*XmRowColumn*foreground: #000000000000
+*XmTextField.background: #ff00f700e900
+*XmTextField.foreground: #000000000000
+*XmPushButtonGadget*background: #ae00b200c300
+*XmPushButtonGadget*foreground: #000000000000
+*XmFileSelectionBox.background: #ae00b200c300
+*XmFileSelectionBox.foreground: #000000000000
+*XmFileSelectionBox*XmList.background: #ff00f700e900
+*XmFileSelectionBox*XmList.foreground: #000000000000
+*XmFileSelectionBox*XmScrolledWindow.XmScrollBar.background: #ae00b200c300
+*XmFileSelectionBox*XmScrolledWindow.XmScrollBar.foreground: #000000000000
+*XmFileSelectionBox*XmScrolledWindow.background: #ae00b200c300
+*XmFileSelectionBox*XmScrolledWindow.foreground: #000000000000
+*XmFileSelectionBox*XmSeparatorGadget.background: #ae00b200c300
+*XmFileSelectionBox*XmSeparatorGadget.foreground: #000000000000
+*XmFileSelectionBox*XmForm.background: #ae00b200c300
+*XmFileSelectionBox*XmForm.foreground: #000000000000
+*XmMessageBox.background: #ae00b200c300
+*XmMessageBox.foreground: #000000000000
+*XmMessageBox*XmSeparatorGadget.background: #ae00b200c300
+*XmMessageBox*XmSeparatorGadget.foreground: #000000000000
+
+*XmDialogShell.background: #ae00b200c300
+*XmDialogShell.foreground: #000000000000
+*XmDialogShell*XmForm*background: #ae00b200c300
+*XmDialogShell*XmForm*foreground: #000000000000
+*XmDialogShell*XmRowColumn.background: #ae00b200c300
+*XmDialogShell*XmRowColumn.foreground: #000000000000
+*XmDialogShell*XmLabel.background: #ae00b200c300
+*XmDialogShell*XmLabel.foreground: #000000000000
+*XmDialogShell*XmPushButton.background: #ae00b200c300
+*XmDialogShell*XmPushButton.foreground: #000000000000
+*XmDialogShell*XmToggleButton.background: #ae00b200c300
+*XmDialogShell*XmToggleButton.foreground: #000000000000
+*XmDialogShell*XmText.background: #ff00f700e900
+*XmDialogShell*XmText.foreground: #000000000000
+*XmDialogShell*XmSelectionBox.XmForm.XmLabelGadget.background: #ae00b200c300
+*XmDialogShell*XmSelectionBox.XmForm.XmLabelGadget.foreground: #000000000000
+*XmDialogShell.XmSelectionBox.XmForm.XmText.background: #ff00f700e900
+*XmDialogShell.XmSelectionBox.XmForm.XmText.foreground: #000000000000
+*XmDialogShell.XmForm.XmText.background: #ff00f700e900
+*XmDialogShell.XmForm.XmText.foreground: #000000000000
+*XmDialogShell.XmForm.XmFrame*XmText.background: #ff00f700e900
+*XmDialogShell.XmForm.XmFrame*XmText.foreground: #000000000000
+*XmDialogShell.XmForm.XmFrame*XmTextField.background: #ff00f700e900
+*XmDialogShell.XmForm.XmFrame*XmTextField.foreground: #000000000000
+*XmDialogShell.XmSelectionBox.XmForm*XmText.background: #ff00f700e900
+*XmDialogShell.XmSelectionBox.XmForm*XmText.foreground: #000000000000
+*XmDialogShell.XmMessageBox.XmRowColumn.XmForm.XmTextField.background: #ff00f700e900
+*XmDialogShell.XmMessageBox.XmRowColumn.XmForm.XmTextField.foreground: #000000000000
+*XmDialogShell.XmMessageBox.XmForm.XmFrame*XmTextField.background: #ff00f700e900
+*XmDialogShell.XmMessageBox.XmForm.XmFrame*XmTextField.foreground: #000000000000
+*XmDialogShell*XmPanedWindow*background: #ae00b200c300
+*XmDialogShell*XmPanedWindow*foreground: #000000000000
+*XmDialogShell*XmComboBox.background: #ae00b200c300
+*XmDialogShell*XmComboBox.foreground: #000000000000
+
+*XmDialogShell.DtDialogBox.background: #ae00b200c300
+*XmDialogShell.DtDialogBox.foreground: #000000000000
+*XmDialogShell.DtDialogBox.XmSeparatorGadget.background: #ae00b200c300
+*XmDialogShell.DtDialogBox.XmSeparatorGadget.foreground: #000000000000
+*XmDialogShell.DtHelpDialog.background: #ae00b200c300
+*XmDialogShell.DtHelpDialog.foreground: #000000000000
+*XmDialogShell.DtHelpQuickDialog.background: #ae00b200c300
+*XmDialogShell.DtHelpQuickDialog.foreground: #000000000000
+*XmDialogShell.DtHelpDialog*XmTextField.background: #ff00f700e900
+*XmDialogShell.DtHelpDialog*XmTextField.foreground: #000000000000
+*XmDialogShell.DtPrintSetupBox.background: #ae00b200c300
+*XmDialogShell.DtPrintSetupBox.foreground: #000000000000
+*XmDialogShell.DtPrintSetupBox*XmTextField.background: #ff00f700e900
+*XmDialogShell.DtPrintSetupBox*XmTextField.foreground: #000000000000
+*XmDialogShell.DtDialogBox*XmText.background: #ff00f700e900
+*XmDialogShell.DtDialogBox*XmText.foreground: #000000000000
+*XmDialogShell.DtDialogBox*XmList.background: #ff00f700e900
+*XmDialogShell.DtDialogBox*XmList.foreground: #000000000000
+*XmDialogShell.DtHelpDialog.XmDialogShell.XmForm.XmScrolledWindow.XmList.background: #ff00f700e900
+*XmDialogShell.DtHelpDialog.XmDialogShell.XmForm.XmScrolledWindow.XmList.foreground: #000000000000
+
+*XmForm.XmLabelGadget.background: #ae00b200c300
+*XmForm.XmLabelGadget.foreground: #000000000000
+*XmForm.XmRowColumn.background: #ae00b200c300
+*XmForm.XmRowColumn.foreground: #000000000000
+*XmForm.XmRowColumn.XmPushButton.background: #ae00b200c300
+*XmForm.XmRowColumn.XmPushButton.foreground: #000000000000
+*XmForm.XmRowColumn.XmToggleButton.foreground: #000000000000
+*XmForm.XmRowColumn.XmToggleButton.background: #ae00b200c300
+*XmForm.XmRowColumn.XmLabelGadget.foreground: #000000000000
+*XmForm.XmRowColumn.XmLabelGadget.background: #ae00b200c300
+*XmForm.XmFrame.XmLabelGadget.foreground: #000000000000
+*XmForm.XmFrame.XmLabelGadget.background: #ae00b200c300
+*XmForm.menuBar.background: #ae00b200c300
+*XmForm.menuBar.foreground: #000000000000
+*XmFrame.XmScrolledWindow.DtTerm.background: #ff00f700e900
+*XmFrame.XmScrolledWindow.DtTerm.foreground: #000000000000
+
+*XmMainWindow.XmFrame.XmRowColumn.background: #ae00b200c300
+*XmMainWindow.XmFrame.XmRowColumn.foreground: #000000000000
+*XmMainWindow*XmText.background: #ff00f700e900
+*XmMainWindow*XmText.foreground: #000000000000
+*XmMainWindow*XmFrame.XmRowColumn.background: #ae00b200c300
+*XmMainWindow*XmFrame.XmRowColumn.foreground: #000000000000
+*XmMainWindow*XmScrolledWindow*XmDrawingArea.background: #93e6974ca5c0
+*XmMainWindow*XmScrolledWindow*XmDrawingArea.foreground: #000000000000
+*XmMainWindow*XmScrolledWindow*XmList.background: #ff00f700e900
+*XmMainWindow*XmScrolledWindow*XmList.foreground: #000000000000
+*XmMainWindow*XmScrolledWindow*XmContainer.background: #93e6974ca5c0
+*XmMainWindow*XmScrolledWindow*XmContainer.foreground: #000000000000
+*XmMainWindow*XmScrolledWindow.XmClipWindow.XmContainer.XmIconGadget.background: #93e6974ca5c0
+*XmMainWindow*XmScrolledWindow.XmClipWindow.XmContainer.XmIconGadget.foreground: #000000000000
+*XmMainWindow*XmRowColumn.background: #ae00b200c300
+*XmMainWindow*XmRowColumn.foreground: #000000000000
+
+*XmList.baseTranslations: #augment \n\
+ <Btn5Down>: ListNextPage() \n\
+ <Btn4Down>: ListPrevPage()
+
+*XmScrollBar.baseTranslations:	#augment \n\
+ <Btn4Down>: IncrementUpOrLeft(0) IncrementUpOrLeft(1) \n\
+ <Btn5Down>: IncrementDownOrRight(0) IncrementDownOrRight(1)
+
+*XmSpinBox.accelerators: #override \n\
+ <Btn5Down>: SpinBPrior() \n\
+ <Btn5Up>: SpinBDisarm() \n\
+ <Btn4Down>: SpinBNext() \n\
+ <Btn4Up>: SpinBDisarm() \n\
+ <Key>osfUp: SpinBNext() \n\
+ <Key>osfDown: SpinBPrior() \n\
+ <KeyUp>osfUp: SpinBDisarm() \n\
+ <KeyUp>osfDown: SpinBDisarm() \n\
+ <Key>osfLeft: SpinBLeft() \n\
+ <Key>osfRight: SpinBRight() \n\
+ <KeyUp>osfLeft: SpinBDisarm() \n\
+ <KeyUp>osfRight: SpinBDisarm() \n\
+ <Key>osfBeginLine: SpinBFirst() \n\
+ <Key>osfEndLine: SpinBLast()
+
+*XmText.baseTranslations: #augment \n\
+ Shift<Btn4Down>: page-left() \n\
+ Shift<Btn5Down>: page-right() \n\
+ <Btn5Down>: scroll-one-line-up() scroll-one-line-up() scroll-one-line-up() \n\
+ <Btn4Down>: scroll-one-line-down() scroll-one-line-down() scroll-one-line-down()
+
+*XmText*Translations:   #override\n\
+ Ctrl<Key>u:delete-to-start-of-line()\n\
+ Ctrl<Key>k:delete-to-end-of-line()\n\
+ Ctrl<Key>a:beginning-of-line()\n\
+ Ctrl<Key>e:end-of-line()\n\
+ Ctrl<Key>p:process-up()\n\
+ Ctrl<Key>b:backward-character()\n\
+ Ctrl<Key>n:process-down()\n\
+ Ctrl<Key>f:forward-character()
+
+*XmTextField*Translations:      #override\n\
+ <Key>Home: beginning-of-line()\n\
+ <Key>End: end-of-line()\n\
+ Ctrl<Key>u:delete-to-start-of-line()\n\
+ Ctrl<Key>k:delete-to-end-of-line()\n\
+ Ctrl<Key>a:beginning-of-line()\n\
+ Ctrl<Key>e:end-of-line()\n\
+ Ctrl<Key>b:backward-character()\n\
+ Ctrl<Key>f:forward-character()
+
+! =============== End of Motif resources ==================
+
+! ==================================================================
+! Maybe Java is reading this ...
+! ==================================================================
+
+SWT*background: #ae00b200c300
+SWT*foreground: #000000000000
+SWT*XmText.background: #ff00f700e900
+SWT*XmText.foreground: #000000000000
+SWT*XmTextField.background: #ff00f700e900
+SWT*XmTextField.foreground: #000000000000
+SWT*XmList.background: #ff00f700e900
+SWT*XmList.foreground: #000000000000
+SWT*XmScrollBar*background: #ae00b200c300
+SWT*XmScrollBar*foreground: #000000000000
+
+! =============== End of Java resources ==================
+
+! ==================================================================
+! TCL/TK is reading this ...
+! ==================================================================
+
+*activeBackground: #ae00b200c300
+*activeForeground: #000000000000
+
+! =============== End of TCL/TK resources ==================
+
+! ==================================================================
+! OpenWindows/OpenLook widgets
+! ==================================================================
+
+OpenWindows.PopupJumpCursor:	True
+OpenWindows.MultiClickTimeout:	4
+OpenWindows.DragRightDistance:	100
+OpenWindows.Beep:	always
+OpenWindows.BeepDuration:	500
+OpenWindows.MouseAcceleration:  2
+OpenWindows.MouseThreshold:     15
+OpenWindows.SetInput:	select
+OpenWindows.SelectDisplaysMenu:	False
+OpenWindows.3DLook.Color:	True
+OpenWindows.MenuAccelerators:	True
+OpenWindows.PaintWorkspace:	True
+OpenWindows.ScrollbarJumpCursor:	True
+OpenWindows.WindowMenuAccelerators:	True
+OpenWindows.KeyClick:	False
+OpenWindows.KeyRepeat:	True
+OpenWindows.IconLocation:	left
+OpenWindows.ScrollbarPlacement:	right
+OpenWindows.KeyboardCommands:	Basic
+OpenWindows.PointerMapping:	right
+OpenWindows.NumericFormat:	C
+OpenWindows.TimeFormat: C
+OpenWindows.Scale:	medium
+
+OpenWindows.WorkspaceBitmapBg:	#ffffffffffff
+OpenWindows.WorkspaceBitmapFg:	#000000000000
+OpenWindows.WorkspaceBitmapFile:	gray
+
+OpenWindows.WindowColor:	#ae00b200c300
+OpenWindows.WindowForeground:	#000000000000
+Window.Color.Background:	#ff00f700e900
+Window.Color.Foreground:	#000000000000
+OpenWindows.WorkspaceColor:	#ff00f700e900
+OpenWindows.DataBackground:	#ff00f700e900
+OpenWindows.DataForeground:	#000000000000
+
+OpenWindows.RegularFont: -*-lucida-medium-r-normal-*-12-*-*-*-*-*-*
+OpenWindows.BoldFont: -*-lucida-bold-r-normal-*-12-*-*-*-*-*-*
+OpenWindows.MonospaceFont: -*-lucidatypewriter-medium-r-normal-*-*-120-*-*-m-*-*
+
+! =============== End of OpenLook resources ==================
+
+! ==================================================================
+! xv
+! ==================================================================
+
+xv.Geometry: 480x270+169+43
+xv.ctrlGeometry: 440x348+175+77
+xv*borderWidth: 0
+xv.*.background: #aeb2c3
+xv*foreground: #000000
+xv*force24: True
+xv*perfect: True
+xv*highlight: #686b75
+xv*font: -*-lucida-bold-r-normal-*-12-*-*-*-*-*-iso8859-2
+
+! =============== End of xv resources ==================
+
+! ==================================================================
+! FVWM Helpers (xmessage, xterm etc with different CLASS/TITLE/NAME
+! ==================================================================
+
+Prompter*geometry: 80x18+289+308
+
+FS-SW-xmessage*foreground: #000000000000
+FS-SW-xmessage*background: #ff00f700e900
+FS-SW-xmessage*borderColor: #dccfde86e5d2
+FS-SW-message*background: #ff00f700e900
+FS-SW-xmessage*ShapeStyle: Rectangle
+FS-SW-xmessage.Scroll: Never
+
+FS-SW-error*foreground: #000000000000
+FS-SW-error*background: #ae00b200c300
+FS-SW-error*borderColor: #dccfde86e5d2
+FS-SW-error*ShapeStyle: Rectangle
+FS-SW-error.Scroll: Never
+
+! =============== End of FVWM resources ==================
+
+! ==================================================================
+! Misc
+! ==================================================================
+
+! #include ".app-defaults/Rxvt"
+! #include ".app-defaults/Aterm"
+! #include ".app-defaults/MRxvt"
+
+Dtterm*dtTermScrolledWindow*background: #ff00f700e900
+Dtterm*dtTermScrolledWindow*XmScrollBar*Background: #ae00b200c300
+Dtterm*blinkRate: 0
+Dtterm*visualBell: False
+Dtterm*termName: xterm
+Dtterm*textFontList: -*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*
+Dtterm*userFontList: \
+ -*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-16-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-18-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-19-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-24-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-10-*-*-*-*-*-*: \n\
+ -*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*:
+Dtterm*dtTerm*Translations: #override \n\
+ <Key>Home: string(0x1b) string("[7~") \n\
+ <Key>End: string(0x1b) string("[8~") \n\
+ <Key>Insert: string(0x1b) string("[2~") \n\
+ <Key>osfDelete: string(0x1b) string("[3~") \n\
+ <Key>Page_Up: string(0x1b) string("[5~") \n\
+ <Key>Page_Down: string(0x1b) string("[6~") \n\
+ <Key>Left: string(0x1b) string("OD") \n\
+ <Key>Right: string(0x1b) string("OC")
+
+! --------------------------------------------------------------------------------
+
+#include ".NsCDE/Xdefaults.local"
+

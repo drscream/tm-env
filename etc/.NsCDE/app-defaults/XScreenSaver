@@ -1,0 +1,35 @@
+!
+! This file is a part of the NsCDE - Not so Common Desktop Environment
+! Author: Hegel3DReloaded
+! Licence: GPLv3
+!
+
+! =================================================================
+! XScreenSaver
+! =================================================================
+
+xscreensaver.Dialog.headingFont: -*-times-bold-r-*-*-*-180-*-*-*-*-iso10646-1
+xscreensaver.Dialog.bodyFont: -*-times-bold-r-*-*-*-140-*-*-*-*-iso10646-1
+xscreensaver.Dialog.labelFont: -*-times-bold-r-*-*-*-140-*-*-*-*-iso10646-1
+xscreensaver.Dialog.unameFont: -*-times-bold-r-*-*-*-120-*-*-*-*-iso10646-1
+xscreensaver.Dialog.buttonFont: -*-times-bold-r-*-*-*-140-*-*-*-*-iso10646-1
+xscreensaver.Dialog.dateFont: -*-times-medium-r-*-*-*-80-*-*-*-*-iso10646-1
+
+xscreensaver.Dialog.background: #ae00b200c300
+xscreensaver.Dialog.foreground: #000000000000
+xscreensaver.Dialog.topShadowColor: #dccfde86e5d2
+xscreensaver.Dialog.bottomShadowColor: #5e43606d69a3
+xscreensaver.Dialog.highlightColor: #93e6974ca5c0
+xscreensaver.Dialog.shadowThickness: 2
+xscreensaver.Dialog.borderWidth: 0
+xscreensaver.Dialog.text.background: #ff00f700e900
+xscreensaver.Dialog.text.foreground: #000000000000
+
+xscreensaver*passwd.thermometer.foreground: #ffff00000000
+xscreensaver*passwd.thermometer.width: 10
+
+xscreensaver*splash*background: #ae00b200c300
+xscreensaver*splash*foreground: #000000000000
+xscreensaver*splash*topShadowColor: #dccfde86e5d2
+xscreensaver*splash*bottomShadowColor: #5e43606d69a3
+

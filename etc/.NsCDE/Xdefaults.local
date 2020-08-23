@@ -1,0 +1,91 @@
+! ===== fonts
+Xft.dpi       : 144
+Xft.antialias : 1
+
+Xcursor.theme  : Vanilla-DMZ
+Xcursor.size   : 32
+
+! ===== xterm
+! use ttf font because of hdpi
+XTerm*faceName               : Hack
+XTerm*faceSize               : 12
+! Unreadable:
+XTerm.VT100.faceSize1:  8
+! Tiny:
+XTerm.VT100.faceSize2:  10
+! Small:
+XTerm.VT100.faceSize3:  12
+! Medium:
+XTerm.VT100.faceSize4:  14
+! Large:
+XTerm.VT100.faceSize5:  18
+! Huge:
+XTerm.VT100.faceSize6:  26
+! remove the additional black border
+XTerm*borderWidth            : 0
+XTerm*internalBorder         : 2
+! set TERM env variable to use 256 colors
+XTerm*termName               : xterm-256color
+! make alt key work normally
+XTerm*vt100.metaSendsEscape  : true
+! save ~10,000 lines of scrollback
+XTerm*v100.saveLines         : 10240
+! hide scrollbar
+XTerm*vt100.scrollBar        : false
+! terminal bell tells the window manager to raise urgent flag
+XTerm*vt100.bellIsUrgent     : true
+XTerm*vt100.visualBellLine   : true
+! no bold fonts - just use brighter colors
+XTerm*allowBoldFonts         : true
+! pressing a key automatically scrolls to the bottom
+XTerm*scrollKey              : true
+! dont allow terminal to go fullscreen
+XTerm*fullscreen             : never
+! clicking a line selects only from the current word forward
+XTerm*cutToBeginningOfLine   : false
+! and dont include a trailing newline in the selection!
+XTerm*cutNewline             : false
+! some black magic to change what characters XTerm considers "word delimiters"
+XTerm*charClass              : 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! select word on two clicks
+XTerm*on2Clicks              : word
+! select whole line on three clicks
+XTerm*on3Clicks              : line
+! shift + ctrl + left click to open selection in web browser
+XTerm*VT100*Translations: #override \n\
+  Shift Ctrl <Btn1Up>: exec-formatted("chrome '%t'", PRIMARY)\n\
+  Alt <Key>o: exec-formatted("chrome '%t'", PRIMARY) select-start() select-end()\n\
+  Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>C:  copy-selection(CLIPBOARD) \n\
+Meta <Key> minus: smaller-vt-font() \n\
+Meta <Key> plus: larger-vt-font() \n\
+
+! Hybrid E7 term colours
+XTerm*background:  #000000
+XTerm*foreground:  #cccccc
+XTerm*cursorColor: #555555
+
+! black
+XTerm*color0:  #282828
+XTerm*color8:  #928374
+! red
+XTerm*color1:  #cc241d
+XTerm*color9:  #fb4934
+! green
+XTerm*color2:  #98971a
+XTerm*color10: #b8bb26
+! yellow
+XTerm*color3:  #d79921
+XTerm*color11: #fabd2f
+! blue
+XTerm*color4:  #458588
+XTerm*color12: #83a598
+! magenta
+XTerm*color5:  #b16286
+XTerm*color13: #d3869b
+! cyan
+XTerm*color6:  #689d6a
+XTerm*color14: #8ec07c
+! white
+XTerm*color7:  #a89984
+XTerm*color15: #ebdbb2
