@@ -1,0 +1,4 @@
+#!/bin/sh
+
+autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" \
+  coconut.frubar.net
