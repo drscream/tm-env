@@ -1,0 +1,24 @@
+/* XPM */
+/* This file is a part of the NsCDE - Not so Common Desktop Environment */
+static char *Background[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 1 1",
+"  s background  m  black c #630063009c00",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                "
+};

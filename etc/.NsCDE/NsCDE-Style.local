@@ -12,6 +12,8 @@
 # Style Pidgin IconifyWindowGroups
 # Style Gimp IconifyWindowGroups
 
+Style "Evince" !MWMDecor
+
 # Make Firefox sticky across desks and to starts on page 1 1
 # Style "Firefox" StickyAcrossDesks, StickyAcrossDesksIcon, \
 #  !StickyStippledTitle, !StickyStippledIconTitle, StartsOnPage 1 1, SkipMapping

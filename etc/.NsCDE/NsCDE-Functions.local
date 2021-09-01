@@ -25,21 +25,21 @@ Silent Key XF86AudioMicMute      A A Exec exec pulsemixer --id source-1 --toggle
 # Front Panel. Default action is "Nop" (No Operation)
 DestroyFunc f_Calendar
 AddToFunc f_Calendar
-+ I None (Thunderbird) Exec exec xcalendar
-+ I Wait Thunderbird
-+ I All (Thunderbird, !Iconic) FakeKeypress depth 2 modifiers 8 modifiers 6 press c wait 200 modifiers -8 modifiers -6 release c
-+ I All (Thunderbird, !Iconic) Schedule 150 WarpToWindow 50 50
++ I None (Calendar) Exec exec xcalendar
++ I Wait Calendar
++ I All (Calendar, !Iconic) FakeKeypress depth 2 modifiers 8 modifiers 6 press c wait 200 modifiers -8 modifiers -6 release c
++ I All (Calendar, !Iconic) Schedule 150 WarpToWindow 50 50
 
 # Called from E-Mail Applet on the Front Panel
 # Default action is "Nop" (No Operation)
-# Front Panel Check Mail
-# DestroyFunc f_CheckMail
-# AddToFunc f_CheckMail
-# + I Exec exec $[FVWM_USERDIR]/libexec/checkmail.sh
-# + I None (Thunderbird) Exec exec thunderbird
-# + I Wait Thunderbird
-# + I All (Thunderbird, !Iconic) FakeKeypress depth 2 modifiers 1 press 1 wait 200 modifiers -1 release 1
-# + I All (Thunderbird, !Iconic) Schedule 150 WarpToWindow 50 50
+Front Panel Check Mail
+DestroyFunc f_CheckMail
+AddToFunc f_CheckMail
++ I Exec exec $[FVWM_USERDIR]/libexec/checkmail.sh
++ I None (Mutt) Exec exec xterm -e neomutt
++ I Wait Mutt
++ I All (Mutt, !Iconic) FakeKeypress depth 2 modifiers 1 press 1 wait 200 modifiers -1 release 1
++ I All (Mutt, !Iconic) Schedule 150 WarpToWindow 50 50
 
 # Fplite applet on Front Panel, right top of WSM
 # Can be overriden by user if user has some fancy
