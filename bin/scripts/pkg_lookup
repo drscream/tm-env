@@ -24,12 +24,13 @@ function help() {
 }
 
 # Option parameters
-while getopts ":r:a:o:d:" opt; do
+while getopts ":r:a:o:d:v" opt; do
 	case "${opt}" in
 		r) RELEASE=${OPTARG}; shift ;;
 		a) ARCH=${OPTARG}; shift ;;
 		o) OS=${OPTARG}; shift ;;
 		d) DOMAIN=${OPTARG}; shift ;;
+		v) VERBOSE=1 ;;
 		*) help ;;
 	esac
 done
@@ -39,6 +40,8 @@ URL="https://${DOMAIN}/packages/${OS}/${RELEASE}/${ARCH}/All/"
 
 # Receive pkg list
 dump=$(links -dump ${URL} | awk '{ print $1 }' | grep '\.tgz')
+
+[[ ${VERBOSE} == 1 ]] && echo ${URL}
 
 # The lookup
 if [[ -e "packages" ]]; then
