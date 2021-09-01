@@ -248,6 +248,11 @@ dz-reprovision() {
 		fi
 	fi
 
+	if ! ssh ${hypervisor} zfs list zones/cores/${machine} >/dev/null 2>&1; then
+		echo "zfs create -o mountpoint=/zones/${machine}/cores zones/cores/${machine}"
+		return 4
+	fi
+
 	ssh ${hypervisor} "imgadm import ${image}"
 	ssh ${hypervisor} "echo '{ \"image_uuid\": \"'${image}'\" }' | vmadm reprovision ${machine}"
 
