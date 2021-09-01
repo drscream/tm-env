@@ -20,7 +20,9 @@ alias ...='cd ../..'
 # sudo
 alias Sl='sudo less +F /var/log/messages'
 alias St='sudo top'
-alias Sh='sudo htop'
+alias Sh='sudo HTOPRC=${TM_HOME}/.config/htop/htoprc htop'
+
+alias htop='HTOPRC=${TM_HOME}/.config/htop/htoprc htop'
 
 # vim
 alias vim='nvim -u ${TM_HOME}/.config/nvim/init.vim'
@@ -53,8 +55,7 @@ alias sum='xargs | tr " " "+" | bc -l'
 # virtualenv aliases
 alias v='workon'
 alias v.deactivate='deactivate'
-alias v.mk='mkvirtualenv --no-site-packages'
-alias v.mk_withsitepackages='mkvirtualenv'
+alias v.mk='mkvirtualenv'
 alias v.rm='rmvirtualenv'
 alias v.switch='workon'
 alias v.add2virtualenv='add2virtualenv'
