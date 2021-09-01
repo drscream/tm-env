@@ -9,7 +9,8 @@ call plug#begin($TM_HOME.'/.local/share/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
+
 Plug 'vimwiki/vimwiki'
 Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
@@ -20,6 +21,13 @@ Plug 'gilsondev/searchtasks.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
+
+Plug 'plasticboy/vim-markdown'
+
+Plug 'godlygeek/tabular'
+Plug 'rodjek/vim-puppet'
+
+Plug 'saltstack/salt-vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -48,6 +56,8 @@ augroup numbertoggle
 augroup END
 " SHORTCUT: ctrl+l
 nnoremap <c-l> :set number! relativenumber!<CR>
+" SHORTCUT: ctrl+L
+nnoremap <c-s-L> :set nonumber<CR>
 
 " Make sure vim returns to the same line when you reopen a file.
 augroup line_return
@@ -86,10 +96,12 @@ set colorcolumn=+1
 
 " }}}
 
-set background=dark
-colorscheme gruvbox
-highlight Normal ctermbg=None
-
+"set background=dark
+"colorscheme gruvbox
+"highlight Normal ctermbg=None
+let g:dracula_colorterm=0
+let g:airline_theme='dracula'
+colorscheme dracula
 
 set title
 
@@ -104,4 +116,7 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Sources other config files --------------------------------------------- {{{
 runtime! vimwiki.vim
 runtime! nerdtree.vim
+runtime! vim-markdown.vim
+runtime! syntastic.vim
+runtime! gopass.vim
 " }}}
