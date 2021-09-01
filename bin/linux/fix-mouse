@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sudo rmmod    psmouse
+sudo modprobe psmouse
+sleep 5
+
+xinput --set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.7
+xinput --set-prop "Synaptics TM3288-011"   "libinput Accel Speed" 0.5
+xinput --set-prop "Synaptics TM3288-011"   "libinput Natural Scrolling Enabled" 1

@@ -1,0 +1,8 @@
+#!/bin/sh
+# Simple resume script which fixes some defaults
+
+set -x
+
+# Commands
+setxkbmap -layout gb
+xmodmap ~/.xmodmaprc
