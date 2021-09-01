@@ -2,7 +2,7 @@
 # Lazy ipload script for files or text via OpenSSH
 
 # Static settings
-share_url="https://www.qwe123.de/share/"
+share_url="https://www.qwe123.de/share"
 share_host="tm.srv.customer.skylime.net"
 share_path="/var/www/www.qwe123.de/htdocs/share/"
 share_subdir=''
@@ -19,7 +19,7 @@ shift $((OPTIND-1))
 
 # Upload folder
 share_folder="${share_path}${share_subdir}"
-share_url="${share_url}${share_subdir}/"
+share_url="${share_url}${share_subdir}"
 
 # Create remote folder if required
 ssh ${share_host} "mkdir -p ${share_folder}"
@@ -29,6 +29,6 @@ if (( ${#} > 0 )); then
 	# Use scp for files
 	for file in ${*}; do
 		scp "${file}" ${share_host}:${share_folder} >/dev/null && \
-		echo "${share_url}${file}"
+		echo "${share_url}/${file##/*/}"
 	done
 fi
