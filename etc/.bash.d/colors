@@ -27,32 +27,26 @@ function _tput() {
 
 
 case ${TERM} in
-	*256*|rxvt*|gnome*)
-		if [ $(_tput) -ge 256 ]; then
-			_color_yellow=$(_tput set 136)
-			_color_orange=$(_tput set 166)
-			_color_red=$(_tput set 160)
-			_color_magenta=$(_tput set 125)
-			_color_violet=$(_tput set 61)
-			_color_blue=$(_tput set 33)
-			_color_cyan=$(_tput set 37)
-			_color_green=$(_tput set 64)
-			_color_lime=$(_tput set 82)
-		fi
-		_color_bold=$(tput bold)
-		_color_reset=$(_tput reset)
-	;;
 	*)
-		_color_yellow='\033[1;33m'
-		_color_orange='\033[0;33m'
-		_color_red='\033[1;31m'
-		_color_magenta='\033[1;35m'
-		_color_violet='\033[0;35m'
-		_color_blue='\033[1;34m'
-		_color_cyan='\033[1;36m'
+		_color_red='\033[0;31m'
 		_color_green='\033[0;32m'
-		_color_lime='\033[0;32m'
-		_color_bold=''
+		_color_yellow='\033[0;33m'
+		_color_blue='\033[0;34m'    # Purple on Dracula
+		_color_magenta='\033[0;35m' # Pink on Dracula
+		_color_cyan='\033[0;36m'
+		_color_white='\033[0;37m'
+
+		_color_brightred='\033[1;31m'
+		_color_brightgreen='\033[1;32m'
+		_color_brightyellow='\033[1;33m'
+		_color_brightblue='\033[1;34m'    # Purple on Dracula
+		_color_brightmagenta='\033[1;35m' # Pink on Dracula
+		_color_brightcyan='\033[1;36m'
+		_color_brightwhite='\033[1;37m'
+
+		_color_orange='\033[0;208m'
+
+		_color_bold='\033[1m'
 		_color_reset='\033[0m'
 	;;
 esac
