@@ -1,4 +1,0 @@
-[Desktop Entry]
-Exec=/usr/bin/cbatticon -i symbolic -l 15 -r 5 -x $HOME/.bin/linux/acpi-notify
-Name=cbatticon
-Type=Application
