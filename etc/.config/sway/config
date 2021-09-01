@@ -15,8 +15,8 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu     bemenu-prog -i --fn 'Hack 18' -p '>' --nb '#1d2021' --hf '#d65d0e' --sf '#d65d0e' --tf '#d65d0e' | xargs swaymsg exec --
-set $passmenu passmenu -i --fn 'Hack 18' -p '$' --nb '#1d2021' --hf '#d65d0e' --sf '#d65d0e' --tf '#d65d0e'
+set $menu     ~/.bin/scripts/bemenu-prog -i --fn 'Hack 18' -p '>' --nb '#1d2021' --hf '#d65d0e' --sf '#d65d0e' --tf '#d65d0e' | xargs swaymsg exec --
+set $passmenu ~/.bin/scripts/passmenu -i --fn 'Hack 18' -p '$' --nb '#1d2021' --hf '#d65d0e' --sf '#d65d0e' --tf '#d65d0e'
 #wofi --show run --sort-order=alphabetical --term=$term | xargs swaymsg exec --
 # Your preferred password (pass) launcher
 # Note: use the same way as used for the application launcher.
@@ -42,7 +42,7 @@ client.background       $base07
 # Default wallpaper
 output * bg ~/.bg.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output * scale 2
+output * scale 1.5
 
 seat seat0 xcursor_theme whiteglass 24
 
