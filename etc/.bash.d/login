@@ -10,7 +10,7 @@ test -x "$(type -p setterm)" && {
 	setterm -blank 0 -blength 0 2> /dev/null;
 }
 
-if [[ "$TERM" != "screen" ]]; then
+if [[ ! "$TERM" =~ "screen" ]]; then
 	## ...
 	echo 
 	
@@ -33,7 +33,9 @@ if [[ "$TERM" != "screen" ]]; then
 	fi
 
 	## show who is logged on
-	echo -e "${_color_blue}* ${_color_reset}${_color_bold}who${_color_reset}"; who -Hu; echo
+	if ! who --count | grep -q users=0; then
+		echo -e "${_color_blue}* ${_color_reset}${_color_bold}who${_color_reset}"; who -Hu; echo
+	fi
 
 	## show tasks from taskwarrior if available
 	if type -p task >/dev/null 2>&1; then
