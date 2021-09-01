@@ -18,11 +18,11 @@ function set_git_branch {
 
 	# Set color based on clean/staged/dirty.
 	if [[ ${git_status} =~ "nothing to commit" ]]; then
-		state="${_color_lime}"
+		state="${_color_brightgreen}"
 	elif [[ ${git_status} =~ "Changes to be committed" ]]; then
-		state="${_color_yellow}"
+		state="${_color_brightyellow}"
 	else
-		state="${_color_red}"
+		state="${_color_brightred}"
 	fi
 
 	# Set arrow icon based on status against remote.
@@ -67,6 +67,7 @@ function set_env () {
 
 # Set the full bash prompt.
 function set_bash_prompt () {
+	cur_exit=$?
 	# Set the PYTHON_VIRTUALENV variable.
 	set_env
 
@@ -83,18 +84,20 @@ function set_bash_prompt () {
 	# tmux special
 	#echo -ne "\033k${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"
 
+	# Current exit code
+	prompt='λ>'
+	(( $cur_exit != 0 )) && prompt="$_color_brightred$prompt"
+
 	# Set the bash prompt variable.
 	if [[ ${EUID} == 0 ]] ; then
 		PS1="${ENV}\[${_color_red}\][\u@\h]\[${_color_reset}\]:\[${_color_blue}\]\w ${BRANCH}#\[${_color_reset}\] "
 		PS2='root %> '
 	else
 		if [ -n "${SSH_CLIENT}" ] || [ -n "${SSH_TTY}" ]; then
-			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
- "
+			PS1="\[${_color_cyan}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] \n${_color_bold}${prompt}${_color_reset} "
 			PS2='%> '
 		else
-			PS1="\[${_color_orange}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] 
- "
+			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] \n${_color_bold}${prompt}${_color_reset} "
 			PS2='%> '
 		fi
 	fi
