@@ -86,7 +86,7 @@ function set_bash_prompt () {
 
 	# Current exit code
 	prompt='λ>'
-	(( $cur_exit != 0 )) && prompt="$_color_brightred$prompt"
+	(( $cur_exit != 0 )) && prompt="\[$_color_brightred\]$prompt"
 
 	# Set the bash prompt variable.
 	if [[ ${EUID} == 0 ]] ; then
@@ -94,10 +94,12 @@ function set_bash_prompt () {
 		PS2='root %> '
 	else
 		if [ -n "${SSH_CLIENT}" ] || [ -n "${SSH_TTY}" ]; then
-			PS1="\[${_color_cyan}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] \n${_color_bold}${prompt}${_color_reset} "
+			PS1="\[${_color_cyan}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\]
+\[${_color_bold}\]${prompt}\[${_color_reset}\] "
 			PS2='%> '
 		else
-			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\] \n${_color_bold}${prompt}${_color_reset} "
+			PS1="\[${_color_blue}\][\u@\h]\[${_color_reset}\] ${ENV}${BRANCH}\[${_color_green}\]\w\[${_color_reset}\]
+\[${_color_bold}\]${prompt}\[${_color_reset}\] "
 			PS2='%> '
 		fi
 	fi
