@@ -1,3 +1,4 @@
 #!/bin/sh
 
-. ~/.xinitrc
+[ "${XDG_SESSION_DESKTOP}" != "KDE" ] && \
+	. ~/.xinitrc
