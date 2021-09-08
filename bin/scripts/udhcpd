@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Configure and start an dhcpd server from BusyBox. This is only used for
+# development reason and might be not production ready.
+
+# Defaults
+GW=172.17.17.1/24
+START=172.17.17.10
+END=172.17.17.100
+DNS=1.1.1.1
+FIREWALLD_ZONE="trusted"
+
+WORKDIR=$(mktemp -p /tmp -d udhcpd.XXXX)
+
+#
+usage() { echo "Usage: $0 -i INTERFACE [-g GW/CIDR|-s START|-e END|-d DNS]" 1>&2; exit 1; }
+
+# Options
+while getopts ":i:g:s:e:d:" o; do
+	case "${o}" in
+		i)
+			INTERFACE=${OPTARG}
+			ifconfig "${INTERFACE}" &>/dev/null || usage
+			;;
+		g)
+			GW=${OPTARG}
+			;;
+		s)
+			START=${OPTARG}
+			;;
+		e)
+			END=${OPTARG}
+			;;
+		d)
+			DNS=${OPTARG}
+			;;
+		*)
+			usage
+			;;
+	esac
+done
+shift $((OPTIND-1))
+
+trap '{ firewall-cmd --zone="$FIREWALLD_ZONE" --remove-interface="$INTERFACE" 2>/dev/null; ifconfig "$INTERFACE" 0.0.0.0; rm -fr -- "$WORKDIR"; }' EXIT
+
+## Main
+# Configure network interface
+ifconfig "$INTERFACE" "$GW"
+
+# Verify firewalld exists and is running
+if firewall-cmd --state &>/dev/null; then
+	firewall-cmd --zone="$FIREWALLD_ZONE" --add-service=dhcp
+	firewall-cmd --zone="$FIREWALLD_ZONE" --add-interface="$INTERFACE"
+fi
+
+# Generate configuration file
+touch "$WORKDIR/leases"
+cat <<EOF >> "$WORKDIR/conf"
+# The start and end of the IP lease block
+start $START
+end   $END
+
+# The interface that udhcpd will use
+interface $INTERFACE
+
+# The location of the pid file
+pidfile    $WORKDIR/pid
+
+# The location of the leases file
+lease_file $WORKDIR/leases
+
+# The remainder of options are DHCP options and can be specified with the
+# keyword 'opt' or 'option'. If an option can take multiple items, such
+# as the dns option, they can be listed on the same line, or multiple
+option dns    ${DNS}
+option router ${GW%/*}
+EOF
+
+busybox udhcpd -f "$WORKDIR/conf"
