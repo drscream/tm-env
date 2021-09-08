@@ -1,0 +1,9 @@
+_bookmarks() {
+  local curw=${COMP_WORDS[COMP_CWORD]}
+  local wordlist=$(find ~/.bookmarks -type l -printf "%f\n")
+  local IFS=$'\n'
+  COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+  return 0
+}
+complete -F _bookmarks jump unmark
+
