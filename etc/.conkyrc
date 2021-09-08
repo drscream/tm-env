@@ -1,4 +1,12 @@
-update_interval 10
-
-TEXT
-${if_match $freq > 1000}CPU ${freq_g} GHz${else}CPU ${freq} MHz${endif}  TMP ${exec  sysctl -n hw.sensors.cpu0.temp0 | cut -d . -f 1}C  ${if_match "$apm_adapter" == "on-line"}${if_match "$apm_battery_life" == "100%"}AC  Full${else}AC+ ${apm_battery_life}${endif}${else}${if_match "$apm_battery_time" == "unknown"}BT- ${apm_battery_life}${else}BT- ${apm_battery_time}${endif}${endif}  ${time %a %d %b %H:%M}
+conky.config = {
+   background = false,
+   own_window = false,
+   out_to_x = false,
+   out_to_console = true,
+   update_interval = 60,
+   total_run_times = 0,
+   use_spacer = 'none'
+}
+conky.text = [[
+ ${time %a %d %b %H:%M} 
+]]
