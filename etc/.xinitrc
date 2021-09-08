@@ -4,14 +4,18 @@ export LC_ALL=en_US.UTF-8
 # Force extra BIN folder
 export PATH=/opt/tools/bin:${PATH}
 
+# Required includes for systemd and dbus
+/etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+/etc/X11/xinit/xinitrc.d/80-dbus
+
 # Current WM
 export WM=dwm
-#export WM=fvwm
-#export WM=/home/tm/downloads/hikari/hikari
-#export WM=wmaker
-#export WM=cwm
-#export WM=awesome
-#export WM=spectrwm
+
+# Force (Hi-)DPI settings
+xrandr --dpi 144
+export GDK_DPI_SCALE=1.5
+export QT_FONT_DPI=144
+export QT_AUTO_SCREEN_SCALE_FACTOR=1.5
 
 # Personal fonts
 find ~/.fonts/ -type f -name fonts.dir 2>/dev/null | while read fontsdir; do
@@ -20,51 +24,29 @@ find ~/.fonts/ -type f -name fonts.dir 2>/dev/null | while read fontsdir; do
 done
 fc-cache
 
+# Another part of Xresources
+xrdb ~/.Xresources
+
 # Configure extra keys
 setxkbmap -layout gb
 xmodmap ~/.xmodmaprc
 
-# Disable console / terminal beep
+# Disable console beep, display shutdown, etc.
 xset b 0
+xset s off
+xset dpms 0 0 0
 
 # Wallpaper
 feh --no-fehbg --bg-scale ~/.bg.png
 
-# Transparency
-xcompmgr &
-
-# Enable Dunst notification service
-dunst &
-
-# Lock after 5 min
-xidle &
-
 # Enable local notify server
 ~/.bin/scripts/notify-server.py &
 
-
+# Coredumps yes
 ulimit -c 0
-
-# Disable Touchpad (in OpenBSD)
-#synclient TouchpadOff=1
-
-# Reverse / Natural Scroll via Touchpad
-synclient VertScrollDelta=-114
-
-# if you have a ThinkPad, the following lines enable TrackPoint
-# scrolling by dragging with the middle button (on OpenBSD)
-xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
-xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
-xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
-
-# increase pointer speed
-xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4
 
 # Used for statusbar information in dwm
 ( conky | while read LINE; do xsetroot -name "$LINE"; done ) &
-
-# Setup xrandr automatically if docking is used
-xrr
 
 # Exec ${WM}
 exec dbus-launch --sh-syntax --exit-with-session ${WM}
