@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/home/tm/.config/old-autostart-scripts/00-libinput.sh
+Icon=dialog-scripts
+Name=00-libinput.sh
+Path=
+Type=Application
+X-KDE-AutostartScript=true
