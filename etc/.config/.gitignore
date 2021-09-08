@@ -11,4 +11,10 @@
 !systemd/
 !sway/
 !hikari/
+!tmux/
+!htop/
+!alacritty/
+!dosbox-x/
+!flameshot/
+!rofi/
 !user-dirs.dirs
