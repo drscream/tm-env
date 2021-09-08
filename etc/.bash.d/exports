@@ -22,7 +22,7 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 # make some commands not show up in history
-export HISTIGNORE="exit:* --help"
+export HISTIGNORE="exit"
 
 ##
 ## language
@@ -39,13 +39,15 @@ export QUOTING_STYLE="literal"
 ##
 ## editor
 ##
-# use vim alternatively nano as editor
-if [ $(type -P vim 2>/dev/null) ]; then
-	#export EDITOR="vim -u ${TM_HOME}/.vimrc"
-	export EDITOR=vim
-elif [ $(type -P nano 2>/dev/null) ]; then
-	export EDITOR=nano
-fi
+# set EDITOR and VISUAL based on my needs
+EDITORS="nvim vim nvi vi nano"
+for E in ${EDITORS}; do
+	if type -P ${E} &>/dev/null; then
+		export EDITOR=${E}
+		export VISUAL=${E}
+		break
+	fi
+done
 
 ##
 ## pager and less
