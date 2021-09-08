@@ -13,11 +13,14 @@
 #export QT_FONT_DPI=192
 #export QT_AUTO_SCREEN_SCALE_FACTOR=2
 
-unset MOZ_ENABLE_WAYLAND
-unset GDK_DPI_SCALE
-unset GDK_BACKEND
-unset QT_FONT_DPI
-unset QT_AUTO_SCREEN_SCALE_FACTOR
+#unset MOZ_ENABLE_WAYLAND
+#unset GDK_DPI_SCALE
+#unset GDK_BACKEND
+#unset QT_FONT_DPI
+#unset QT_AUTO_SCREEN_SCALE_FACTOR
+
+# KDE Global menu for Firefox and others
+#export GTK_MODULES=appmenu-gtk-module 
 
 # Wayland XKB key setup
 export XKB_DEFAULT_LAYOUT="gb-german-umlaut"
@@ -57,6 +60,11 @@ alias open='xdg-open'
 alias zzz='doas zzz'
 # IMAGE VIEWER
 alias mvi='mpv --config-dir=$HOME/.config/mvi'
+# PRESENTATIONS
+alias mdp='mdp --expand --nofade --notrans --nocodebg'
+# ROOT
+alias firewall-config="sudo -E firewall-config"
+
 # configure brightness
 function b() {
 	case ${TM_OS} in
@@ -90,7 +98,7 @@ function alogin() {
 	UUID=${INFO/* /}
 	if [[ -n "${UUID}" ]]; then
 		[[ -n "${TMUX}" ]] && printf "\033k${HOST}/${1}\033\\"
-		dz shell ${UUID}
+		ssh -t ${INFO/ */} "zlogin ${UUID}"
 		[[ -n "${TMUX}" ]] && tmux setw automatic-rename
 	else
 		echo "Unknown UUID, please specify host or refresh cache"
@@ -112,24 +120,20 @@ fi
 export GTK_ENABLE_WARNINGS=0
 
 ##
-## EDITOR / VISUAL
+## Use FZF
 ##
-export EDITOR=vi
-export VISUAL=nvim
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
 ##
 ## Always TMUX
 ##
-
-if [[ "$(tty)" != "/dev/tty1" ]]; then
-
-if which tmux 2>&1 >/dev/null; then
-	if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
-		if [[ -z "$TMUX" ]]; then
-			(tmux ls | grep -vq attached && tmux at) || tmux new -s $(shuf -n 1 /usr/share/dict/words)
-			exit
+if [[ "$(tty)" != "/dev/tty"[1-9] ]]; then
+	if which tmux 2>&1 >/dev/null; then
+		if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+			if [[ -z "$TMUX" ]] && [[ -z "${KATE_PID}" ]]; then
+				(tmux ls | grep -vq attached && tmux at) || tmux new -s $(shuf -n 1 /usr/share/dict/words)
+				exit
+			fi
 		fi
 	fi
-fi
-
 fi
