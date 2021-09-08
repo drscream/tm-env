@@ -10,6 +10,9 @@
 	editor = nvim
 	excludesfile = ~/.gitignore
 
+[init]
+	defaultBranch = main
+
 [credential]
 	helper = cache --timeout=300
 
@@ -95,9 +98,6 @@
 
 [status]
 	color = auto
-
-[push]
-	default = upstream
 
 [filter "media"]
 	clean = git-media-clean %f
