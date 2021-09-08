@@ -370,6 +370,22 @@ work() {
 	cd "${HOME}"
 }
 
+## bookmark folders for lazyness
+jump() {
+	cd -P "${HOME}/.bookmarks/${1}" 2>/dev/null || echo "No such mark: $1"
+}
+mark() { 
+	mkdir -p "${HOME}/.bookmarks"; ln -s "$(pwd)" "${HOME}/.bookmarks/${1}"
+}
+unmark() { 
+	rm -i "${HOME}/.bookmarks/${1}"
+}
+marks() {
+	ls --color=force -l "${HOME}/.bookmarks" | tr -s ' ' | cut -d' ' -f9- |\
+		sed -e 's/ -> /§/g' | column -t -s '§' -o ' -> '
+}
+
+
 # Diff for local and remote files
 ssh-diff() {
 	local remote=${1}
