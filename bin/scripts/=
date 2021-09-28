@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Lazy bc wrapper which can easily be used. An example:
+# = 2*2 
+
+echo "${*}" | bc -l
