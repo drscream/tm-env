@@ -1,0 +1,201 @@
+#!/usr/bin/env bash
+# Helper script to manage pkgsrc pullups easily for lazyness
+
+set -Ee
+
+# Environments
+RELENG_REQ_URL=${RELENG_REQ_URL-"http://releng.netbsd.org/cgi-bin/req-pkgsrc.cgi"}
+NETBSD_SERVER=${NETBSD_SERVER-"mollari.netbsd.org"}
+PULLUP_TOOLS_DIR=${PULLUP_TOOLS_DIR-"${HOME}/releng/tools"}
+PULLUP_TEMP_DIR=${PULLUP_TEMP_DIR-"${HOME}/releng/tmp"}
+PKGSRC_STABLE_DIR=${PKGSRC_STABLE_DIR-"${HOME}/releng/pkgsrc"}
+PKGSRC_BUILD_SERVER=${PKGSRC_BUILD_SERVER-"192.168.122.109"}
+
+# Default options to parse
+option=${1}; shift
+
+# Functions
+# Provide a really minimal help to the user. It will shown by default on
+# unknown options.
+help() {
+	echo "$ pkg_pullup [OPTION] [ID]"
+	echo
+	echo "OPTIONS:"
+	echo "  list          : List available tickets"
+	echo "  show ID       : Show details of one ticket via ID"
+	echo "  take ID       : Change the owner of the ticket to yourself"
+	echo "  update        : Run an CVS update on the stable branch"
+	echo "  prepare [ID]  : Prepare (and generate scripts) for an pullup"
+	echo "  diff [ID]     : Show diff of the ticket"
+	echo "  pullup [ID]   : Pullup the commits to the stable branch"
+	echo "  edit [ID]     : Edit log and commit comment"
+	echo "  make [ID]     : Run make on the virtual machine"
+	echo "  lint [ID]     : Run pkglint for the package folder"
+	echo "  commit [ID]   : Commit the changes to the stable branch"
+	echo "  resolve [ID]  : Mark the ticket as resolved"
+	echo
+	echo "  run ID        : Take, Update, Prepare, Diff, Pullup, Make, Lint"
+	exit 1
+}
+trap '( echo -e "Some command failed, please check the help section!\n"; help )' ERR
+
+# Helper: detect ID by parameter or by last used ID
+get_id() {
+	if [[ $1 =~ ^[0-9]+$ ]]; then
+		echo "${1}" | tee "${PULLUP_TEMP_DIR}/id"
+	elif [ -f "${PULLUP_TEMP_DIR}/id" ]; then
+		cat "${PULLUP_TEMP_DIR}/id"
+	else
+		return 1
+	fi
+}
+# Helper: run remote commands in req on ${NETBSD_SERVER}
+req_exec() {
+	# shellcheck disable=SC2029
+	ssh "${NETBSD_SERVER}" "/home/releng/req/bin/${*}"
+}
+# Helper: get package folder somehow via ${ID}
+get_package() {
+	id=$(get_id "${@}")
+	sed -n '/EOF$/,/^EOF$/p' "${PULLUP_TEMP_DIR}/ticket-${id}-commit.sh" |\
+		sed '1d;$d' |\
+		cut -d/ -f 1,2 |\
+		uniq
+}
+# Helper: colorful cvs status output
+get_cvs_status() {
+	cvs -q status . | grep "^[?F]" | grep -v "Up-to-date" | awk '
+		BEGIN {
+			arr["Up-to-date"] = "0;32";
+			arr["Needs Merge"] = "0;31";
+			arr["Needs Patch"] = "1;31";
+			arr["conflicts"] = "1;33";
+			arr["Locally Modified"] = "0;33";
+			arr["Locally Added"] = "0;32"
+		}
+		{
+			l = $0;
+			for (pattern in arr) {
+				gsub(".*" pattern ".*", "\033[" arr[pattern] "m&\033[0m", l);
+			}
+			print l;
+		}
+		'
+}
+# List available tickets
+list() {
+	links -dump "${RELENG_REQ_URL}" | sed -n '/Tkt#/,$p' | head -n -3
+}
+# Show details of one ticket via ID
+show() {
+	id=$(get_id "${@}")
+	req_exec pkgsrc-reqshow "${id}"
+}
+# Change the owner of the ticket to yourself
+take() {
+	id=$(get_id "${@}")
+	req_exec pkgsrc-req take "${id}"
+}
+# Run an CVS update on the stable branch
+update() {
+	cd "${PKGSRC_STABLE_DIR}" && cvs update
+}
+# Prepare (and generate scripts) for an pullup
+prepare() {
+	id=$(get_id "${@}")
+	submitter="$(list | sed -n "s/.*${id}.* \(.*\)@.*/\1/p")"
+
+	cd "${PKGSRC_STABLE_DIR}" && \
+		"${PULLUP_TOOLS_DIR}"/pkgsrc-pullup -d "${submitter}" "${id}"
+}
+# Show diff of the ticket
+diff() {
+	id=$(get_id "${@}")
+
+	# Workaround cvs diff, because it an error code when diff is found
+	cd "${PKGSRC_STABLE_DIR}" && \
+		"${PULLUP_TEMP_DIR}/ticket-${id}-diff.sh" | colordiff || exit 0
+}
+#
+status() {
+	# Try to get package folder by id lookup
+	# shellcheck disable=SC2076
+	if [ -n "${1}" ]; then
+		cd "${PKGSRC_STABLE_DIR}/$(get_package "${1}")" && \
+			get_cvs_status
+	elif [[ "$(pwd)" =~ "${PKGSRC_STABLE_DIR}" ]]; then
+		get_cvs_status
+	fi
+}
+# Pullup the commits to the stable branch
+pullup() {
+	id=$(get_id "${@}")
+	cd "${PKGSRC_STABLE_DIR}" && \
+		"${PULLUP_TEMP_DIR}/ticket-${id}-pullup.sh"
+}
+# Build and test remote
+build() {
+	id=$(get_id "${@}")
+	package=$(get_package "${id}")
+
+	# shellcheck disable=SC2076
+	ssh "${PKGSRC_BUILD_SERVER}" "
+		PATH=${HOME}/pkg/2021Q3/bin:${HOME}/pkg/2021Q3/sbin:\${PATH}
+		cd ${PKGSRC_STABLE_DIR}/${package} && bmake ${*}
+	"
+}
+lint() {
+	id=$(get_id "${@}")
+	package=$(get_package "${id}")
+
+	cd "${PKGSRC_STABLE_DIR}/${package}" && \
+		pkglint
+}
+# Edit log and commit comment
+edit() {
+	id=$(get_id "${@}")
+	${EDITOR:-vi} "${PULLUP_TEMP_DIR}/ticket-${id}.log"
+}
+# Commit the changes to the stable branch
+commit() {
+	id=$(get_id "${@}")
+	cd "${PKGSRC_STABLE_DIR}" && \
+		"${PULLUP_TEMP_DIR}/ticket-${id}-commit.sh" && \
+		awk '{ print } /^$/ { exit }' "${PULLUP_TEMP_DIR}/ticket-${id}.log" \
+		>> "${PKGSRC_STABLE_DIR}/doc/"CHANGES-pkgsrc-*
+}
+# Mark the email as resolved
+resolve() {
+	id=$(get_id "${@}")
+	req_exec pkgsrc-req resolve "${id}"
+}
+
+# Full run without commit and resolve
+run() {
+	id=$(get_id "${@}")
+	take
+	update
+	prepare
+	diff
+	pullup
+	make
+	lint
+}
+
+case ${option} in
+	list)    list           ;;
+	show)    show "${@}"    ;;
+	take)    take "${@}"    ;;
+	update)  update         ;;
+	prepare) prepare "$@"   ;;
+	diff)    diff "${@}"    ;;
+	pullup)  pullup "${@}"  ;;
+	status)  status "${@}"  ;;
+	make)    build "${@}"   ;;
+	lint)    lint "${@}"    ;;
+	edit)    edit "${@}"    ;;
+	commit)  commit "${@}"  ;;
+	resolve) resolve "${@}" ;;
+	run)     run "${@}"     ;;
+	*)       help           ;;
+esac
