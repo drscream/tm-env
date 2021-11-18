@@ -1,0 +1,175 @@
+#!/usr/bin/env bash
+# vpkg by tm@core.io
+# Manage virtual pkgsrc environments easily with an simple shell script. To
+# have easy commands feel free to create shell aliases.
+
+# Defaults
+VPKG_DIR=${HOME}/.vpkg
+VPKG_GIT="git@github.com:NetBSD/pkgsrc.git"
+
+# Personal configuration file for overwrite defaults
+test -f "${HOME}/.vpkgrc" && . "${HOME}/.vpkgrc"
+
+_help() {
+	echo "${0} [-l|-c|-d] [NAME]"
+	echo
+	echo "OPTIONS:"
+	echo "  -l       : List existing pkgsrc virtualenvs"
+	echo "  -c NAME  : Create new pkgsrc virtualenv for NAME"
+	echo "  -d NAME  : Delete existing pkgsrc virtualenv for NAME"
+	echo
+	echo "HELP:"
+	echo " source ${0}"
+	echo " on NAME : Switch to pkgsrc virtualenv, by setting PATH and VPKG"
+	echo " off     : Disable current virtualenv, reset PATH and unset VPKG"
+}
+
+_die() {
+	local code="${1}"; shift
+	local msg="${*}"
+	echo "ERROR: ${msg}"
+	exit "${code}"
+}
+
+
+# Create pkgsrc source folder and clone remote data. Switching branch if remote
+# branch is available, otherwise use trunk.
+_create() {
+	local name=${1}
+	local srcdir=${VPKG_DIR}/${name}/src
+
+	if ! test -d "${srcdir}"; then
+		# create working directory
+		mkdir -p "${srcdir}"
+		# cloning source code
+		git clone ${VPKG_GIT} "${srcdir}"
+		# switching branch / creating branch
+		cd "${srcdir}" || return 1
+		if remote_branch=$(git branch -r | grep -i "${name}"); then
+			git checkout -b "${name}" "${remote_branch}"
+		else
+			git checkout -b "${name}"
+		fi
+	else
+		_die 1 "'${name}' already exists!"
+	fi
+}
+
+# Delete the vpkg folder based on the name. It will delete the binary data and
+# the source folder.
+_remove() {
+	local name=${1}
+
+	if test -d "${VPKG_DIR}/${name}"; then
+		while true; do
+			read -rp "Do you really like to delete \`${name}\`? [y|N] " yn
+			case $yn in
+					[Yy]* ) rm -r "${VPKG_DIR:?}/${name}"; break ;;
+					*     ) exit ;;
+			esac
+		done
+	else
+		_die 2 "'${name}' does not exists!"
+	fi
+}
+
+_bootstrap_mk_frag() {
+	local name=${1}
+
+	cat <<-__MKFRAGEOM__
+		# Developer Defaults
+		PKG_DEVELOPER=		yes
+		ALLOW_VULNERABLE_PACKAGES=	yes
+		SKIP_LICENSE_CHECK=		yes
+		# Use extra folders for workdir, packages and distfiles
+		WRKOBJDIR=		${VPKG_DIR}/${name}/workdir
+		PACKAGES=		${VPKG_DIR}/${name}/packages
+		DISTDIR=		${VPKG_DIR}/${name}/distfiles
+		# Modular X11
+		X11_TYPE=		modular
+	__MKFRAGEOM__
+}
+
+_bootstrap() {
+	local name=${1}
+	local srcdir=${VPKG_DIR}/${name}/src
+
+	if test -d "${srcdir}"; then
+		cd "${srcdir}" || return 1
+
+		./bootstrap/bootstrap \
+			--abi 64 \
+			--cwrappers yes \
+			--make-jobs 8 \
+			--mk-fragment <(_bootstrap_mk_frag "${name}") \
+			--prefer-pkgsrc yes \
+			--prefix "${VPKG_DIR}/${name}/pkg" \
+			--unprivileged \
+			--varbase "${VPKG_DIR}/${name}/pkg/var" \
+			--workdir "${VPKG_DIR}/${name}/workdir"
+	else
+		_die 2 "'${name}' does not exists!"
+	fi
+}
+
+#
+on() {
+	local name=${1}
+
+	if [ -z "${name}" ]; then
+		ls "${VPKG_DIR}/"
+		return 0
+	fi
+
+	if ! test -d "${VPKG_DIR}/${name}/pkg"; then
+		echo "ERROR: '${name}' does not exists!"
+		return 1
+	fi
+
+	if type disable &>/dev/null; then
+			disable
+			unset -f disable >/dev/null 2>&1
+	fi
+
+	export VPKG=${name}
+	export __OLDPATH=${PATH}
+	export PATH=${VPKG_DIR}/${name}/pkg/bin:${VPKG_DIR}/${name}/pkg/sbin:${PATH}
+	export MANPATH=${VPKG_DIR}/name/pkg/man
+
+	eval 'off() {
+		export PATH=${__OLDPATH}
+		unset VPKG MANPATH __OLDPATH
+	}'
+}
+
+while getopts ':lc:r:' arg; do
+	case "${arg}" in
+		l)
+			ls "${VPKG_DIR}/"
+			;;
+		c)
+			_create "${OPTARG}"
+			_bootstrap "${OPTARG}"
+			;;
+		r)
+			_remove "${OPTARG}"
+			;;
+		*)
+			_help
+			;;
+	esac
+done
+
+(return 0 2>/dev/null) || if (( OPTIND == 1 )); then _help; fi
+
+# Unset all not required functions and global variables because the script
+# could be sourced as well to provide a switch function.
+unset -f _help
+unset -f _die
+unset -f _create
+unset -f _bootstrap_mk_frag
+unset -f _bootstrap
+unset -f _remove
+unset VPKG_GIT
+
+# vim:sw=2:ts=2

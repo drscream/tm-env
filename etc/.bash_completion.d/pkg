@@ -27,7 +27,35 @@ _pkg_admin() {
 	esac
 }
 
+_vpkg() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	
+	case ${prev} in
+		*)
+			local commands=$( vpkg -h 2>/dev/null | awk '/OPTIONS/{g=1; next}/HELP/{g=0}(NF && g){ print $1}' )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
+_vpkg_on() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	
+	case ${prev} in
+		*)
+			local commands=$( on )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
 complete -F _pkgin pkgin
 complete -F _pkg_admin pkg_admin
+complete -F _vpkg vpkg
+complete -F _vpkg_on on
 
 # vim:ft=sh:
