@@ -437,4 +437,53 @@ notify() {
 	notify-send -a script 'Command Finished' "${last_command}"
 }
 
+# virtualenvwrapper or venv wrapper
+venv() {
+	local VENV_HOME=${VENV_HOME-"${TM_HOME}/.venv"}
+
+	help() {
+		echo "venv [mk|rm|cd|wk|ex] VENV"
+		echo
+		echo "OPTIONS:"
+		echo "  ls       : List virtual environments"
+		echo "  mk VNEV  : Create new virtual environment"
+		echo "  rm VENV  : Remove new virtual environment"
+		echo "  cd VENV  : Switch to the virtual directory"
+		echo "  wk VENV  : Enable virtual environment"
+		echo "  ex VENV  : Exit / deactivate virtual environment"
+	}
+
+	[ ! -d ${VENV_HOME} ] && mkdir "${VENV_HOME}"
+	if [ $# -eq 0 ]; then help && return 1; fi
+
+	arg="${1}"; shift
+	case "${arg}" in
+		ls|list)
+			ls -1 "${VENV_HOME}"
+			;;
+		mk|create)
+			if [ -z "${1}" ]; then help && return 1; fi
+			python3 -m venv "${VENV_HOME}/${1}"
+			;;
+		rm|remove)
+			if [ -z "${1}" ]; then help && return 1; fi
+			rm -r "${VENV_HOME}/${1}"
+			;;
+		cd)
+			if [ -z "${1}" ]; then help && return 1; fi
+			cd "${VENV_HOME}/${1}"
+			;;
+		wk|workon|switch)
+			if [ -z "${1}" ]; then help && return 1; fi
+			source "$VENV_HOME/$1/bin/activate"
+			;;
+		ex|deactivate)
+			deactivate
+			;;
+		*)
+			help
+			;;
+	esac
+}
+
 # vim:ft=sh
