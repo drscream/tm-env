@@ -33,7 +33,7 @@ if [[ ! "$TERM" =~ "screen" ]]; then
 	fi
 
 	## show who is logged on
-	if ! who --count | grep -q users=0; then
+	if ! who --count 2>&1 | grep -q users=0; then
 		echo -e "${_color_blue}* ${_color_reset}${_color_bold}who${_color_reset}"; who -Hu; echo
 	fi
 
