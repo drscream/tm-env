@@ -77,7 +77,7 @@ fi
 ## load special files if exists
 ##
 if [ -d "${TM_BASHDIR}" ]; then
-	for FILE in options exports functions svn git colors login prompt aliases hosts; do
+	for FILE in options functions exports svn git colors login prompt aliases hosts; do
 		if [ -r "${TM_BASHDIR}/${FILE}" ]; then
 			. ${TM_BASHDIR}/${FILE}
 		fi
