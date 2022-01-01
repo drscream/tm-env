@@ -54,6 +54,9 @@ function set_git_branch {
 # Determine active environments (python, dz, work)
 function set_env () {
 	ENV=""
+	if [[ -n "${VPKG}" ]]; then
+		ENV="${ENV}\[${_color_green}\]‹${VPKG}›\[${_color_reset}\] "
+	fi
 	if [[ -n "${VIRTUAL_ENV}" ]]; then
 		ENV="${ENV}\[${_color_magenta}\]‹`basename \"$VIRTUAL_ENV\"`›\[${_color_reset}\] "
 	fi

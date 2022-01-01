@@ -1,10 +1,15 @@
 # Thomas Merkel <tm@core.io>
 
 ##
-## path and ssl variables
+## ssl variables
 ##
-export PATH=${TM_HOME}/.bin/scripts:${TM_HOME}/.bin/${TM_OS}:${TM_HOME}/.sbin:${PATH}
 export SSL_CERT_DIR=${TM_HOME}/.certs.d/
+
+##
+## prepare PATH env variable using bash function
+##
+pathedit -p "${TM_HOME}/.bin/${TM_OS}"
+pathedit -p "${TM_HOME}/.bin/scripts"
 
 ##
 ## extra env variables
@@ -56,9 +61,9 @@ export PAGER="less"
 export LESS="-R -M --shift 5 -x 4"
 export LESSCOLOR="always"
 # make less awesome
-if [ $(type -P lesspipe.sh 2>/dev/null) ]; then
+if type -P lesspipe.sh &>/dev/null; then
 	export LESSOPEN="|lesspipe.sh %s"
-elif [ $(type -P lesspipe 2>/dev/null) ]; then
+elif type -P lesspipe &>/dev/null; then
 	export LESSOPEN="|lesspipe %s"
 fi
 
