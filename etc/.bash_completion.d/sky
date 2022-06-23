@@ -1,0 +1,40 @@
+_sky() {
+	local cur first prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	first="${COMP_WORDS[1]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${first} in
+		login)
+			local zones=$(sky list | awk '{ print $2; print $6 }')
+			COMPREPLY=( $(compgen -W "${zones}" -- ${cur}) )
+			;;
+		ssh)
+			local zones=$(sky list | awk '{ print $5 }')
+			COMPREPLY=( $(compgen -W "${zones}" -- ${cur}) )
+			;;
+		mdata)
+			case ${prev} in
+				mdata)
+					local zones=$(sky list | awk '{ print $6 }')
+					COMPREPLY=( $(compgen -W "${zones}" -- ${cur}) )
+					;;
+				get|put)
+					local metadata=$(sky mdata ${COMP_WORDS[COMP_CWORD-2]} list)
+					COMPREPLY=( $(compgen -W "${metadata}" -- ${cur}) )
+					;;
+				*)
+					local commands=$(sky | sed -ne 's/  mdata .*\[\(.*\)\].*/\1/p' | tr '|' ' ')
+					COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+					;;
+			esac
+			;;
+		*)
+			local commands=$(sky | awk '/  / { print $1 }')
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+	
+}
+
+complete -F _sky sky

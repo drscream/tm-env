@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+# The sky is the limit for the lime to manage remote zones easily via ugly
+# shell script. Provided and maintained by tm@core.io.
+
+# Defaults
+CONF_DIR="${HOME}/.config/sky"
+GZ_HOSTS=""
+
+# Personal configuration file for overwrite defaults
+test -f "${CONF_DIR}/config" && . "${CONF_DIR}/config"
+
+_help() {
+	echo "${0} [init|list|login|ssh|mdata] ALIAS|UUID"
+	echo
+	echo "OPTIONS:"
+	echo "  init                            :"
+	echo "  search                          :"
+	echo "  list                            :"
+	echo "  login ALIAS|UUID                :"
+	echo "  ssh   ALIAS                     :"
+	echo "  mdata ALIAS|UUID [list|get|put] :"
+}
+
+_init() {
+	for gz_host in ${GZ_HOSTS}; do
+		ssh ${gz_host} vmadm lookup -j | jq --arg host ${gz_host} '.[] + { host: $host }'
+	done | jq  '[inputs]' > ${CONF_DIR}/vms.json
+}
+
+_die() {
+	local code=${1}; shift
+	local msgs=${*}
+
+	echo "ERROR: ${msgs}"
+	exit ${code}
+}
+
+function _is_uuid() {
+        local uuid=${1}
+        if [[ $uuid =~ ^\{?[A-F0-9a-f]{8}-[A-F0-9a-f]{4}-[A-F0-9a-f]{4}-[A-F0-9a-f]{4}-[A-F0-9a-f]{12}\}?$ ]]; then
+                return 0
+        else
+                return 1
+        fi
+}
+
+_info() {
+	local lookup=${1}
+	jq -r '.[] |
+		select( .alias == "'${lookup}'" or .uuid == "'${lookup}'" ) |
+		select( .state == "running" ) |
+		.
+	' ${CONF_DIR}/vms.json
+}
+
+_list() {
+	jq -r '.[] | 
+		.host + " "  + .uuid + " " + .type + " " + .state + " " + .hostname + " " + .alias
+	' ${CONF_DIR}/vms.json | column -t
+}
+
+_search() {
+	_list | grep ${1}
+}
+
+_login() {
+	local info=$(_info "${1}")
+	local host=$(jq -r '.host' <<< ${info})
+	local alias=$(jq -r '.alias' <<< ${info})
+	local uuid=$(jq -r '.uuid' <<< ${info})
+	if [[ -n "${uuid}" ]]; then
+		[[ -n "${TMUX}" ]] && printf "\033k${host}/${alias}\033\\"
+		ssh -t ${host} "zlogin ${uuid}"
+		[[ -n "${TMUX}" ]] && tmux setw automatic-rename
+	else
+		_die 1 "Unknown 'alias' or 'uuid', please specify another zone or refresh cache"
+	fi
+}
+
+_exec() {
+	local info=$(_info "${1}"); shift
+        local exec=${*}
+        local host=$(jq -r '.host' <<< ${info})
+	local uuid=$(jq -r '.uuid' <<< ${info})
+	if [[ -n "${uuid}" ]]; then
+                echo "${exec}" | base64 | ssh ${host} "cat > /zones/${uuid}/root/root/sky.sh"
+	        ssh -t ${host} "zlogin ${uuid}" "base64 -d /root/sky.sh \| sh \; rm /root/sky.sh"
+	else
+	        _die 1 "Unknown 'alias' or 'uuid', please specify another zone or refresh cache"
+	fi
+}
+
+_reprovision() {
+        local info=$(_info "${1}"); shift
+        local image=${*}
+        local host=$(jq -r '.host' <<< ${info})
+        local uuid=$(jq -r '.uuid' <<< ${info})
+
+        if _is_uuid ${image}; then
+              image_uuid=${image}
+        else
+              if ! image_uuid=$(curl -s "${DZ_BUILD_PUBLISH_URL}/images?name=${image}&sort=published_at.desc" | jq -re .[0].uuid); then
+                  _die 2 "Unkown image name '${image}', please checkout https://${DZ_BUILD_PUBLISH_URL#*@} for more details"
+              fi
+        fi
+
+        ssh -t ${host} "imgadm import ${image_uuid}"
+        ssh -t ${host} "echo '{ \"image_uuid\": \"'${image_uuid}'\" }' | vmadm reprovision ${uuid}"
+}
+
+_ssh() {
+	ssh ${*}
+}
+
+_mdata() {
+	local info=$(_info "${1}"); shift
+	local metadata=$(jq -r '.internal_metadata * .customer_metadata' <<< ${info})
+
+	local subcommand=${1}; shift
+	case "${subcommand}" in
+		list)
+			jq -r 'keys[]' <<< ${metadata}
+			;;
+		get)
+			jq -r ".${1}" <<< $metadata
+			;;
+		put)
+			:
+			;;
+	esac
+}
+
+in=${1}; shift
+
+case "${in}" in
+	init)   _init        ;;
+	list)   _list        ;;
+	search) _search ${1} ;;
+	login)  _login ${1}  ;;
+        exec)   _exec ${*}   ;;
+	ssh)    _ssh ${*}    ;;
+	mdata)  _mdata ${*}  ;;
+        reprovision) _reprovision ${*} ;;
+	*)      _help        ;;
+esac

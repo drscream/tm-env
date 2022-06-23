@@ -1,0 +1,45 @@
+# Thomas Merkel <tm@core.io>
+# vim:ft=sh
+
+# If you invoke the bash shell while macOS Catalina is configured to use a
+# different shell, you'll see a message that the default interactive shell
+# is now zsh. https://support.apple.com/en-gb/HT208050
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Overwrite default exa (modern ls) options
+alias exa='exa --color-scale --time-style=long-iso --classify --group --links'
+
+# Updatin default PATH with local pkgsrc adm profile folder. The pkgsrc
+# bootstraped to adm is the main entry point for all my local installed tools.
+VPKG_DEFAULT="adm"
+
+VPKG_PATH=${TM_HOME}/.vpkg/${VPKG_DEFAULT}/pkg
+pathedit -p ${VPKG_PATH}/sbin
+pathedit -p ${VPKG_PATH}/bin
+
+. ${VPKG_PATH}/share/bash-completion/bash_completion
+. ${VPKG_PATH}/share/fzf/shell/key-bindings.bash
+
+
+. ${TM_HOME}/.bin/scripts/vpkg
+
+
+function changelog() {
+  local TTY=$(tty)
+  GITCHANGELOG_CONFIG_FILENAME=${TM_HOME}/.gitchangelog.rc \
+  /Users/tm/.venv/adm/bin/gitchangelog $(git describe --tags --abbrev=0 @^)..@ | tee ${TTY} | pbcopy
+}
+
+
+
+if [[ "$(tty)" != "/dev/tty"[1-9] ]]; then
+	if which tmux 2>&1 >/dev/null; then
+		if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+			if [[ -z "$TMUX" ]] && [[ -z "${KATE_PID}" ]]; then
+				name=$(gshuf -n 1 /usr/share/dict/words 2>/dev/null || cat /usr/share/dict/words | shuffle)
+				(tmux ls | grep -vq attached && tmux at) || tmux new -s ${name}
+				exit
+			fi
+		fi
+	fi
+fi

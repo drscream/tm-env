@@ -9,9 +9,13 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+        pager = delta
 
 [init]
 	defaultBranch = main
+
+[merge]
+        conflictstyle = diff3
 
 [credential]
 	helper = cache --timeout=300
@@ -44,8 +48,8 @@
 	cm   = commit -a -m
 	cwtf = !git commit -a -m \"$(whatthecommit -n)\"
 
-	d = !git diff | vim -R -
-	di = !git diff --cached | vim -R -
+	d = !git diff | nvim -R -
+	di = !git diff --cached | nvim -R -
 
 	co = checkout
 	id = rev-parse
@@ -89,12 +93,17 @@
 	interactive = auto
 	status = auto
 
-[diff]
-	color = auto
-	rename = copy
+[interactive]
+        diffFilter = delta --color-only
 
-[pager]
-	color = true
+[delta]
+        # use n and N to move between diff sections
+        navigate = true
+        line-numbers = true
+        syntax-theme = Dracula
+
+[diff]
+        colorMoved = default
 
 [status]
 	color = auto

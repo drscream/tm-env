@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+_venv() {
+	local cur prev
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${prev} in
+		cd|wk|rm)
+			local commands=$( venv ls 2>/dev/null )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+		*)
+			local commands=$( venv 2>/dev/null | tail -n+4 | awk '{ print $1 }' )
+			COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+			;;
+	esac
+}
+
+complete -F _venv venv

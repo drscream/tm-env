@@ -25,8 +25,8 @@ alias Sh='sudo HTOPRC=${TM_HOME}/.config/htop/htoprc htop'
 alias htop='HTOPRC=${TM_HOME}/.config/htop/htoprc htop'
 
 # vim
-alias vim='nvim -u ${TM_HOME}/.config/nvim/init.vim'
-alias vimdiff='nvim -u ${TM_HOME}/.config/nvim/init.vim -d'
+alias vim='nvim -u ${TM_HOME}/.config/nvim/init.lua'
+alias vimdiff='nvim -u ${TM_HOME}/.config/nvim/init.lua -d'
 
 # screen
 alias screen='screen -c ${TM_HOME}/.screenrc'
@@ -41,6 +41,8 @@ alias sshsock='echo export $(env | grep SSH_AUTH_SOCK)'
 # ssh/scp insecure
 alias ssh-insecure='ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null'
 alias scp-insecure='scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null'
+
+alias ssh-legacy='ssh -oHostKeyAlgorithms=+ssh-dss -oKexAlgorithms=+diffie-hellman-group1-sha1'
 
 # compile ssh config
 alias ssh-compile-config='echo "# Warning this file is created by ssh-compile-config" > ${TM_HOME}/.ssh/config && cat ${TM_HOME}/.ssh.extra/config.!(*.secret) ${TM_HOME}/.ssh/config.global >> ~/.ssh/config'

@@ -84,7 +84,7 @@ get_cvs_status() {
 }
 # List available tickets
 list() {
-	links -dump "${RELENG_REQ_URL}" | sed -n '/Tkt#/,$p' | head -n -3
+	links -dump "${RELENG_REQ_URL}" | sed -n '/Tkt#/,$p' | ghead -n -3
 }
 # Show details of one ticket via ID
 show() {
